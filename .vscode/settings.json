@@ -3,5 +3,22 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
 	},
-	"files.eol": "\n"
+	"files.eol": "\n",
+	"cSpell.ignoreWords": [
+		"countup",
+		"cyf",
+		"ecommerce",
+		"h",
+		"jgu",
+		"postgres",
+		"react",
+		"s",
+		"slacktastic",
+		"t",
+		"v",
+		"vnmvdqn",
+		"xo",
+		"xoxb",
+		"yr"
+	]
 }
