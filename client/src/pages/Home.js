@@ -44,8 +44,8 @@ export function Home() {
 
 	console.log(channelList);
 	console.log(userList);
-	console.log(channelHistory);
 	console.log(userInfo);
+	console.log(channelHistory);
 
 	return (
 		<main role="main">
@@ -60,6 +60,12 @@ export function Home() {
 					UserList:
 					{userList.map((profile, index) => (
 						<li key={index}>{profile.real_name}</li>
+					))}
+				</h1>
+				<h1 className="message" data-qa="message">
+					ChannelList:
+					{channelList.map((channel, index) => (
+						<li key={index}>{channel.name}</li>
 					))}
 				</h1>
 				<Link to="/about/this/site">About</Link>

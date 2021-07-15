@@ -29,8 +29,8 @@ export const fetchUserList = async () => {
 
 export const fetchChannelHistory = async () => {
 	try {
-		const {data : {messages}} = await axios.get(urlChannelHistory);
-		return messages;
+		const response = await axios.get(urlChannelHistory);
+		return response;
 	} catch (error) {
 		console.log(error);
 	}
