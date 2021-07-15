@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchChannelList, fetchChannelHistory, fetchUserList } from "../api";
+import { fetchChannelList, fetchChannelHistory, fetchUserList, fetchUserInfo } from "../api";
 import "./Home.css";
 import logo from "./logo.svg";
 
@@ -8,6 +8,7 @@ export function Home() {
 	const [channelList, setChannelList] = useState([]);
 	const [userList, setUserList] = useState([]);
 	const [channelHistory, setChannelHistory] = useState([]);
+	const [userInfo, setUserInfo] = useState([]);
 
 	useEffect(() => {
 		const getChannelList = async () => {
@@ -33,9 +34,18 @@ export function Home() {
 		getChannelHistory();
 	}, []);
 
+	useEffect(() => {
+		const getUserInfo = async () => {
+			const fetchedUserInfoData = await fetchUserInfo();
+			setUserInfo(fetchedUserInfoData);
+		};
+		getUserInfo();
+	}, []);
+
 	console.log(channelList);
 	console.log(userList);
 	console.log(channelHistory);
+	console.log(userInfo);
 
 	return (
 		<main role="main">

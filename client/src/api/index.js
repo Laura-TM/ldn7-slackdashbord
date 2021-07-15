@@ -3,6 +3,7 @@ import axios from "axios";
 const urlChannelList = "/api/channelList";
 const urlUserList = "/api/userList";
 const urlChannelHistory = "/api/channelHistory";
+const urlUserInfo = "/api/userInfo";
 
 export const fetchChannelList = async () => {
 	try {
@@ -30,6 +31,15 @@ export const fetchChannelHistory = async () => {
 	try {
 		const {data : {messages}} = await axios.get(urlChannelHistory);
 		return messages;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const fetchUserInfo = async () => {
+	try {
+		const response = await axios.get(urlUserInfo);
+		return response;
 	} catch (error) {
 		console.log(error);
 	}
