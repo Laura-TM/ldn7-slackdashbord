@@ -10,61 +10,40 @@ router.get("/", (_, res) => {
 	});
 });
 
-const getChannelList = async (request, response) => {
+const getChannelList = async () => {
 	const slackToken = process.env.SLACK_API_TOKEN;
 	const url = `https://ldn7-test-workspace.slack.com/api/conversations.list`;
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
+	return res.data;
 };
 
-const getUserList = async (request, response) => {
+const getUserList = async () => {
 	const slackToken = process.env.SLACK_API_TOKEN;
 	const url = "https://ldn7-test-workspace.slack.com/api/users.list";
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
+	return res.data;
 };
 
-const getUserInfo = async (request, response, userName) => {
+const getUserInfo = async (userId) => {
 	const slackToken = process.env.SLACK_API_TOKEN;
-	const url = `https://ldn7-test-workspace.slack.com/api/users.info?user=${userName}`;
+	const url = `https://ldn7-test-workspace.slack.com/api/users.info?user=${userId}`;
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
+	return res.data;
 }
 
-const getChannelHistory = async (request, response, channel, oldest) => {
+const getChannelHistory = async (channel, oldest) => {
 	const slackToken = process.env.SLACK_API_TOKEN;
 	const url = `https://ldn7-test-workspace.slack.com/api/conversations.history?channel=${channel}&oldest=${oldest}`;
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
+	return res.data;
 }
-
-
-router.get("/channelList", async (request, response) => {
-	getChannelList(request, response);
-});
-
-
-router.get("/userList", async (request, response) => {
-	getUserList(request, response);
-});
-
-
-router.get("/userInfo", async (request, response) => {
-	getUserInfo(request, response, "U027Q1PF9D0",)
-});
-
-
-router.get("/channelHistory", async (request, response) => {
-	getChannelHistory(request, response, "C028DN05PUG", "1626167749.804")
-});
-
 
 export default router;
