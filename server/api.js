@@ -8,7 +8,7 @@ router.get("/user/:userId", async (req, res) => {
 		statistics: [],
 	};
 	const now = new Date();
-	let time = req.query.time == "month" ? now.getMonth() : now.getDay();
+	let time = req.query.time == "month" ? now.getDate() : now.getDay();
 	let latest = now / 1000;
 	let oldest = latest - 60 * 60 * 24 * time;
 	time = req.query.time == "month" ? 30 : 7;
