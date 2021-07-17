@@ -45,5 +45,4 @@ const getChannelHistory = async (channel, oldest, latest) => {
 	return res.data;
 };
 
-
 export default router;
