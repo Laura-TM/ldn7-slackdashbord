@@ -45,6 +45,7 @@ const getChannelHistory = async (channel, oldest, latest) => {
 	return res.data;
 };
 
+
 router.get("/user/:userId", async (req, res) => {
 	const userId = req.params.userId;
 	let result = {
