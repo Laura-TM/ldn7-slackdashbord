@@ -4,40 +4,45 @@ import process from "process";
 const router = new Router();
 const axios = require("axios");
 
-router.get("/", (_, res) => {
-	res.json({
-		message: "Hello, world!",
-	});
-});
-
-router.get("/channelList", async (request, response) => {
+const getChannelList = async () => {
 	const slackToken = process.env.SLACK_API_TOKEN;
-	const url = "https://ldn7-test-workspace.slack.com/api/conversations.list";
-	console.log(slackToken);
-	console.log(process.env);
+	const url = `https://ldn7-test-workspace.slack.com/api/conversations.list`;
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
-});
+	return res.data;
+};
 
-router.get("/userList", async (request, response) => {
+const getUserList = async () => {
 	const slackToken = process.env.SLACK_API_TOKEN;
 	const url = "https://ldn7-test-workspace.slack.com/api/users.list";
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
-});
+	return res.data;
+};
 
-router.get("/channelHistory", async (request, response) => {
+const getUserInfo = async (userId) => {
 	const slackToken = process.env.SLACK_API_TOKEN;
-	// const { channel } = request.params;
-	const url = `https://ldn7-test-workspace.slack.com/api/conversations.history?channel=C027M110K9T`;
+	const url = `https://ldn7-test-workspace.slack.com/api/users.info?user=${userId}`;
 	const res = await axios.get(url, {
 		headers: { Authorization: `Bearer ${slackToken}` },
 	});
-	response.json(res.data);
-});
+	return res.data;
+}
+
+const getChannelHistory = async (channel, oldest, latest) => {
+	const slackToken = process.env.SLACK_API_TOKEN;
+	let url = ""
+	if(oldest === undefined || latest === undefined) {
+		url = `https://ldn7-test-workspace.slack.com/api/conversations.history?channel=${channel}`;
+	}  else {
+		url = `https://ldn7-test-workspace.slack.com/api/conversations.history?channel=${channel}&oldest=${oldest}&latest=${latest}`;
+	}
+	const res = await axios.get(url, {
+		headers: { Authorization: `Bearer ${slackToken}` },
+	});
+	return res.data;
+};
 
 export default router;
