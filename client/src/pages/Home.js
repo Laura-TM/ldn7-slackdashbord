@@ -31,19 +31,11 @@ export function Home() {
 	return (
 		<main role="main">
 			<div>
-				{/* <img
-					className="logo"
-					data-qa="logo"
-					// src={logo}
-					alt="Just the React logo"
-				/> */}
 				<Headers name={"Jim"} cohort={"London-8"} />
 				<div className="card">
 					<h1 className="message" data-qa="message">
 						{message}
 					</h1>
-					{/* <h2>Messages: {statistics[0]}</h2>
-					<h2>Reactions: {statistics[1]}</h2> */}
 				</div>
 				<UserTable
                     userInfo={{ month: "July", posts: statistics[0], reactions: statistics[1], calls: 0 }}
