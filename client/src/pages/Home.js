@@ -4,7 +4,7 @@ import Headers from "./Headers";
 import UserTable from "./UserTable";
 import "./Home.css";
 
-import logo from "./cyf_logo.png";
+
 export function Home() {
     const [message, setMessage] = useState("Loading...");
 const [statistics,setStatistics] = useState([]);
@@ -29,25 +29,20 @@ console.log(statistics[0]);
     return (
         <main role="main">
             <div>
-                <img
-                    className="logo"
-                    data-qa="logo"
-                    src={logo}
-                    alt="Just the React logo"
-                />
-                <h1 className="message" data-qa="message">
+            <h1 className="message" data-qa="message">
                     {message}
                 </h1>
+
                 {/* <table>
                     <th><td>count</td></th>
                     <tr><td>{message}</td></tr>
                 </table> */}
                 <Headers name={"Jim"} cohort={"London-8"} />
+                </div>
                 <UserTable
                     userInfo={{ month: "July", posts: 1, reactions: 0, calls: 0 }}
                 />
                 <Link to="/about/this/site">About</Link>
-            </div>
         </main>
     );
 }
