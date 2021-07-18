@@ -1,14 +1,37 @@
 .logo {
-	width: 200px;
+	width: 140px;
+	margin-left: 270px;
 }
 
 .message {
 	color: blue;
 }
 
-/* .message:hover {
-	background-color: yellow;
-} */
+/* ALL FRONT END */
+* {
+	font-family: "Nunito", sans-serif;
+  }
+  
+/* HOME SECTION */
+.header {
+	background-color: rgb(10 8 116);
+	padding: 20px;
+	margin: auto;
+	font-family: "Nunito", sans-serif;
+	color: white;
+	text-align: left;
+	font-size: 1em;
+	font-weight: bold;
+	width: 90%;
+	display: flex;
+  }
+
+  /* TABLE */
+  .table-color {
+	background-color: #cfe3f1;
+	margin: auto;
+	width: 90%;
+  }
 
 .card {
 	display: flex;

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Headers from "./Headers";
+import UserTable from "./UserTable";
 import "./Home.css";
-import logo from "./cyf_brand.png";
+
+
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
 	const [statistics, setStatistics] = useState([]);
@@ -28,19 +31,15 @@ export function Home() {
 	return (
 		<main role="main">
 			<div>
-				<img
-					className="logo"
-					data-qa="logo"
-					src={logo}
-					alt="Just the React logo"
-				/>
+				<Headers name={"Jim"} cohort={"London-8"} />
 				<div className="card">
 					<h1 className="message" data-qa="message">
 						{message}
 					</h1>
-					<h2>Messages: {statistics[0]}</h2>
-					<h2>Reactions: {statistics[1]}</h2>
 				</div>
+				<UserTable
+                    userInfo={{ month: "July", posts: statistics[0], reactions: statistics[1], calls: 0 }}
+                />
 				<Link to="/about/this/site">About</Link>
 			</div>
 		</main>
