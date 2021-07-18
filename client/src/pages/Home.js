@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Headers from "./Headers";
+import UserTable from "./UserTable";
 import "./Home.css";
-import logo from "./cyf_brand.png";
+
+import logo from "./cyf_logo.png";
 export function Home() {
     const [message, setMessage] = useState("Loading...");
 const [statistics,setStatistics] = useState([]);
@@ -35,10 +38,14 @@ console.log(statistics[0]);
                 <h1 className="message" data-qa="message">
                     {message}
                 </h1>
-                <table>
+                {/* <table>
                     <th><td>count</td></th>
                     <tr><td>{message}</td></tr>
-                </table>
+                </table> */}
+                <Headers name={"Jim"} cohort={"London-8"} />
+                <UserTable
+                    userInfo={{ month: "July", posts: 1, reactions: 0, calls: 0 }}
+                />
                 <Link to="/about/this/site">About</Link>
             </div>
         </main>
