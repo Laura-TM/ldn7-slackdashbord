@@ -71,3 +71,4 @@ See the guidance in the [wiki].
 [react router]: https://reactrouter.com/web
 [webpack]: https://webpack.js.org/
 [wiki]: https://github.com/textbook/starter-kit/wiki
+[dotenv]: https://github.com/motdotla/dotenv
