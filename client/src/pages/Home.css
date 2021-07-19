@@ -1,11 +1,23 @@
 .logo {
-	width: 100px;
+    width: 200px;
 }
-
 .message {
-	color: blue;
+    color: blue;
 }
-
-.message:hover {
-	background-color: yellow;
+/* .message:hover {
+    background-color: yellow;
+} */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 2px solid pink;
+    border-right: 2px solid pink;
+    border-top: 2px solid cyan;
+    border-bottom: 2px solid cyan;
+    border-radius: 10px;
+    margin: auto;
+    width: 70%;
+    margin-top: 3rem;
 }
