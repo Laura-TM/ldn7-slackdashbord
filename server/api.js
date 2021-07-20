@@ -65,6 +65,7 @@ result.userName = userName;
 const now = new Date()/1000;
 const oldest =now - 60*60*7*24;
 const newStatistics= await getStat(userId,oldest);
+console.log(newStatistics);
 	result.statistics.push(newStatistics);
 	res.status(200).json(result);
 });
@@ -72,7 +73,7 @@ const newStatistics= await getStat(userId,oldest);
 router.get("/avr/:userId", async(req,res)=>{
 const userId=req.params.userId;
 console.log(userId);
-let data = await getChannelHistory("C028DN05PUG");
+let data = await getChannelHistory("C027M110K9T");
 
 	if (data.ok && data.messages) {
 		const timestampOfJoin = data.messages.find(
@@ -86,6 +87,7 @@ let data = await getChannelHistory("C028DN05PUG");
 		const now=new Date();
 		const joinDate=timestampOfJoin.ts * 1000;
 		const weeks = Math.round((now - joinDate) / 604800000);
+		console.log(weeks);
 		let stat =await getStat(userId,timestampOfJoin.ts);
 		stat.messageCount=stat.messageCount/weeks;
 		stat.reactionCount=stat.reactionCount/weeks;
