@@ -1,23 +1,49 @@
 .logo {
-    width: 200px;
+
+	width: 140px;
+	margin-left: 270px;
 }
 .message {
-    color: blue;
+	color: blue;
 }
-/* .message:hover {
-    background-color: yellow;
-} */
+
+/* ALL FRONT END */
+* {
+	font-family: "Nunito", sans-serif;
+  }
+  
+/* HOME SECTION */
+.header {
+	background-color: rgb(10 8 116);
+	padding: 20px;
+	margin: auto;
+	font-family: "Nunito", sans-serif;
+	color: white;
+	text-align: left;
+	font-size: 1em;
+	font-weight: bold;
+	width: 90%;
+	display: flex;
+  }
+
+  /* TABLE */
+  .table-color {
+	background-color: #cfe3f1;
+	margin: auto;
+	width: 90%;
+  }
+
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-left: 2px solid pink;
-    border-right: 2px solid pink;
-    border-top: 2px solid cyan;
-    border-bottom: 2px solid cyan;
-    border-radius: 10px;
-    margin: auto;
-    width: 70%;
-    margin-top: 3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-left: 2px solid pink;
+	border-right: 2px solid pink;
+	border-top: 2px solid cyan;
+	border-bottom: 2px solid cyan;
+	border-radius: 10px;
+	margin: auto;
+	width: 70%;
+	margin-top: 3rem;
 }

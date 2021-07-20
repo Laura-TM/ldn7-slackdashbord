@@ -71,3 +71,10 @@ See the guidance in the [wiki].
 [react router]: https://reactrouter.com/web
 [webpack]: https://webpack.js.org/
 [wiki]: https://github.com/textbook/starter-kit/wiki
+[dotenv]: https://github.com/motdotla/dotenv
+
+
+## Setting up .env file
+Create a .env file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE. In this case:
+
+SLACK_API_KEY=<key>, where key is grabbed from. 

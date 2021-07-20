@@ -73,6 +73,7 @@ router.get("/avr/:userId", async(req,res)=>{
 const userId=req.params.userId;
 console.log(userId);
 let data = await getChannelHistory("C028DN05PUG");
+
 	if (data.ok && data.messages) {
 		const timestampOfJoin = data.messages.find(
 			(message) =>
@@ -81,6 +82,7 @@ let data = await getChannelHistory("C028DN05PUG");
 				message.subtype == "channel_join" &&
 				message.user == userId
 		);
+
 		const now=new Date();
 		const joinDate=timestampOfJoin.ts * 1000;
 		const weeks = Math.round((now - joinDate) / 604800000);
