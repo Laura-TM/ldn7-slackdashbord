@@ -33,7 +33,6 @@ const findReaction = (reactions, userId) => {
 
 const getStat = async (userId, oldest,latest) => {
 	latest = latest == undefined? "" : latest;
-	console.log(latest);
 	const data = await getChannelHistory("C027M110K9T", oldest, latest);
 	const messageCount = data.messages.filter(
 		(message) =>
@@ -63,16 +62,14 @@ const userName = userInfo.ok
 	: res.status(400).json("The user not found");
 result.userName = userName;
 const now = new Date()/1000;
-const oldest =now - 60*60*7*24;
-const newStatistics= await getStat(userId,oldest);
-console.log(newStatistics);
+const weekInSeconde =now - 60*60*7*24;
+const newStatistics = await getStat(userId, weekInSeconde);
 	result.statistics.push(newStatistics);
 	res.status(200).json(result);
 });
 
 router.get("/avr/:userId", async(req,res)=>{
 const userId=req.params.userId;
-console.log(userId);
 let data = await getChannelHistory("C027M110K9T");
 
 	if (data.ok && data.messages) {
@@ -87,7 +84,6 @@ let data = await getChannelHistory("C027M110K9T");
 		const now=new Date();
 		const joinDate=timestampOfJoin.ts * 1000;
 		const weeks = Math.round((now - joinDate) / 604800000);
-		console.log(weeks);
 		let stat =await getStat(userId,timestampOfJoin.ts);
 		stat.messageCount=stat.messageCount/weeks;
 		stat.reactionCount=stat.reactionCount/weeks;
