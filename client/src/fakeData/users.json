@@ -1,15 +1,14 @@
-{
-    "ei123": {
-        "username": "EnriqueIglesias",
-        "statistics": [
-            1,5,7
-        ]
+[
+    { 
+        "userId": "U027Q7RKX5Z",
+        "username": "AskinEkinci"
     },
-    "jb543": {
-        "username": "JimBond",
-        "statistics": [
-            1,10,12
-        ]
+   {    "userId": "E1123",
+        "username": "EnriqueIglesias"
+    },
+    {
+        "userId": "JB123",
+        "username": "JimBond"
     }
-}
+]
 
