@@ -4,7 +4,6 @@ import Headers from "./Headers";
 import UserTable from "./UserTable";
 import "./Home.css";
 
-
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
 	const [statistics, setStatistics] = useState([]);
