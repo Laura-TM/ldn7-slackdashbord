@@ -7,8 +7,9 @@ import notFound from "./unknown_profile.png";
 
 export function SingleUser() {
 	const [username, setUsername] = useState("Loading...");
+	const [messageCount, setMessageCount] = useState("?");
+	const [reactionCount, setReactionCount] = useState("?");
 	const [profile, setProfile] = useState("Happy Coder");
-	const [statistics, setStatistics] = useState([]);
 	// get userId from url. e.g. /user/abc123
 	const { userId } = useParams();
 	useEffect(() => {
@@ -22,18 +23,32 @@ export function SingleUser() {
 			.then((body) => {
 				console.log(body);
 				setUsername(body.userName);
-				setStatistics(Object.values(body.statistics[0]));
 			})
 			.catch((err) => {
 				setUsername(`USER ${userId} NOT FOUND`);
-				setStatistics([]);
 				setProfile("Not found");
 				console.error(err);
 			});
+
+
+
+			fetch(`/api/avr/${userId}`)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error(res.statusText);
+				}
+				return res.json();
+			})
+			.then((body) => {
+				console.log(body);
+				setMessageCount(body.messageCount);
+				setReactionCount(body.reactionCount);
+
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	}, []);
-
-	console.log(statistics);
-
 
 	//https://icon-library.com/images/web-user-icon/web-user-icon-8.jpg
 	return (
@@ -53,10 +68,10 @@ export function SingleUser() {
 							Week: 1
 						</div>
 						<div>
-							Number of posts: {statistics[0]}
+							Number of posts: {messageCount}
 						</div>
 						<div>
-							Number of reactions: {statistics[1]}
+							Number of reactions: {reactionCount}
 						</div>
 						<div>
 							Profile: {profile}
