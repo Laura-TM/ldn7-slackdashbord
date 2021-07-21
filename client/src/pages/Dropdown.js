@@ -14,11 +14,11 @@ const UserDropdown = (props) => {
             View Slack users
         </DropdownToggle>
         <DropdownMenu bottom>
-        {props.users.map((user, index) => {
-        return (
-            <DropdownItem key={index} href={`/user/${user.userId}`}>User: {user.username}</DropdownItem>
-        );
-    })}
+            {props.users.map((user, index) => {
+                return (
+                    <DropdownItem key={index} href={`/user/${user.userId}`}>User: {user.username}</DropdownItem>
+                );
+            })}
         </DropdownMenu>
     </Dropdown>
   );

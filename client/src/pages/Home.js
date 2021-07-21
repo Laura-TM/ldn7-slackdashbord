@@ -5,10 +5,9 @@ import "./Home.css";
 // todo replace:
 import users from "../fakeData/users.json";
 
-export function Home() {
+const Home = () => {
 	return (
 		<main role="main">
-			{/* redesign to make look better (4) */}
 			<div className="container">
 				<Headers size="large" />
 				<h3>On this site, you can access all sorts of stats about the Code Your Future slack channels and users.</h3>
@@ -17,5 +16,5 @@ export function Home() {
 			</div>
 		</main>
 	);
-}
+};
 export default Home;

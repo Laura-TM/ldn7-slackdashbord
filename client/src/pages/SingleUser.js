@@ -5,7 +5,7 @@ import "./Home.css";
 // todo: delete when using api
 import notFound from "./unknown_profile.png";
 
-export function SingleUser() {
+const SingleUser = () => {
 	const [username, setUsername] = useState("Loading...");
 	const [messageCount, setMessageCount] = useState("?");
 	const [reactionCount, setReactionCount] = useState("?");
@@ -21,7 +21,6 @@ export function SingleUser() {
 				return res.json();
 			})
 			.then((body) => {
-				console.log(body);
 				setUsername(body.userName);
 			})
 			.catch((err) => {
@@ -38,7 +37,6 @@ export function SingleUser() {
 				return res.json();
 			})
 			.then((body) => {
-				console.log(body);
 				setMessageCount(body.messageCount);
 				setReactionCount(body.reactionCount);
 
@@ -46,7 +44,7 @@ export function SingleUser() {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [userId]);
 
 	return (
 		<main role="main">
@@ -78,5 +76,5 @@ export function SingleUser() {
 			</div>
 		</main>
 	);
-}
+};
 export default SingleUser;
