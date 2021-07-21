@@ -30,17 +30,22 @@
 	font-size: 1em;
 	font-weight: bold;
 	width: 90%;
-	/* min-width: 400px; */
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	margin: 0px 10px 30px 10px;
-  }
+}
 
-.logo {
+.logo.large {
 	width: auto;
 	margin-left: 50px;
     height: auto;
+}
+
+.logo.small {
+	width: auto;
+	margin-left: 50px;
+    height: 120px;
 }
 
 .userDetails {

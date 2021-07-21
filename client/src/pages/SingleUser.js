@@ -30,8 +30,6 @@ export function SingleUser() {
 				console.error(err);
 			});
 
-
-
 			fetch(`/api/avr/${userId}`)
 			.then((res) => {
 				if (!res.ok) {
@@ -50,11 +48,10 @@ export function SingleUser() {
 			});
 	}, []);
 
-	//https://icon-library.com/images/web-user-icon/web-user-icon-8.jpg
 	return (
 		<main role="main">
 			<div className="container">
-				<Headers />
+				<Headers size="small" />
 				<div className="username">{username}</div>
 				<div className="userDetails">
 				<img
@@ -83,10 +80,3 @@ export function SingleUser() {
 	);
 }
 export default SingleUser;
-
-/*
-{userName: "Askin Ekinci",
-statistics: Array(1)}statistics: Array(1)0:
-{messageCount: 1, reactionCount: 0}length: 1__proto__: Array(0)userName: "Askin Ekinci"__proto__: Object
-SingleUser.js:38 (2) [1, 0]
-*/

@@ -10,7 +10,7 @@ export function Home() {
 		<main role="main">
 			{/* redesign to make look better (4) */}
 			<div className="container">
-				<Headers />
+				<Headers size="large" />
 				<h3>On this site, you can access all sorts of stats about the Code Your Future slack channels and users.</h3>
 				<ChannelButton />
 				<UserDropdown users={users} />

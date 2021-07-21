@@ -9,7 +9,7 @@ const Channels = () => {
   return (
     <main role="main">
 		<div className="container">
-		<Headers />
+		<Headers size="small" />
 
       <Table responsive className="table table-color table-bordered">
         <thead className="text-center">
