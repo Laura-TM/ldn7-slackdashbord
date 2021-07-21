@@ -1,45 +1,19 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Headers from "./Headers";
-import UserTable from "./UserTable";
+import UserDropdown from "./Dropdown";
+import ChannelButton from "./Button";
 import "./Home.css";
+// todo replace:
+import users from "../fakeData/users.json";
 
 export function Home() {
-	const [message, setMessage] = useState("Loading...");
-	const [statistics, setStatistics] = useState([]);
-	useEffect(() => {
-		fetch("/api/user/U027Q7RKX5Z?time=week")
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
-			.then((body) => {
-				setMessage(body.userName);
-				setStatistics(Object.values(body.statistics[0]));
-				console.log(body);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	}, []);
-
-	console.log(statistics);
-
 	return (
 		<main role="main">
-			<div>
-				<Headers name={"Jim"} cohort={"London-8"} />
-				<div className="card">
-					<h1 className="message" data-qa="message">
-						{message}
-					</h1>
-				</div>
-				<UserTable
-                    userInfo={{ month: "July", posts: statistics[0], reactions: statistics[1], calls: 0 }}
-                />
-				<Link to="/about/this/site">About</Link>
+			{/* redesign to make look better (4) */}
+			<div className="container">
+				<Headers />
+				<h3>On this site, you can access all sorts of stats about the Code Your Future slack channels and users.</h3>
+				<ChannelButton />
+				<UserDropdown users={users} />
 			</div>
 		</main>
 	);
