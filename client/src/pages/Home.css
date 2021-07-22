@@ -1,10 +1,19 @@
-.logo {
-
-	width: 140px;
-	margin-left: 270px;
+.container {
+	height: 750px;
+	margin-left: 15%;
+	margin-right: 25%;
+	width: 75%;
 }
+
 .message {
 	color: blue;
+}
+
+.username {
+	width: 100%;
+    text-align: center;
+    font-size: 50px;
+    font-family: monospace;
 }
 
 /* ALL FRONT END */
@@ -14,9 +23,7 @@
   
 /* HOME SECTION */
 .header {
-	background-color: rgb(10 8 116);
 	padding: 20px;
-	margin: auto;
 	font-family: "Nunito", sans-serif;
 	color: white;
 	text-align: left;
@@ -24,7 +31,41 @@
 	font-weight: bold;
 	width: 90%;
 	display: flex;
-  }
+	flex-direction: row;
+	justify-content: center;
+	margin: 0px 10px 30px 10px;
+}
+
+.logo.large {
+	width: auto;
+	margin-left: 50px;
+    height: auto;
+}
+
+.logo.small {
+	width: 200px;
+	margin-left: 50px;
+    height: 120px;
+}
+
+.userDetails {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0px 10px 30px 10px;
+}
+
+.userStats {
+	font-size: 28px;
+	font-family: "Nunito", sans-serif;
+	padding-top: 10px;
+}  
+
+.profilePic {
+	height: 200px;
+	padding: 20px;
+}
 
   /* TABLE */
   .table-color {
@@ -33,17 +74,36 @@
 	width: 90%;
   }
 
-.card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border-left: 2px solid pink;
-	border-right: 2px solid pink;
-	border-top: 2px solid cyan;
-	border-bottom: 2px solid cyan;
-	border-radius: 10px;
-	margin: auto;
-	width: 70%;
-	margin-top: 3rem;
+main {
+	background-image: url("slack_bg.png");
+	background-repeat: no-repeat;
+    background-size:cover;
+	height: auto;
+}
+
+.linkButtons, .linkButtons button {
+	width: 100%;
+	height: 50px;
+	margin-top: 5px;
+	align-self: center;
+	font-size: 25px;
+}
+
+.linkButtons:hover, .linkButtons button:hover {
+	background-color: #dbd801e3;
+}
+
+.blueButton {
+	background-color: #0dbbfd;
+}
+
+.greenButton button {
+	background-color: #24b873;
+}
+
+.dropdown-menu.show {
+	width: 100%;
+	align-self: center;
+	font-size: 25px;
+	text-align: center;
 }
