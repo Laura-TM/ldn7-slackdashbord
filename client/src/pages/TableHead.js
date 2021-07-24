@@ -1,22 +1,22 @@
 import React from "react";
 import "./Home.css";
 
-const TableHead = (props) => {
+const TableHead = () => {
 
   return (
     <tr>
       <th>
-        Channel
+        Channel Name
       </th>
-      <th>
-        Description
-      </th>
+      {/* <th>
+        Channel Id
+      </th> */}
       <th>
         No. of users
       </th>
-      <th>
+      {/* <th>
         Users
-      </th>
+      </th> */}
     </tr>
   );
 };
