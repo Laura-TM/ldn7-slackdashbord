@@ -8,7 +8,7 @@ import notFound from "./unknown_profile.png";
 const SingleUser = () => {
 	const [username, setUsername] = useState("Loading...");
 	const [stats, setStats] = useState("?");
-	const [profile, setProfile] = useState("Happy Coder");
+	const [profile, setProfile] = useState("");
 	const { userId, channelId } = useParams();
 	console.log(userId);
 	useEffect(() => {
@@ -22,7 +22,8 @@ const SingleUser = () => {
 			.then((body) => {
 				setUsername(body.userName);
 				setStats(body.statistics);
-				setProfile(body.profile.title)
+				let profile = body.profile.title ? body.profile.title : "no description";
+				setProfile(profile);
 			})
 			.catch((err) => {
 				setUsername(`USER ${userId} NOT FOUND`);
@@ -30,8 +31,6 @@ const SingleUser = () => {
 				console.error(err);
 			});
 	}, [userId]);
-
-	console.log(profile)
 
 	return (
 		<main role="main">
