@@ -1,6 +1,7 @@
 import Headers from "./Headers";
 import UserDropdown from "./Dropdown";
 import ChannelButton from "./Button";
+import Footer from "./Footer";
 import "./Home.css";
 // todo replace:
 // import users from "../fakeData/users.json";
@@ -14,6 +15,7 @@ const Home = () => {
 				<ChannelButton />
 				{/* <UserDropdown users={users} /> */}
 			</div>
+			<Footer />
 		</main>
 	);
 };

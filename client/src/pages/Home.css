@@ -1,9 +1,13 @@
 .container {
-	height: 750px;
+	height: 550px;
 	margin-left: 15%;
 	margin-right: 25%;
 	width: 75%;
 }
+
+
+
+
 
 .message {
 	color: blue;
@@ -68,12 +72,17 @@
 	padding: 20px;
 }
 
-  /* TABLE */
-  .table-color {
-	background-color: #cfe3f1;
+/* TABLE */
+.table-color {
+	background-color: #b8e2ffb8;
 	margin: auto;
 	width: 90%;
-  }
+}
+
+thead {
+	background-color: #a9d3a9;
+}
+
 
 main {
 	background-image: url("slack_bg.png");
@@ -108,3 +117,19 @@ main {
 	font-size: 25px;
 	text-align: center;
 }
+
+/* FOOTER */
+
+footer {
+	background-color: black;
+	color: white;
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px;
+}
+  
+  /* footer li {
+	list-style-type: none;
+	margin-top: 5px;
+  } */
+  
