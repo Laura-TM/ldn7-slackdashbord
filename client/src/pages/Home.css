@@ -40,6 +40,7 @@
 	width: auto;
 	margin-left: 50px;
     height: auto;
+	width: 40%;
 }
 
 .logo.small {
@@ -84,7 +85,7 @@ main {
 .linkButtons, .linkButtons button {
 	width: 100%;
 	height: 50px;
-	margin-top: 5px;
+	margin-top: 0.5rem;
 	align-self: center;
 	font-size: 25px;
 }

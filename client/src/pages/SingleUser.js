@@ -7,13 +7,12 @@ import notFound from "./unknown_profile.png";
 
 const SingleUser = () => {
 	const [username, setUsername] = useState("Loading...");
-	const [messageCount, setMessageCount] = useState("?");
-	const [reactionCount, setReactionCount] = useState("?");
+	const [stats, setStats] = useState("?");
 	const [profile, setProfile] = useState("Happy Coder");
-	// get userId from url. e.g. /user/abc123
-	const { userId } = useParams();
+	const { userId, channelId } = useParams();
+	console.log(userId);
 	useEffect(() => {
-		fetch(`/api/user/${userId}?time=week`)
+		fetch(`/api/user/${channelId}/${userId}`)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error(res.statusText);
@@ -22,29 +21,17 @@ const SingleUser = () => {
 			})
 			.then((body) => {
 				setUsername(body.userName);
+				setStats(body.statistics);
+				setProfile(body.profile.title)
 			})
 			.catch((err) => {
 				setUsername(`USER ${userId} NOT FOUND`);
 				setProfile("Not found");
 				console.error(err);
 			});
-
-			fetch(`/api/avr/${userId}`)
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
-			.then((body) => {
-				setMessageCount(body.messageCount);
-				setReactionCount(body.reactionCount);
-
-			})
-			.catch((err) => {
-				console.error(err);
-			});
 	}, [userId]);
+
+	console.log(profile)
 
 	return (
 		<main role="main">
@@ -52,22 +39,20 @@ const SingleUser = () => {
 				<Headers size="small" />
 				<div className="username">{username}</div>
 				<div className="userDetails">
-				<img
-                    className="profilePic"
-                    data-qa="logo"
-                    src={notFound}
-                    alt="profile pic"
-                />
+					<img
+						className="profilePic"
+						data-qa="logo"
+						src={notFound}
+						alt="profile pic"
+					/>
 					<div className="userStats">
-						<div>
-							Week: 1
-						</div>
-						<div>
-							Number of posts: {messageCount}
-						</div>
-						<div>
-							Number of reactions: {reactionCount}
-						</div>
+						<div>Last Week:</div>
+						{Object.values(stats).map((message, index) => (
+							<div key={index}>
+								<div>Number of posts: {message.messageCount}</div>
+								<div>Number of reactions: {message.reactionCount}</div>
+							</div>
+						))}
 						<div>
 							Profile: {profile}
 						</div>

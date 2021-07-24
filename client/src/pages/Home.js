@@ -3,7 +3,7 @@ import UserDropdown from "./Dropdown";
 import ChannelButton from "./Button";
 import "./Home.css";
 // todo replace:
-import users from "../fakeData/users.json";
+// import users from "../fakeData/users.json";
 
 const Home = () => {
 	return (
@@ -12,7 +12,7 @@ const Home = () => {
 				<Headers size="large" />
 				<h3>On this site, you can access all sorts of stats about the Code Your Future slack channels and users.</h3>
 				<ChannelButton />
-				<UserDropdown users={users} />
+				{/* <UserDropdown users={users} /> */}
 			</div>
 		</main>
 	);
