@@ -1,14 +1,9 @@
 import React from "react";
 
 const Footer = () => {
-  const contactDetails = [
-    "123 Fake Street, London, E1 4UD",
-    "hello@fakehotel.com",
-    "0123 456789",
-  ];
   return (
     <footer>
-      
+      <p>footer goes here</p>
     </footer>
   );
 };
