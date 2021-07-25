@@ -108,7 +108,7 @@ router.get("/user/:channelId/:userId", async (req, res) => {
 	let result = {
 		userName: "",
 		profile: "",
-		statistics: []
+		statistics: [],
 	};
 	const userInfo = await getUserInfo(userId);
 	const userName = userInfo.ok

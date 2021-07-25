@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import {
+	Dropdown,
+	DropdownToggle,
+	DropdownMenu,
+	DropdownItem,
+} from "reactstrap";
 import "./Home.css";
 
 const UserDropdown = () => {
-
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [userList, setUserList] = useState([]);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [userList, setUserList] = useState([]);
 	useEffect(() => {
 		fetch("/api/userList")
 			.then((res) => {
@@ -24,24 +28,26 @@ const UserDropdown = () => {
 
 	console.log(userList);
 
-    const toggle = () => setDropdownOpen( (prevState) => !prevState);
+	const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  return (
-    <Dropdown className="linkButtons greenButton" isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle caret>
-            View Slack users
-        </DropdownToggle>
-        <DropdownMenu bottom>
-            {userList.map((user, index) => {
-                return (
-                    <DropdownItem key={index} href={`/user/${user.id}`}>{user.real_name}</DropdownItem>
-                );
-            })}
-        </DropdownMenu>
-    </Dropdown>
-  );
+	return (
+		<Dropdown
+			className="linkButtons greenButton"
+			isOpen={dropdownOpen}
+			toggle={toggle}
+		>
+			<DropdownToggle caret>View Slack users</DropdownToggle>
+			<DropdownMenu bottom>
+				{userList.map((user, index) => {
+					return (
+						<DropdownItem key={index} href={`/user/${user.id}`}>
+							{user.real_name}
+						</DropdownItem>
+					);
+				})}
+			</DropdownMenu>
+		</Dropdown>
+	);
 };
 
 export default UserDropdown;
-
-
