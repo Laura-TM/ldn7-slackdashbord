@@ -80,3 +80,11 @@ Create a .env file in the root directory of your project. Add environment-specif
 SLACK_API_KEY=<key>
 DATABASE_URL=postgresql://<username>:<password>@localhost/cyf
 ```
+
+## Setting up local db
+Commands:
+```
+createdb -U <username> cyf
+psql -d cyf -U <username> -f scripts/01-init.sql
+
+```
