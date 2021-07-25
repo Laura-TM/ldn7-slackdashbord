@@ -10,7 +10,10 @@ const Home = () => {
 		<main role="main">
 			<div className="container">
 				<Headers size="large" />
-				<h3>On this site, you can access all sorts of stats about the Code Your Future slack channels and users.</h3>
+				<h3>
+					On this site, you can access all sorts of stats about the Code Your
+					Future slack channels and users.
+				</h3>
 				<ChannelButton />
 				{/* <UserDropdown users={users} /> */}
 			</div>

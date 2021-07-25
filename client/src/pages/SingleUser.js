@@ -22,16 +22,16 @@ const SingleUser = () => {
 			.then((body) => {
 				setUsername(body.userName);
 				setStats(body.statistics);
-				setProfile(body.profile.title)
+				setProfile(body.profile.title);
 			})
 			.catch((err) => {
 				setUsername(`USER ${userId} NOT FOUND`);
 				setProfile("Not found");
 				console.error(err);
 			});
-	}, [userId]);
+	}, [userId, channelId]);
 
-	console.log(profile)
+	console.log(profile);
 
 	return (
 		<main role="main">
@@ -53,9 +53,7 @@ const SingleUser = () => {
 								<div>Number of reactions: {message.reactionCount}</div>
 							</div>
 						))}
-						<div>
-							Profile: {profile}
-						</div>
+						<div>Profile: {profile}</div>
 					</div>
 				</div>
 			</div>
