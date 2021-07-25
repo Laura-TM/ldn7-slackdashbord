@@ -76,5 +76,15 @@ See the guidance in the [wiki].
 
 ## Setting up .env file
 Create a .env file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE. In this case:
+```
+SLACK_API_KEY=<key>
+DATABASE_URL=postgresql://<username>:<password>@localhost/cyf
+```
 
-SLACK_API_KEY=<key>, where key is grabbed from. 
+## Setting up local db
+Commands:
+```
+createdb -U <username> cyf
+psql -d cyf -U <username> -f scripts/01-init.sql
+
+```
