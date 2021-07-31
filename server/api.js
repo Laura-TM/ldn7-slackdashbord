@@ -130,7 +130,7 @@ const fetchAllData = async (startDate) => {
 	return Promise.all(result);
 };
 
-router.get("/dailyStatistic/:channelId/:userId", async (req, res) => {
+router.get("/dailyStatistic", async (req, res) => {
 	let startDate =
 		(new Date().setHours(0, 0, 0, 0) - 60 * 60 * 24 * 21 * 1000) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
@@ -159,7 +159,7 @@ const insertDataToTable = (newStat) => {
 	pool
 		.query(
 			format(
-				"INSERT INTO messages (user_id, channel_id, date, message_count, reaction_count) VALUES %L",
+				"INSERT INTO messages (channel_id, user_id, date, message_count, reaction_count) VALUES %L",
 				newStat
 			)
 		)
@@ -343,13 +343,16 @@ router.get("/avr/:channelId/:userId", async (req, res) => {
 
 router.get("/channelAvg/:channelId", (req, res) => {
 	const channelId = req.params.channelId;
+	console.log(channelId)
 
 	const query = `SELECT channel_id, AVG(message_count)::numeric(10,1) AS avg_message, AVG(reaction_count)::numeric(10,1) AS avg_reaction FROM messages WHERE date > current_date - interval '7 days' AND channel_id = '${channelId}' GROUP BY channel_id ORDER by channel_id`;
+	console.log(query)
 
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
 		} else {
+			console.log(db_res.rows)
 			res.json(db_res.rows);
 		}
 	});
@@ -369,5 +372,238 @@ router.get("/userSum/:channelId/:userId", (req, res) => {
 		}
 	});
 });
+
+const dbData = [
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "28/07/2021",
+		message_count: 2,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "29/07/2021",
+		message_count: 2,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Somayeh",
+		channel_id: "random",
+		date: "28/07/2021",
+		message_count: 1,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Laura",
+		channel_id: "random",
+		date: "28/07/2021",
+		message_count: 3,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Murat",
+		channel_id: "random",
+		date: "28/07/2021",
+		message_count: 3,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "28/07/2021",
+		message_count: 2,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "26/07/2021",
+		message_count: 0,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Somayeh",
+		channel_id: "random",
+		date: "26/07/2021",
+		message_count: 7,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Laura",
+		channel_id: "random",
+		date: "25/07/2021",
+		message_count: 1,
+		reaction_count: 5,
+	},
+	{
+		user_id: "Murat",
+		channel_id: "random",
+		date: "25/07/2021",
+		message_count: 6,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Murat",
+		channel_id: "random",
+		date: "24/07/2021",
+		message_count: 1,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "24/07/2021",
+		message_count: 1,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "21/07/2021",
+		message_count: 2,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "22/07/2021",
+		message_count: 2,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Somayeh",
+		channel_id: "random",
+		date: "18/07/2021",
+		message_count: 1,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Laura",
+		channel_id: "random",
+		date: "11/07/2021",
+		message_count: 3,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Murat",
+		channel_id: "random",
+		date: "18/07/2021",
+		message_count: 3,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "20/07/2021",
+		message_count: 2,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "20/07/2021",
+		message_count: 0,
+		reaction_count: 2,
+	},
+	{
+		user_id: "Somayeh",
+		channel_id: "random",
+		date: "05/07/2021",
+		message_count: 7,
+		reaction_count: 3,
+	},
+	{
+		user_id: "Laura",
+		channel_id: "random",
+		date: "08/07/2021",
+		message_count: 1,
+		reaction_count: 5,
+	},
+	{
+		user_id: "Murat",
+		channel_id: "random",
+		date: "12/07/2021",
+		message_count: 6,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Murat",
+		channel_id: "random",
+		date: "14/07/2021",
+		message_count: 1,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "random",
+		date: "14/07/2021",
+		message_count: 1,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "slacktastic",
+		date: "29/07/2021",
+		message_count: 1,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "slacktastic",
+		date: "29/07/2021",
+		message_count: 10,
+		reaction_count: 20,
+	},
+	{
+		user_id: "Laura",
+		channel_id: "slacktastic",
+		date: "29/07/2021",
+		message_count: 5,
+		reaction_count: 1,
+	},
+	{
+		user_id: "Somayeh",
+		channel_id: "slacktastic",
+		date: "29/07/2021",
+		message_count: 6,
+		reaction_count: 9,
+	},
+	{
+		user_id: "Askin",
+		channel_id: "general",
+		date: "28/07/2021",
+		message_count: 6,
+		reaction_count: 9,
+	},
+	{
+		user_id: "Laura",
+		channel_id: "general",
+		date: "27/07/2021",
+		message_count: 5,
+		reaction_count: 8,
+	},
+	{
+		user_id: "Somayeh",
+		channel_id: "general",
+		date: "26/07/2021",
+		message_count: 4,
+		reaction_count: 7,
+	},
+];
+
+// router.get("/messages", (req, res) => {
+// 	dbData.forEach((message) => {
+// 		const { user_id, channel_id, date, message_count, reaction_count } =
+// 			message;
+// 		const query =
+// 			"INSERT INTO messages (user_id, channel_id, date, message_count, reaction_count) VALUES ($1, $2, $3, $4, $5)";
+// 		return pool
+// 			.query(query, [user_id, channel_id, date, message_count, reaction_count])
+// 			.then(() => res.send("New message created!"))
+// 			.catch((e) => console.error(e));
+// 	});
+// });
 
 export default router;
