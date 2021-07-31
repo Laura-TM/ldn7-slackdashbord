@@ -77,6 +77,8 @@
 		"helmet": "^4.6.0",
 		"morgan": "^1.10.0",
 		"pg": "^8.6.0",
+		"pg-format": "^1.0.4",
+		"react-bootstrap": "^2.0.0-beta.4",
 		"react-countup": "^4.4.0",
 		"reactstrap": "^8.9.0"
 	},

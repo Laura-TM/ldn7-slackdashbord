@@ -8,6 +8,7 @@ const pool = new Pool({
 	ssl: dbUrl.includes("localhost") ? false : { rejectUnauthorized: false },
 });
 
+
 export const connectDb = async () => {
 	let client;
 	try {

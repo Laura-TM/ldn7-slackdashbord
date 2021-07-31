@@ -1,5 +1,6 @@
 
-require('dotenv').config();
+// require('dotenv').config();
+import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import path from "path";
