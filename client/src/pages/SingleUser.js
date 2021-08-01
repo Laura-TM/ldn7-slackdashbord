@@ -40,8 +40,8 @@ const SingleUser = () => {
 					/>
 					<div className="userStats">
 						<div>Last Week:</div>
-								<div>Number of posts: {message}</div>
-								<div>Number of reactions: {reaction}</div>
+						<div>Number of posts: {message}</div>
+						<div>Number of reactions: {reaction}</div>
 					</div>
 				</div>
 			</div>

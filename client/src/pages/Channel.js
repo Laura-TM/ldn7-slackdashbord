@@ -25,19 +25,19 @@ const Channel = () => {
 			});
 
 		fetch(`/api/channelSum/${channelId}`)
-		.then((res) => {
-			if (!res.ok) {
-				throw new Error(res.statusText);
-			}
-			return res.json();
-		})
-		.then((body) => {
-			setMessage((body[0]).total_message);
-			setReaction((body[0]).total_reaction);
-		})
-		.catch((err) => {
-			console.error(err);
-		});
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error(res.statusText);
+				}
+				return res.json();
+			})
+			.then((body) => {
+				setMessage(body[0].total_message);
+				setReaction(body[0].total_reaction);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	}, [channelId]);
 
 	return (
@@ -48,7 +48,10 @@ const Channel = () => {
 					<h1 className="text-center">
 						{name.replace(/^./, name[0].toUpperCase())} Channel Users
 					</h1>
-					<p>Last week Channel Average: Messages: {(message / 7).toFixed(2)}, Reactions: {(reaction / 7).toFixed(2)}</p>
+					<p>
+						Last week Channel Average: Messages: {(message / 7).toFixed(2)},
+						Reactions: {(reaction / 7).toFixed(2)}
+					</p>
 					<Table hover>
 						<thead>
 							<tr>
@@ -63,8 +66,11 @@ const Channel = () => {
 								<tr key={index}>
 									<th scope="row">{index + 1}</th>
 									<td>
-										<Link to={`/user/${channelId}/${user.id}/${user.real_name}`}>
-										{user.real_name}</Link>
+										<Link
+											to={`/user/${channelId}/${user.id}/${user.real_name}`}
+										>
+											{user.real_name}
+										</Link>
 									</td>
 									<td></td>
 									<td></td>
