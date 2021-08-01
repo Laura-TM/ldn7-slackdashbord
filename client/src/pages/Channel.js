@@ -6,8 +6,8 @@ import { useParams, Link } from "react-router-dom";
 const Channel = () => {
 	const { name, channelId } = useParams();
 	const [userList, setUserList] = useState([]);
-	const [message, setMessage] = useState("")
-	const [reaction, setReaction] = useState("")
+	const [message, setMessage] = useState("");
+	const [reaction, setReaction] = useState("");
 
 	useEffect(() => {
 		fetch(`/api/channelUser/${channelId}`)
@@ -24,7 +24,7 @@ const Channel = () => {
 				console.error(err);
 			});
 
-		fetch(`/api/channelAvg/${channelId}`)
+		fetch(`/api/channelSum/${channelId}`)
 		.then((res) => {
 			if (!res.ok) {
 				throw new Error(res.statusText);
@@ -32,13 +32,13 @@ const Channel = () => {
 			return res.json();
 		})
 		.then((body) => {
-			setMessage((body[0]).avg_message)
-			setReaction((body[0]).avg_reaction);
+			setMessage((body[0]).total_message);
+			setReaction((body[0]).total_reaction);
 		})
 		.catch((err) => {
 			console.error(err);
 		});
-	}, []);
+	}, [channelId]);
 
 	return (
 		<main role="main">
@@ -48,7 +48,7 @@ const Channel = () => {
 					<h1 className="text-center">
 						{name.replace(/^./, name[0].toUpperCase())} Channel Users
 					</h1>
-					<p>Last week: Messages: {message}, Reactions: {reaction}</p>
+					<p>Last week Channel Average: Messages: {(message / 7).toFixed(2)}, Reactions: {(reaction / 7).toFixed(2)}</p>
 					<Table hover>
 						<thead>
 							<tr>
@@ -63,7 +63,7 @@ const Channel = () => {
 								<tr key={index}>
 									<th scope="row">{index + 1}</th>
 									<td>
-										<Link to={`/user/${channelId}/${user.id}`}>
+										<Link to={`/user/${channelId}/${user.id}/${user.real_name}`}>
 										{user.real_name}</Link>
 									</td>
 									<td></td>
