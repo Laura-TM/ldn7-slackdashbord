@@ -6,6 +6,8 @@ import { useParams, Link } from "react-router-dom";
 const Channel = () => {
 	const { name, channelId } = useParams();
 	const [userList, setUserList] = useState([]);
+	const [message, setMessage] = useState("");
+	const [reaction, setReaction] = useState("");
 
 	useEffect(() => {
 		fetch(`/api/channelUser/${channelId}`)
@@ -22,22 +24,21 @@ const Channel = () => {
 				console.error(err);
 			});
 
-		// fetch(`/api/avr/${userId}`)
-		// .then((res) => {
-		// 	if (!res.ok) {
-		// 		throw new Error(res.statusText);
-		// 	}
-		// 	return res.json();
-		// })
-		// .then((body) => {
-		// 	setMessageCount(body.messageCount);
-		// 	setReactionCount(body.reactionCount);
-
-		// })
-		// .catch((err) => {
-		// 	console.error(err);
-		// });
-	});
+		fetch(`/api/channelAvg/${channelId}`)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error(res.statusText);
+				}
+				return res.json();
+			})
+			.then((body) => {
+				setMessage(body[0].avg_message);
+				setReaction(body[0].avg_reaction);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}, [channelId]);
 
 	return (
 		<main role="main">
@@ -47,6 +48,9 @@ const Channel = () => {
 					<h1 className="text-center">
 						{name.replace(/^./, name[0].toUpperCase())} Channel Users
 					</h1>
+					<p>
+						Last week: Messages: {message}, Reactions: {reaction}
+					</p>
 					<Table hover>
 						<thead>
 							<tr>
