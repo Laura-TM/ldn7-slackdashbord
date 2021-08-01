@@ -64,7 +64,8 @@ const Channel = () => {
 									<th scope="row">{index + 1}</th>
 									<td>
 										<Link to={`/user/${channelId}/${user.id}`}>
-										{user.real_name}</Link>
+											{user.real_name}
+										</Link>
 									</td>
 									<td></td>
 									<td></td>
