@@ -343,16 +343,16 @@ router.get("/avr/:channelId/:userId", async (req, res) => {
 
 router.get("/channelAvg/:channelId", (req, res) => {
 	const channelId = req.params.channelId;
-	console.log(channelId)
+	console.log(channelId);
 
 	const query = `SELECT channel_id, AVG(message_count)::numeric(10,1) AS avg_message, AVG(reaction_count)::numeric(10,1) AS avg_reaction FROM messages WHERE date > current_date - interval '7 days' AND channel_id = '${channelId}' GROUP BY channel_id ORDER by channel_id`;
-	console.log(query)
+	console.log(query);
 
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
 		} else {
-			console.log(db_res.rows)
+			console.log(db_res.rows);
 			res.json(db_res.rows);
 		}
 	});
