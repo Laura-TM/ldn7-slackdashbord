@@ -1,5 +1,5 @@
 import Headers from "./Headers";
-import UserDropdown from "./Dropdown";
+// import UserDropdown from "./Dropdown";
 import ChannelButton from "./Button";
 import "./Home.css";
 // todo replace:
@@ -7,7 +7,7 @@ import "./Home.css";
 
 const Home = () => {
 	return (
-		<main role="main">
+		<main>
 			<div className="container">
 				<Headers size="large" />
 				<h3>

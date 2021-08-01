@@ -46,7 +46,7 @@ const SingleUser = () => {
 						alt="profile pic"
 					/>
 					<div className="userStats">
-						<div>Last Week:</div>
+						<div>Data for last week</div>
 						{Object.values(stats).map((message, index) => (
 							<div key={index}>
 								<div>Number of posts: {message.messageCount}</div>

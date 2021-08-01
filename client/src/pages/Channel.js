@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Headers from "./Headers";
 import { Table } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
+import SingleChannelChart from "./SingleChannelChart";
 
 const Channel = () => {
 	const { name, channelId } = useParams();
 	const [userList, setUserList] = useState([]);
+	// const [userAverages, setUserAverages] = useState([50, 20, 42]);
 
 	useEffect(() => {
 		fetch(`/api/channelUser/${channelId}`)
@@ -21,23 +23,26 @@ const Channel = () => {
 			.catch((err) => {
 				console.error(err);
 			});
+	}, [channelId]);
 
-		// fetch(`/api/avr/${userId}`)
-		// .then((res) => {
-		// 	if (!res.ok) {
-		// 		throw new Error(res.statusText);
-		// 	}
-		// 	return res.json();
-		// })
-		// .then((body) => {
-		// 	setMessageCount(body.messageCount);
-		// 	setReactionCount(body.reactionCount);
-
-		// })
-		// .catch((err) => {
-		// 	console.error(err);
-		// });
-	});
+	// useEffect(() => {
+	// 	fetch(`/api/avr/${channelId}/U027NPENH9T`)
+	// 		.then((res) => {
+	// 			if (!res.ok) {
+	// 				throw new Error(res.statusText);
+	// 			}
+	// 			console.log("well");
+	// 			return res.json();
+	// 		})
+	// 		.then((body) => {
+	// 			console.log("hello");
+	// 			// setUserAverages(body.messagesCount)
+	// 			console.log(body);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.error(err);
+	// 		});
+	// }, [channelId]);
 
 	return (
 		<main role="main">
@@ -72,6 +77,12 @@ const Channel = () => {
 						</tbody>
 					</Table>
 				</div>
+			</div>
+			<div>
+				<SingleChannelChart
+					messagesDataSet={[50, 22, 38]} // TODO: Replace with data from endpoint
+					reactionsDataSet={[110, 103, 89]} // TODO: Replace with data from endpoint
+				/>
 			</div>
 		</main>
 	);
