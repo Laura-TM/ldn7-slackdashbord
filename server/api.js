@@ -132,7 +132,7 @@ const fetchAllData = async (startDate) => {
 
 router.get("/dailyStatistic", async (req, res) => {
 	let startDate =
-		(new Date().setHours(0, 0, 0, 0) - 60 * 60 * 24 * 21 * 1000) / 1000;
+		(new Date().setHours(0, 0, 0, 0) - 60 * 60 * 24 * 30 * 1000) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
 	const reactionData = FetchReactionData(messageInfo); // reactions (unsorted)
 	messageInfo.push(reactionData); // messages + reaction (unsorted)
@@ -173,7 +173,7 @@ const aggregateData = async (result) => {
 		const UsersInfo = await getChannelUser(channel.id);
 		const data = UsersInfo.members.map((user) => {
 			const allDayStat = [];
-			for (let dayDate = 1; dayDate < 21; dayDate++) {
+			for (let dayDate = 1; dayDate < 30; dayDate++) {
 				allDayStat.push(calculateDailyStat(result, channel.id, user, dayDate));
 			}
 			return allDayStat;
@@ -341,18 +341,15 @@ router.get("/avr/:channelId/:userId", async (req, res) => {
 	}
 });
 
-router.get("/channelAvg/:channelId", (req, res) => {
+router.get("/channelSum/:channelId", (req, res) => {
 	const channelId = req.params.channelId;
-	console.log(channelId);
 
-	const query = `SELECT channel_id, AVG(message_count)::numeric(10,1) AS avg_message, AVG(reaction_count)::numeric(10,1) AS avg_reaction FROM messages WHERE date > current_date - interval '7 days' AND channel_id = '${channelId}' GROUP BY channel_id ORDER by channel_id`;
-	console.log(query);
+	const query = `SELECT DATE_PART('week', date) week_no, channel_id, SUM(message_count) as total_message, SUM(reaction_count) as total_reaction FROM messages WHERE channel_id = '${channelId}' GROUP BY week_no, channel_id ORDER BY week_no DESC`;
 
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
 		} else {
-			console.log(db_res.rows);
 			res.json(db_res.rows);
 		}
 	});
@@ -362,7 +359,7 @@ router.get("/userSum/:channelId/:userId", (req, res) => {
 	const channelId = req.params.channelId;
 	const userId = req.params.userId;
 
-	const query = `SELECT channel_id, user_id, SUM(message_count) AS total_message, SUM(reaction_count) AS total_reaction FROM messages WHERE date > current_date - interval '7 days' AND channel_id = '${channelId}' AND user_id = '${userId}'  GROUP BY user_id, channel_id ORDER by channel_id`;
+	const query = `SELECT DATE_PART('week', date) week_no, channel_id, user_id, SUM(message_count) AS total_message, SUM(reaction_count) AS total_reaction FROM messages WHERE channel_id = '${channelId}' AND user_id = '${userId}'  GROUP BY user_id, channel_id, week_no ORDER by week_no DESC`;
 
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {

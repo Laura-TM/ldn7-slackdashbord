@@ -6,13 +6,11 @@ import "./Home.css";
 import notFound from "./unknown_profile.png";
 
 const SingleUser = () => {
-	const [username, setUsername] = useState("Loading...");
-	const [stats, setStats] = useState("?");
-	const [profile, setProfile] = useState("Happy Coder");
-	const { userId, channelId } = useParams();
-	console.log(userId);
+	const [message, setMessage] = useState("?");
+	const [reaction, setReaction] = useState("?");
+	const { userId, channelId, userName } = useParams();
 	useEffect(() => {
-		fetch(`/api/user/${channelId}/${userId}`)
+		fetch(`/api/userSum/${channelId}/${userId}`)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error(res.statusText);
@@ -20,24 +18,19 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setUsername(body.userName);
-				setStats(body.statistics);
-				setProfile(body.profile.title);
+				setMessage(body[0].total_message);
+				setReaction(body[0].total_reaction);
 			})
 			.catch((err) => {
-				setUsername(`USER ${userId} NOT FOUND`);
-				setProfile("Not found");
 				console.error(err);
 			});
-	}, [userId, channelId]);
-
-	console.log(profile);
+	}, [channelId, userId]);
 
 	return (
 		<main role="main">
 			<div className="container">
 				<Headers size="small" />
-				<div className="username">{username}</div>
+				<div className="username">{userName}</div>
 				<div className="userDetails">
 					<img
 						className="profilePic"
@@ -47,13 +40,8 @@ const SingleUser = () => {
 					/>
 					<div className="userStats">
 						<div>Last Week:</div>
-						{Object.values(stats).map((message, index) => (
-							<div key={index}>
-								<div>Number of posts: {message.messageCount}</div>
-								<div>Number of reactions: {message.reactionCount}</div>
-							</div>
-						))}
-						<div>Profile: {profile}</div>
+						<div>Number of posts: {message}</div>
+						<div>Number of reactions: {reaction}</div>
 					</div>
 				</div>
 			</div>
