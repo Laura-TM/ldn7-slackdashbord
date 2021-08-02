@@ -7,7 +7,7 @@ import "./Home.css";
 
 const Home = () => {
 	return (
-		<main role="main">
+		<main>
 			<div className="container">
 				<Headers size="large" />
 				<h3>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Headers from "./Headers";
 import { Table } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
+import SingleChannelChart from "./SingleChannelChart";
 
 const Channel = () => {
 	const { name, channelId } = useParams();
@@ -79,6 +80,12 @@ const Channel = () => {
 						</tbody>
 					</Table>
 				</div>
+			</div>
+			<div>
+				<SingleChannelChart
+					messagesDataSet={[50, 22, 38]} // TODO: Replace with data from endpoint
+					reactionsDataSet={[110, 103, 89]} // TODO: Replace with data from endpoint
+				/>
 			</div>
 		</main>
 	);
