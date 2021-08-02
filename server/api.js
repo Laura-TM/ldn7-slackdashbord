@@ -130,9 +130,15 @@ const fetchAllData = async (startDate) => {
 	return Promise.all(result);
 };
 
-router.get("/dailyStatistic", async (req, res) => {
+router.post("/dailyStatistic", async (req, res) => {
+	const startDateString = req.query.date || new Date();
+	const numberOfDays = req.query.days || 1;
 	let startDate =
-		(new Date().setHours(0, 0, 0, 0) - 60 * 60 * 24 * 30 * 1000) / 1000;
+		new Date(
+			new Date(
+				new Date(startDateString) - 60 * 60 * 24 * numberOfDays * 1000
+			).setHours(0, 0, 0, 0)
+		) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
 	const reactionData = FetchReactionData(messageInfo); // reactions (unsorted)
 	messageInfo.push(reactionData); // messages + reaction (unsorted)
@@ -150,7 +156,6 @@ router.get("/dailyStatistic", async (req, res) => {
 });
 
 const insertDataToTable = (newStat) => {
-	// console.log(newStat)
 	pool
 		.query("delete from messages")
 		.then(() => console.log("Delete all messages"))
