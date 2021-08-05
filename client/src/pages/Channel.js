@@ -9,6 +9,8 @@ const Channel = () => {
 	const [userList, setUserList] = useState([]);
 	const [message, setMessage] = useState("");
 	const [reaction, setReaction] = useState("");
+	const [averageMessages, setAverageMessages] = useState([]);
+	const [averageReactions, setAverageReactions] = useState([]);
 
 	useEffect(() => {
 		fetch(`/api/channelUser/${channelId}`)
@@ -35,6 +37,27 @@ const Channel = () => {
 			.then((body) => {
 				setMessage(body[0].total_message);
 				setReaction(body[0].total_reaction);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+		fetch(`/api/channelSum/${channelId}`)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error(res.statusText);
+				}
+				return res.json();
+			})
+			.then((body) => {
+				let messagesArray = [];
+				let reactionsArray = [];
+				let lastTwoWeeks = body.slice(-2);
+				lastTwoWeeks.forEach((element) => {
+					messagesArray.push(element.total_message);
+					reactionsArray.push(element.total_reaction);
+				});
+				setAverageMessages(messagesArray);
+				setAverageReactions(reactionsArray);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -83,8 +106,8 @@ const Channel = () => {
 			</div>
 			<div>
 				<SingleChannelChart
-					messagesDataSet={[50, 22, 38]} // TODO: Replace with data from endpoint
-					reactionsDataSet={[110, 103, 89]} // TODO: Replace with data from endpoint
+					messagesDataSet={averageMessages}
+					reactionsDataSet={averageReactions}
 				/>
 			</div>
 		</main>

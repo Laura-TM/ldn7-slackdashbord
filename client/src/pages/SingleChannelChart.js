@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 const SingleChannelChart = (props) => {
 	const state = {
 		data: {
-			labels: ["Week 1", "Week 2", "Week 2"],
+			labels: ["Current Week", "Previous Week"],
 			datasets: [
 				{
 					label: "Messages",
