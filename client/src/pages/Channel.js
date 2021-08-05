@@ -33,8 +33,9 @@ const Channel = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setMessage(body[0].total_message);
-				setReaction(body[0].total_reaction);
+				console.log(body);
+				setMessage(body[1].total_message);
+				setReaction(body[1].total_reaction);
 			})
 			.catch((err) => {
 				console.error(err);
