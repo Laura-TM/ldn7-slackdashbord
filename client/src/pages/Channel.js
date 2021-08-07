@@ -11,6 +11,7 @@ const Channel = () => {
 	const [reaction, setReaction] = useState("");
 	const [averageMessages, setAverageMessages] = useState([]);
 	const [averageReactions, setAverageReactions] = useState([]);
+	const [numberOfUsers, setNumberOfUsers] = useState(0);
 
 	useEffect(() => {
 		fetch(`/api/channelUser/${channelId}`)
@@ -22,6 +23,7 @@ const Channel = () => {
 			})
 			.then((body) => {
 				setUserList(body);
+				setNumberOfUsers(body.length);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -37,24 +39,12 @@ const Channel = () => {
 			.then((body) => {
 				setMessage(body[0].total_message);
 				setReaction(body[0].total_reaction);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-		fetch(`/api/channelSum/${channelId}`)
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
-			.then((body) => {
 				let messagesArray = [];
 				let reactionsArray = [];
 				let lastTwoWeeks = body.slice(-2);
 				lastTwoWeeks.forEach((element) => {
-					messagesArray.push(element.total_message);
-					reactionsArray.push(element.total_reaction);
+					messagesArray.push(element.total_message / numberOfUsers);
+					reactionsArray.push(element.total_reaction / numberOfUsers);
 				});
 				setAverageMessages(messagesArray);
 				setAverageReactions(reactionsArray);
@@ -62,7 +52,7 @@ const Channel = () => {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [channelId]);
+	}, [channelId, numberOfUsers]);
 
 	return (
 		<main role="main">
