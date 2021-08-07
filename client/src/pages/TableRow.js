@@ -16,10 +16,7 @@ const TableRow = ({ channel }) => {
 					{channel.name}
 				</Link>
 			</th>
-			{/* <td>{channel.description}</td> */}
-			{/* <td>{channel.id}</td> */}
 			<td>{channel.num_members}</td>
-			{/* <td>{channel.users}</td> */}
 		</tr>
 	);
 };
