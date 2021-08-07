@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Headers from "./Headers";
 import { Table } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
 import SingleChannelChart from "./SingleChannelChart";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 const Channel = () => {
 	const { name, channelId } = useParams();
@@ -55,9 +56,9 @@ const Channel = () => {
 	}, [channelId, numberOfUsers]);
 
 	return (
-		<main role="main">
-			<div className="container">
-				<Headers size="small" />
+		<main>
+			<div className="container-fluid">
+				<NavBar />
 				<div>
 					<h1 className="text-center">
 						{name.replace(/^./, name[0].toUpperCase())} Channel Users
@@ -100,6 +101,7 @@ const Channel = () => {
 					reactionsDataSet={averageReactions}
 				/>
 			</div>
+			<Footer />
 		</main>
 	);
 };
