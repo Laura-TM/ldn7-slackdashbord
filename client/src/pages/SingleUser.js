@@ -18,8 +18,8 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setMessage(body[0].total_message);
-				setReaction(body[0].total_reaction);
+				setMessage(body[1].total_message);
+				setReaction(body[1].total_reaction);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -40,13 +40,8 @@ const SingleUser = () => {
 					/>
 					<div className="userStats">
 						<div>Data for last week</div>
-						{Object.values(stats).map((message, index) => (
-							<div key={index}>
-								<div>Number of posts: {message.messageCount}</div>
-								<div>Number of reactions: {message.reactionCount}</div>
-							</div>
-						))}
-						<div>Profile: {profile}</div>
+						<div>Number of posts: {message}</div>
+						<div>Number of reactions: {reaction}</div>
 					</div>
 				</div>
 			</div>

@@ -37,8 +37,8 @@ const Channel = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setMessage(body[0].total_message);
-				setReaction(body[0].total_reaction);
+				setMessage(body[1].total_message);
+				setReaction(body[1].total_reaction);
 				let messagesArray = [];
 				let reactionsArray = [];
 				let lastTwoWeeks = body.slice(-2);
