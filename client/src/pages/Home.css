@@ -166,6 +166,16 @@ body {
 	border-right: solid 2px black;
 }
 
+/* SINGLE USER DATA */
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+
 /* FOOTER */
 
 .footer {
