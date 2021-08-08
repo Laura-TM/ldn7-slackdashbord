@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Headers from "./Headers";
+import NavBar from "./NavBar";
 import "./Home.css";
 // todo: delete when using api
 import notFound from "./unknown_profile.png";
@@ -29,7 +29,7 @@ const SingleUser = () => {
 	return (
 		<main role="main">
 			<div className="container">
-				<Headers size="small" />
+				<NavBar />
 				<div className="username">{userName}</div>
 				<div className="userDetails">
 					<img
