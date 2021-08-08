@@ -29,7 +29,6 @@ const Channels = () => {
 	return (
 		<main>
 			<NavBar />
-			{/* <Table responsive className="table table-color table-bordered"></Table> */}
 			<Table borderless hover className="table" responsive>
 				<thead className="text-center">
 					<TableHead />

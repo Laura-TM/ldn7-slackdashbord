@@ -106,15 +106,6 @@ body {
 	padding: 20px;
 }
 
-/* DROPDOWN COMPONENT FOR FUTURE RELEASES */
-
-/* .dropdown-menu.show {
-	width: 100%;
-	align-self: center;
-	font-size: 25px;
-	text-align: center;
-} */
-
 /* CHART */
 
 .chart {
@@ -139,14 +130,40 @@ body {
 }
 
 /* TABLE ON CHANNELS PAGE */
+
 .table {
-	margin: 50px auto;
+	margin: auto;
 	width: 80%;
+}
+
+.table th {
+	width: 200px;
+	padding: 10px;
+}
+
+.table td {
+	width: 50px;
+	padding: 10px;
 }
 
 .arrow {
 	width: 15px;
 	height: auto;
+}
+
+/* TABLE ON SINGLE CHANNEL PAGE */
+
+.channelTable {
+	border: solid 2px black;
+	margin-top: 20px;
+}
+
+.thickBottomBorder {
+	border-bottom: solid 2px black;
+}
+
+.thickRightBorder {
+	border-right: solid 2px black;
 }
 
 /* FOOTER */
@@ -163,3 +180,12 @@ body {
 	left: 0;
 	width: 100%;
 }
+
+/* DROPDOWN COMPONENT FOR FUTURE RELEASES */
+
+/* .dropdown-menu.show {
+	width: 100%;
+	align-self: center;
+	font-size: 25px;
+	text-align: center;
+} */
