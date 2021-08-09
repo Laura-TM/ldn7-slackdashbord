@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
 import SingleChannelChart from "./SingleChannelChart";
+import SingleUserData from "./SingleUserData";
 import slack_logo from "./slack_logo.png";
 import "./Home.css";
 import NavBar from "./NavBar";
@@ -10,8 +11,7 @@ import Footer from "./Footer";
 const Channel = () => {
 	const { name, channelId } = useParams();
 	const [userList, setUserList] = useState([]);
-	const [message, setMessage] = useState("");
-	const [reaction, setReaction] = useState("");
+	const [channelData, setChannelData] = useState([]);
 	const [averageMessages, setAverageMessages] = useState([]);
 	const [averageReactions, setAverageReactions] = useState([]);
 	const [numberOfUsers, setNumberOfUsers] = useState(0);
@@ -40,17 +40,16 @@ const Channel = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setMessage(body[1].total_message);
-				setReaction(body[1].total_reaction);
 				let messagesArray = [];
 				let reactionsArray = [];
-				let lastTwoWeeks = body.slice(-2);
+				let lastTwoWeeks = body.slice(0, 2);
 				lastTwoWeeks.forEach((element) => {
 					messagesArray.push(element.total_message / numberOfUsers);
 					reactionsArray.push(element.total_reaction / numberOfUsers);
 				});
 				setAverageMessages(messagesArray);
 				setAverageReactions(reactionsArray);
+				setChannelData(body.slice(0, 4));
 			})
 			.catch((err) => {
 				console.error(err);
@@ -65,10 +64,6 @@ const Channel = () => {
 					<img className="slack_logo" src={slack_logo} alt="Slack logo" />
 					{name.replace(/^./, name[0].toUpperCase())} Channel Users
 				</h1>
-				{/* <p>
-					Last week Channel Average: Messages: {(message / 7).toFixed(2)},
-					Reactions: {(reaction / 7).toFixed(2)}
-				</p> */}
 				<Table borderless className="channelTable">
 					<thead className="thickRightBorder">
 						<tr className="text-center thickBottomBorder">
@@ -96,13 +91,22 @@ const Channel = () => {
 											color: "black",
 											fontWeight: "lighter",
 										}}
-										to={`/user/${channelId}/${user.id}/${user.real_name}`}
+										to={{
+											pathname: `/user/${channelId}/${user.id}/${user.real_name}`,
+											state: {
+												channelData,
+											},
+										}}
 									>
 										{user.real_name}
 									</Link>
 								</td>
-								<td></td>
-								<td></td>
+								<SingleUserData
+									channelId={channelId}
+									userId={user.id}
+									averageMessages={averageMessages}
+									averageReactions={averageReactions}
+								/>
 							</tr>
 						))}
 					</tbody>
