@@ -65,18 +65,14 @@ const Channel = () => {
 					<img className="slack_logo" src={slack_logo} alt="Slack logo" />
 					{name.replace(/^./, name[0].toUpperCase())} Channel Users
 				</h1>
-				{/* <p>
-					Last week Channel Average: Messages: {(message / 7).toFixed(2)},
-					Reactions: {(reaction / 7).toFixed(2)}
-				</p> */}
-				<Table borderless className="channelTable">
+				<Table responsive borderless className="channelTable text-center">
 					<thead className="thickRightBorder">
-						<tr className="text-center thickBottomBorder">
+						<tr className="thickBottomBorder">
 							<th colSpan="2">Trainee</th>
 							<th colSpan="2">Current week</th>
 							<th colSpan="2">Previous week</th>
 						</tr>
-						<tr>
+						<tr className="thickBottomBorder">
 							<th>#</th>
 							<th>User name</th>
 							<th>Messages</th>

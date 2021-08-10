@@ -29,7 +29,7 @@ const Channels = () => {
 	return (
 		<main>
 			<NavBar />
-			<Table borderless hover className="table" responsive>
+			<Table borderless hover responsive className="table">
 				<thead className="text-center">
 					<TableHead />
 				</thead>

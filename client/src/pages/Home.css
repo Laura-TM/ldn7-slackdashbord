@@ -79,7 +79,68 @@ body {
 	background-color: #1ac00b;
 }
 
-/* */
+/* CHANNELS PAGE */
+
+.slack_logo {
+	width: 20px;
+	height: auto;
+	margin-right: 10px;
+}
+
+.users_icon {
+	width: 27px;
+	height: auto;
+	margin-right: 15px;
+}
+
+/* TABLE ON CHANNELS PAGE */
+
+.table {
+	top: 200px;
+	margin: auto;
+	width: 80%;
+}
+
+.table th {
+	width: 200px;
+	padding: 10px;
+}
+
+.table td {
+	width: 50px;
+	padding: 10px;
+}
+
+.arrow {
+	width: 15px;
+	height: auto;
+}
+
+/* TABLE ON SINGLE CHANNEL PAGE */
+
+.channelTable {
+	border: solid 2px black;
+	margin-bottom: 30px;
+}
+
+.thickBottomBorder {
+	border-bottom: solid 2px black;
+}
+
+.thickRightBorder {
+	border-right: solid 2px black;
+}
+
+/* CHART */
+
+.chart {
+	display: flex;
+	margin: auto;
+	width: 700px;
+	border: dotted 2px black;
+}
+
+/* USERS PAGE */
 
 .username {
 	width: 100%;
@@ -104,66 +165,6 @@ body {
 .profilePic {
 	height: 200px;
 	padding: 20px;
-}
-
-/* CHART */
-
-.chart {
-	width: 500px;
-	margin-top: 10%;
-	margin-left: 20%;
-	margin-bottom: 10%;
-}
-
-/* CHANNELS PAGE */
-
-.slack_logo {
-	width: 20px;
-	height: auto;
-	margin-right: 10px;
-}
-
-.users_icon {
-	width: 27px;
-	height: auto;
-	margin-right: 15px;
-}
-
-/* TABLE ON CHANNELS PAGE */
-
-.table {
-	margin: auto;
-	width: 80%;
-}
-
-.table th {
-	width: 200px;
-	padding: 10px;
-}
-
-.table td {
-	width: 50px;
-	padding: 10px;
-}
-
-.arrow {
-	width: 15px;
-	height: auto;
-}
-
-/* TABLE ON SINGLE CHANNEL PAGE */
-
-.channelTable {
-	border: solid 2px black;
-	margin-top: 20px;
-}
-
-.thickBottomBorder {
-	border-bottom: solid 2px black;
-}
-
-.thickRightBorder {
-	border-right: solid 2px black;
 }
 
 /* FOOTER */
