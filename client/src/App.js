@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+
 import Home from "./pages/Home";
 import SingleUser from "./pages/SingleUser";
 import Channels from "./pages/Channels";
@@ -12,7 +13,7 @@ const App = () => {
 			<Route path="/" exact>
 				<Home />
 			</Route>
-			<Route path="/user/:channelId/:userId">
+			<Route path="/user/:channelId/:userId/:userName">
 				<SingleUser />
 			</Route>
 			<Route path="/channels">

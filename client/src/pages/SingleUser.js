@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Headers from "./Headers";
+import { useParams, useLocation } from "react-router-dom";
+import SingleUserChart from "./SingleUserChart";
+import Footer from "./Footer";
+import NavBar from "./NavBar";
 import "./Home.css";
 // todo: delete when using api
 import notFound from "./unknown_profile.png";
 
 const SingleUser = () => {
-	const [username, setUsername] = useState("Loading...");
-	const [stats, setStats] = useState("?");
-	const [profile, setProfile] = useState("Happy Coder");
-	const { userId, channelId } = useParams();
-	console.log(userId);
+	const location = useLocation();
+	const { userId, channelId, userName } = useParams();
+	const [userData, setUserData] = useState(null);
+	const channelData = location.state?.channelData;
+
 	useEffect(() => {
-		fetch(`/api/user/${channelId}/${userId}`)
+		fetch(`/api/userSum/${channelId}/${userId}`)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error(res.statusText);
@@ -20,24 +22,18 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setUsername(body.userName);
-				setStats(body.statistics);
-				setProfile(body.profile.title);
+				setUserData(body.splice(0, 4));
 			})
 			.catch((err) => {
-				setUsername(`USER ${userId} NOT FOUND`);
-				setProfile("Not found");
 				console.error(err);
 			});
-	}, [userId, channelId]);
-
-	console.log(profile);
+	}, [channelId, userId]);
 
 	return (
 		<main role="main">
 			<div className="container">
-				<Headers size="small" />
-				<div className="username">{username}</div>
+				<NavBar />
+				<div className="username">{userName}</div>
 				<div className="userDetails">
 					<img
 						className="profilePic"
@@ -45,19 +41,23 @@ const SingleUser = () => {
 						src={notFound}
 						alt="profile pic"
 					/>
-					<div className="userStats">
-						<div>Last Week:</div>
-						{Object.values(stats).map((message, index) => (
-							<div key={index}>
-								<div>Number of posts: {message.messageCount}</div>
-								<div>Number of reactions: {message.reactionCount}</div>
-							</div>
-						))}
-						<div>Profile: {profile}</div>
-					</div>
+					<div className="userStats"></div>
 				</div>
 			</div>
+			<div>
+				{userData ? (
+					<SingleUserChart
+						messagesDataSet={userData.map((message) => message.total_message)}
+						reactionsDataSet={userData.map(
+							(reaction) => reaction.total_reaction
+						)}
+						label={userData.map((week) => `Week ${week.week_no}`)}
+					/>
+				) : null}
+			</div>
+			<Footer />
 		</main>
 	);
 };
+
 export default SingleUser;
