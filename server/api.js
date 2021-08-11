@@ -21,13 +21,13 @@ const loginRequired = (req, res, next) => {
 };
 
 router.post("/login", (req, res) => {
-	const { userName = "", password = "" } = req.body;
+	const { name = "", password = "" } = req.body;
 	//const user = users.find((user) => user.password === password);
 	const isLogin = password === process.env.LOGIN_PASS;
-	if (!isLogin) return res.status(404).json({ message: "user not allowed" });
-	req.session.userId = userName;
-	users.push(userName);
-	res.json({ message: userName });
+	if (!isLogin) return res.status(401).json({ message: "user not allowed" });
+	req.session.userId = name;
+	users.push(name);
+	res.json({ message: name });
 });
 
 router.get("/profile", loginRequired, (req, res) => {

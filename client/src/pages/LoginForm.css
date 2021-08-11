@@ -1,0 +1,46 @@
+form[name="loginForm"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
+  padding-top: 200px;
+  
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+label {
+  min-width: 180px;
+  width: 180px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+input[type="text"], input[type="password"] {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 3px;
+  flex-grow: 1;
+  font-size: 20px;
+}
+
+button[type="submit"] {
+  align-self: flex-end;
+  width: 100px;
+  height: 50px;
+  border: 3px solid lightgray;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.message {
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: right;
+}
