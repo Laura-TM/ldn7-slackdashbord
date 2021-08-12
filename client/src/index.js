@@ -5,12 +5,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./pages/store";
 import App from "./App";
+import NavBar from "./pages/NavBar";
 
 ReactDOM.render(
-	<BrowserRouter>
-		<Provider store={store}>
-			<App />
-		</Provider>
-	</BrowserRouter>,
+	<div>
+		<NavBar />
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+			</Provider>
+		</BrowserRouter>
+	</div>,
 	document.getElementById("root")
 );

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import "./LoginForm.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Login = () => {
+const Login = ({ setToken }) => {
 	const user = useSelector(selectUser);
 	const history = useHistory();
 	async function loginUser(credentials) {
@@ -29,9 +29,10 @@ const Login = () => {
 						name: name,
 						password: password,
 						loggedIn: true,
-						message: "",
+						message: true,
 					})
 				);
+				user && setToken(user.loggedIn);
 				history.push("/channels");
 			})
 			.catch(() => {
@@ -76,16 +77,16 @@ const Login = () => {
 						></input>
 					</label>
 				</div>
-				{/* <Link to={user && user.loggedIn ? `/channels` : "#"}> */}
 				<button type="submit" className="btn btn-success">
 					submit
 				</button>
-				{/* </Link> */}
 				<div className="message">{user && <div>{user.message}</div>}</div>
 			</div>
 		</form>
 	);
 };
 
+Login.propTypes = {
+	setToken: PropTypes.func.isRequired,
+};
 export default Login;
-// href={user && user.loggedIn ? "/channels" : "#"}

@@ -9,7 +9,6 @@ import "./Home.css";
 const Home = () => {
 	return (
 		<main>
-			<NavBar />
 			<div className="introMessage">
 				<h3>Hi there, welcome to CYF Slacktastic dashboard!</h3>
 				<h4>

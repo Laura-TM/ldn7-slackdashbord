@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
 	if (!isLogin) return res.status(401).json({ message: "user not allowed" });
 	req.session.userId = name;
 	users.push(name);
-	res.json({ message: name });
+	res.json({ token: true });
 });
 
 router.get("/profile", loginRequired, (req, res) => {
