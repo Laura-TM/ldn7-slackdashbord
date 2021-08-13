@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import SingleUserChart from "./SingleUserChart";
 import Footer from "./Footer";
-import NavBar from "./NavBar";
 import "./Home.css";
-// todo: delete when using api
 import notFound from "./unknown_profile.png";
 
 const SingleUser = () => {
@@ -32,7 +30,6 @@ const SingleUser = () => {
 	return (
 		<main role="main">
 			<div className="container">
-				<NavBar />
 				<div className="username">{userName}</div>
 				<div className="userDetails">
 					<img

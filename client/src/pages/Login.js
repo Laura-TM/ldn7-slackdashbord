@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Login = ({ setToken }) => {
+	Login.propTypes = {
+		setToken: PropTypes.func.isRequired,
+	};
 	const user = useSelector(selectUser);
 	const history = useHistory();
 	async function loginUser(credentials) {
@@ -32,7 +35,7 @@ const Login = ({ setToken }) => {
 						message: true,
 					})
 				);
-				user && setToken(user.loggedIn);
+				setToken("login");
 				history.push("/channels");
 			})
 			.catch(() => {
@@ -41,52 +44,55 @@ const Login = ({ setToken }) => {
 						name: "",
 						password: "",
 						loggedIn: false,
-						message: "Incorrect message",
+						message: "Please enter your correct password",
 					})
 				);
 			});
 	};
-
-	user && console.log(user && user.loggedIn);
+	//user && console.log(user && user.loggedIn);
 	return (
 		<form
 			name="loginForm"
 			className="mx-auto "
 			onSubmit={(e) => handleSubmit(e)}
 		>
-			<div className="form-group-collection">
-				<div className="form-group">
-					<label htmlFor="username">
-						user name:
-						<input
-							id="username"
-							type="text"
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-						></input>
-					</label>
+			<div className=" login-group ">
+				<div className="input-group my-5 ">
+					<div className="input-group-prepend">
+						<span className="span-text" id="basic-addon1">
+							user name
+						</span>
+					</div>
+					<input
+						id="username"
+						type="text"
+						className="form-control"
+						required
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					></input>
 				</div>
-				<div className="form-group">
-					<label htmlFor="password">
-						Password:
-						<input
-							id="password"
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-						></input>
-					</label>
+				<div className="input-group my-5 ">
+					<div className="input-group-prepend">
+						<span className="span-text" id="basic-addon">
+							Password
+						</span>
+					</div>
+					<input
+						id="password"
+						type="password"
+						className="form-control"
+						required
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					></input>
 				</div>
-				<button type="submit" className="btn btn-success">
-					submit
-				</button>
 				<div className="message">{user && <div>{user.message}</div>}</div>
+				<button type="submit" className=" blueButton text-uppercase btn">
+					Login
+				</button>
 			</div>
 		</form>
 	);
-};
-
-Login.propTypes = {
-	setToken: PropTypes.func.isRequired,
 };
 export default Login;
