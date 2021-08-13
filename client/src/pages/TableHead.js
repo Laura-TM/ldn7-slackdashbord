@@ -5,7 +5,7 @@ import "./Home.css";
 
 const TableHead = () => {
 	return (
-		<tr>
+		<tr className="p-5">
 			<th>
 				<img className="slack_logo" src={slack_logo} alt="Slack logo" /> Channel
 				name

@@ -5,7 +5,6 @@ import SingleChannelChart from "./SingleChannelChart";
 import SingleUserData from "./SingleUserData";
 import slack_logo from "./slack_logo.png";
 import "./Home.css";
-import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 const Channel = () => {
@@ -58,20 +57,19 @@ const Channel = () => {
 
 	return (
 		<main>
-			<NavBar />
 			<div>
 				<h1 className="text-center">
 					<img className="slack_logo" src={slack_logo} alt="Slack logo" />
 					{name.replace(/^./, name[0].toUpperCase())} Channel Users
 				</h1>
 				<Table borderless className="channelTable">
-					<thead className="thickRightBorder">
+					<thead>
 						<tr className="text-center thickBottomBorder">
 							<th colSpan="2">Trainee</th>
 							<th colSpan="2">Current week</th>
 							<th colSpan="2">Previous week</th>
 						</tr>
-						<tr>
+						<tr className="thickBottomBorder">
 							<th>#</th>
 							<th>User name</th>
 							<th>Messages</th>

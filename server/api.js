@@ -9,6 +9,35 @@ const axios = require("axios");
 const slackWorkspace = "https://ldn7-test-workspace.slack.com";
 // const slackWorkspace = "https://codeyourfuture.slack.com";
 
+const users = [];
+const loginRequired = (req, res, next) => {
+	if (!req.session.userId) {
+		return res.status(403).json({ message: " you should login first" });
+	}
+	const user = users.includes(req.session.userId);
+	if (!user) return res.status(404).json({ message: "user not found" });
+	req.user = req.session.userId;
+	next();
+};
+
+router.post("/login", (req, res) => {
+	const { name = "", password = "" } = req.body;
+	//const user = users.find((user) => user.password === password);
+	const isLogin = password === process.env.LOGIN_PASS;
+	if (!isLogin) return res.status(401).json({ message: "user not allowed" });
+	req.session.userId = name;
+	users.push(name);
+	res.json({ token: true });
+});
+
+router.get("/profile", loginRequired, (req, res) => {
+	res.json({ message: req.user });
+});
+router.post("/logout", loginRequired, (req, res) => {
+	req.session.userId = null;
+	res.json({ message: "logout" });
+});
+
 const getChannelList = async () => {
 	const slackToken = process.env.SLACK_API_TOKEN;
 	const url = `${slackWorkspace}/api/conversations.list`;
@@ -91,12 +120,12 @@ const getStat = async (channel, userId, oldest, latest) => {
 	return newCount;
 };
 
-router.get("/channelList", async (req, res) => {
+router.get("/channelList", loginRequired, async (req, res) => {
 	const fetchChannelList = await getChannelList();
 	res.status(200).json(fetchChannelList);
 });
 
-router.get("/userList", async (req, res) => {
+router.get("/userList", loginRequired, async (req, res) => {
 	const fetchUserList = await getUserList();
 	res.status(200).json(fetchUserList);
 });
@@ -130,7 +159,7 @@ const fetchAllData = async (startDate) => {
 	return Promise.all(result);
 };
 
-router.post("/dailyStatistic", async (req, res) => {
+router.post("/dailyStatistic", loginRequired, async (req, res) => {
 	const startDateString = req.query.date || new Date();
 	const numberOfDays = req.query.days || 1;
 	let startDate =
@@ -288,7 +317,7 @@ const FetchReactionData = (messageInfo) => {
 	return result;
 };
 
-router.get("/channelUser/:channelId", async (req, res) => {
+router.get("/channelUser/:channelId", loginRequired, async (req, res) => {
 	const channelId = req.params.channelId;
 	const fetchChannelUser = await getChannelUser(channelId);
 	Promise.all(
@@ -301,7 +330,7 @@ router.get("/channelUser/:channelId", async (req, res) => {
 		.catch(() => res.status(400));
 });
 
-router.get("/user/:channelId/:userId", async (req, res) => {
+router.get("/user/:channelId/:userId", loginRequired, async (req, res) => {
 	const userId = req.params.userId;
 	const channelId = req.params.channelId;
 	let result = {
@@ -322,7 +351,7 @@ router.get("/user/:channelId/:userId", async (req, res) => {
 	res.status(200).json(result);
 });
 
-router.get("/avr/:channelId/:userId", async (req, res) => {
+router.get("/avr/:channelId/:userId", loginRequired, async (req, res) => {
 	const userId = req.params.userId;
 	const channelId = req.params.channelId;
 	let data = await getChannelHistory(channelId);
@@ -346,7 +375,7 @@ router.get("/avr/:channelId/:userId", async (req, res) => {
 	}
 });
 
-router.get("/channelSum/:channelId", (req, res) => {
+router.get("/channelSum/:channelId", loginRequired, (req, res) => {
 	const channelId = req.params.channelId;
 
 	const query = `SELECT DATE_PART('week', date) week_no, channel_id, SUM(message_count) as total_message, SUM(reaction_count) as total_reaction FROM messages WHERE channel_id = '${channelId}' GROUP BY week_no, channel_id ORDER BY week_no DESC`;
@@ -360,7 +389,7 @@ router.get("/channelSum/:channelId", (req, res) => {
 	});
 });
 
-router.get("/userSum/:channelId/:userId", (req, res) => {
+router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
 	const channelId = req.params.channelId;
 	const userId = req.params.userId;
 
