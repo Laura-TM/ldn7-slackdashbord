@@ -32,12 +32,12 @@ const SingleUser = () => {
 			<div className="container">
 				<div className="username">{userName}</div>
 				<div className="userDetails">
-					<img
+					{/* <img
 						className="profilePic"
 						data-qa="logo"
 						src={notFound}
 						alt="profile pic"
-					/>
+					/> */}
 					<div className="userStats"></div>
 				</div>
 			</div>
