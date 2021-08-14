@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import SingleUserChart from "./SingleUserChart";
-import Footer from "./Footer";
+import SingleUserChart from "../components/SingleUserChart";
+import Footer from "../components/Footer";
 import "./Home.css";
-import notFound from "./unknown_profile.png";
+import notFound from "../images/unknown_profile.png";
 
 const SingleUser = () => {
 	const location = useLocation();

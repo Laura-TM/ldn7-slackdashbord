@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import "./LoginForm.css";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";

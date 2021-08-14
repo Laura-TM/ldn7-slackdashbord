@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import cyfBrand from "./cyf_brand.png";
-import "./Home.css";
+import cyfBrand from "../images/cyf_brand.png";
+import "../pages/Home.css";
 import {
 	Collapse,
 	Navbar,
