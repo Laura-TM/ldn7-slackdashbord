@@ -20,24 +20,26 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setUserData(body.splice(0, 4));
+				setUserData(body.splice(0, 4).reverse());
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}, [channelId, userId]);
 
+	console.log(userData);
+
 	return (
 		<main role="main">
 			<div className="container">
 				<div className="username">{userName}</div>
 				<div className="userDetails">
-					<img
+					{/* <img
 						className="profilePic"
 						data-qa="logo"
 						src={notFound}
 						alt="profile pic"
-					/>
+					/> */}
 					<div className="userStats"></div>
 				</div>
 			</div>
