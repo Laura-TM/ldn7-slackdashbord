@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Table } from "reactstrap";
-import TableHead from "./TableHead";
-import TableRow from "./TableRow";
-// import NavBar from "./NavBar";
-import Footer from "./Footer";
+import TableHead from "../components/TableHead";
+import TableRow from "../components/TableRow";
+import Footer from "../components/Footer";
 
 const Channels = () => {
 	const [channelList, setChannelList] = useState([]);

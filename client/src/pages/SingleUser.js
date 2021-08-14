@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import SingleUserChart from "./SingleUserChart";
-import Footer from "./Footer";
+import SingleUserChart from "../components/SingleUserChart";
+import Footer from "../components/Footer";
 import "./Home.css";
-import notFound from "./unknown_profile.png";
+import notFound from "../images/unknown_profile.png";
 
 const SingleUser = () => {
 	const location = useLocation();
@@ -20,24 +20,26 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setUserData(body.splice(0, 4));
+				setUserData(body.splice(0, 4).reverse());
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}, [channelId, userId]);
 
+	console.log(userData);
+
 	return (
 		<main role="main">
 			<div className="container">
 				<div className="username">{userName}</div>
 				<div className="userDetails">
-					<img
+					{/* <img
 						className="profilePic"
 						data-qa="logo"
 						src={notFound}
 						alt="profile pic"
-					/>
+					/> */}
 					<div className="userStats"></div>
 				</div>
 			</div>
