@@ -130,7 +130,6 @@ body {
 /* TABLE ON CHANNELS PAGE */
 
 .table {
-	top: 200px;
 	margin: auto;
 	width: 80%;
 }
@@ -153,8 +152,7 @@ body {
 /* TABLE ON SINGLE CHANNEL PAGE */
 
 .channelTable {
-	border: solid 2px black;
-	margin-bottom: 30px;
+	margin-top: 20px;
 }
 
 .thickBottomBorder {
