@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import arrow from "./arrow.png";
-import "./Home.css";
+import arrow from "../images/arrow.png";
+import "../pages/Home.css";
 import { Link } from "react-router-dom";
 
 const TableRow = ({ channel }) => {

@@ -1,7 +1,7 @@
 import React from "react";
-import slack_logo from "./slack_logo.png";
-import free_icon_team_new from "./free_icon_team_new.png";
-import "./Home.css";
+import slack_logo from "../images/slack_logo.png";
+import free_icon_team_new from "../images/free_icon_team_new.png";
+import "../pages/Home.css";
 
 const TableHead = () => {
 	return (

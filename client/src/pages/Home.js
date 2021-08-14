@@ -1,9 +1,7 @@
-import ChannelButton from "./Button";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import ChannelButton from "../components/Button";
+import Footer from "../components/Footer";
 import "./Home.css";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
 
 const Home = ({ setToken }) => {
 	Home.propTypes = {

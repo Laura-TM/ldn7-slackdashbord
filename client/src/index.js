@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./pages/store";
 import App from "./App";
-import NavBar from "./pages/NavBar";
+import NavBar from "./components/NavBar";
 
 ReactDOM.render(
 	<div>

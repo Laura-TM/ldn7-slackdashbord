@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
-import SingleChannelChart from "./SingleChannelChart";
-import SingleUserData from "./SingleUserData";
-import slack_logo from "./slack_logo.png";
+import SingleChannelChart from "../components/SingleChannelChart";
+import SingleUserData from "../components/SingleUserData";
+import slack_logo from "../images/slack_logo.png";
 import "./Home.css";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 
 const Channel = () => {
 	const { name, channelId } = useParams();
