@@ -20,12 +20,14 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setUserData(body.splice(0, 4));
+				setUserData(body.splice(0, 4).reverse());
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}, [channelId, userId]);
+
+	console.log(userData);
 
 	return (
 		<main role="main">
