@@ -1,15 +1,16 @@
-// import UserDropdown from "./Dropdown";
 import ChannelButton from "./Button";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "./Home.css";
-// todo replace:
-// import users from "../fakeData/users.json";
+import PropTypes from "prop-types";
+// import { useHistory } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ setToken }) => {
+	Home.propTypes = {
+		setToken: PropTypes.func.isRequired,
+	};
 	return (
 		<main>
-			<NavBar />
 			<div className="introMessage">
 				<h3>Hi there, welcome to CYF Slacktastic dashboard!</h3>
 				<h4>
@@ -17,8 +18,7 @@ const Home = () => {
 					Future slack channels and users.
 				</h4>
 			</div>
-			<ChannelButton />
-			{/* <UserDropdown users={users} /> */}
+			<ChannelButton setToken={setToken} />
 			<Footer />
 		</main>
 	);

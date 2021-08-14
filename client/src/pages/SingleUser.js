@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import NavBar from "./NavBar";
+import { useParams, useLocation } from "react-router-dom";
+import SingleUserChart from "./SingleUserChart";
+import Footer from "./Footer";
 import "./Home.css";
-// todo: delete when using api
 import notFound from "./unknown_profile.png";
 
 const SingleUser = () => {
-	const [message, setMessage] = useState("?");
-	const [reaction, setReaction] = useState("?");
+	const location = useLocation();
 	const { userId, channelId, userName } = useParams();
+	const [userData, setUserData] = useState(null);
+	const channelData = location.state?.channelData;
+
 	useEffect(() => {
 		fetch(`/api/userSum/${channelId}/${userId}`)
 			.then((res) => {
@@ -18,8 +20,7 @@ const SingleUser = () => {
 				return res.json();
 			})
 			.then((body) => {
-				setMessage(body[0].total_message);
-				setReaction(body[0].total_reaction);
+				setUserData(body.splice(0, 4));
 			})
 			.catch((err) => {
 				console.error(err);
@@ -29,7 +30,6 @@ const SingleUser = () => {
 	return (
 		<main role="main">
 			<div className="container">
-				<NavBar />
 				<div className="username">{userName}</div>
 				<div className="userDetails">
 					<img
@@ -38,19 +38,23 @@ const SingleUser = () => {
 						src={notFound}
 						alt="profile pic"
 					/>
-					<div className="userStats">
-						<div>Data for last week</div>
-						{Object.values(stats).map((message, index) => (
-							<div key={index}>
-								<div>Number of posts: {message.messageCount}</div>
-								<div>Number of reactions: {message.reactionCount}</div>
-							</div>
-						))}
-						<div>Profile: {profile}</div>
-					</div>
+					<div className="userStats"></div>
 				</div>
 			</div>
+			<div>
+				{userData ? (
+					<SingleUserChart
+						messagesDataSet={userData.map((message) => message.total_message)}
+						reactionsDataSet={userData.map(
+							(reaction) => reaction.total_reaction
+						)}
+						label={userData.map((week) => `Week ${week.week_no}`)}
+					/>
+				) : null}
+			</div>
+			<Footer />
 		</main>
 	);
 };
+
 export default SingleUser;

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import TableHead from "./TableHead";
 import TableRow from "./TableRow";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 const Channels = () => {
@@ -28,8 +28,7 @@ const Channels = () => {
 
 	return (
 		<main>
-			<NavBar />
-			<Table borderless hover responsive className="table">
+			<Table borderless hover className="table" responsive>
 				<thead className="text-center">
 					<TableHead />
 				</thead>
