@@ -17,6 +17,7 @@
 		"serve": "npm start",
 		"start": "node dist/server.js",
 		"test": "jest",
+		"snapshot:update": "jest --updateSnapshot",
 		"lint:eslint": "eslint .",
 		"lint:fix": "npm run lint:eslint -- --fix && npm run lint:prettier -- --write",
 		"lint:prettier": "prettier ."
