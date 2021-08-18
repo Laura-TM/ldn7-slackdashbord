@@ -6,7 +6,7 @@ const SingleUserChart = (props) => {
 			labels: props.label,
 			datasets: [
 				{
-					label: "Messages",
+					label: "User's messages",
 					backgroundColor: "#009900",
 					borderColor: "#1e4d2b",
 					borderWidth: 2,
@@ -14,29 +14,28 @@ const SingleUserChart = (props) => {
 				},
 
 				{
-					label: "Reactions",
+					label: "User's reactions",
 					backgroundColor: "#ff8c00",
 					borderColor: "#e86100",
 					borderWidth: 2,
 					data: props.reactionsDataSet,
 				},
+
 				{
-					label: "Average messages",
+					label: "Channel average messages",
 					backgroundColor: "#bdda57",
 					borderColor: "#1e4d2b",
 					borderWidth: 3,
 					borderDash: [6, 8],
-					borderDashOffset: [1, 2, 3],
 					data: props.averageMessages,
 				},
 
 				{
-					label: "Average reactions",
+					label: "Channel average reactions",
 					backgroundColor: "#ffa812",
 					borderColor: "#e86100",
 					borderWidth: 3,
 					borderDash: [6, 8],
-					borderDashOffset: [1, 2, 3],
 					data: props.averageReactions,
 				},
 			],
