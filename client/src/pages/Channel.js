@@ -93,6 +93,7 @@ const Channel = () => {
 											pathname: `/user/${channelId}/${user.id}/${user.real_name}`,
 											state: {
 												channelData,
+												numberOfUsers,
 											},
 										}}
 									>
