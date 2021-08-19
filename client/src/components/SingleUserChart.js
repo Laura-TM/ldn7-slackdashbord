@@ -1,4 +1,4 @@
-import { Line, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 const SingleUserChart = (props) => {
 	const state = {
@@ -6,23 +6,37 @@ const SingleUserChart = (props) => {
 			labels: props.label,
 			datasets: [
 				{
-					label: "Messages",
-					backgroundColor: "green",
-					borderColor: "green",
-					borderWidth: 1,
-					hoverBackgroundColor: "lightGreen",
-					hoverBorderColor: "lightGreen",
+					label: "User's messages",
+					backgroundColor: "#009900",
+					borderColor: "#1e4d2b",
+					borderWidth: 2,
 					data: props.messagesDataSet,
 				},
 
 				{
-					label: "Reactions",
-					backgroundColor: "orange",
-					borderColor: "orange",
-					borderWidth: 1,
-					hoverBackgroundColor: "rgba(255,99,132,0.4)",
-					hoverBorderColor: "rgba(255,99,132,1)",
+					label: "User's reactions",
+					backgroundColor: "#ff8c00",
+					borderColor: "#e86100",
+					borderWidth: 2,
 					data: props.reactionsDataSet,
+				},
+
+				{
+					label: "Channel average messages",
+					backgroundColor: "#bdda57",
+					borderColor: "#1e4d2b",
+					borderWidth: 3,
+					borderDash: [6, 8],
+					data: props.averageMessages,
+				},
+
+				{
+					label: "Channel average reactions",
+					backgroundColor: "#ffa812",
+					borderColor: "#e86100",
+					borderWidth: 3,
+					borderDash: [6, 8],
+					data: props.averageReactions,
 				},
 			],
 		},
@@ -32,7 +46,6 @@ const SingleUserChart = (props) => {
 		legend: {
 			display: false,
 		},
-		type: "bar",
 	};
 	return (
 		<div className="chart">
