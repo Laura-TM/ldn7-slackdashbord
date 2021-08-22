@@ -92,10 +92,10 @@ psql -d cyf -U <username> -f scripts/01-init.sql
 
 ```
 
-### Testing
+### Testing - Jest
 
-So far we are using some simple [snapshot tests](https://jestjs.io/docs/snapshot-testing) using Jest.
-To run the tests -all tests located under the **tests** folder, run:
+So far we are using some simple [snapshot tests](https://jestjs.io/docs/snapshot-testing) and some unit tests running with Jest.
+To run all tests located under the \***\*tests\*\*** folder, run:
 
 ```
 npm run test
@@ -106,3 +106,23 @@ The snapshot tests will warn developers if they make unintentional changes to th
 ```
 jest --updateSnapshots
 ```
+
+### Testing - Cypress
+
+We are using Cypress to test the GUI and our server side API. To learn more about Cypress tests, visit the [cypress-docs] (https://docs.cypress.io/guides/overview/why-cypress)
+
+The Cypress spec tests reside in the `cypress/integration` folder, which is split into two folders: `/api` (back-end) and `/gui` (front-end). To run these tests, if you already have the server running, use the following command:
+
+`npm run cy:run`
+
+But if you wish to start the server and the tests in a single command, please use:
+
+`npm run cy:start-and-run`
+
+If you would like to run one test file, please use `--spec` and provide a path, e.g.:
+
+`npx cypress run --spec cypress/integration/api/loginAPI.spec.js`
+
+Should you wish to run all tests within one of the two folders (gui or api), you can add an asterisc at the end of the path, e.g.:
+
+`npx cypress run --spec cypress/integration/api/*`
