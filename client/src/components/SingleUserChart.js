@@ -1,4 +1,6 @@
-import { Line } from "react-chartjs-2";
+import { Line, defaults } from "react-chartjs-2";
+
+defaults.font.family = "Varela Round";
 
 const SingleUserChart = (props) => {
 	const state = {
@@ -42,13 +44,14 @@ const SingleUserChart = (props) => {
 		},
 	};
 	const options = {
-		responsive: true,
+		maintainAspectRatio: true,
+		aspectRatio: 2,
 		legend: {
 			display: false,
 		},
 	};
 	return (
-		<div className="chart">
+		<div className="singleUserChart">
 			<Line data={state.data} options={options} />
 		</div>
 	);
