@@ -62,13 +62,14 @@ const Login = ({ setToken }) => {
 					<div className="input-group my-5 ">
 						<div className="input-group-prepend">
 							<span className="span-text" id="basic-addon1">
-								user name
+								Username
 							</span>
 						</div>
 
 						<input
 							id="username"
 							type="text"
+							placeholder="Enter your username"
 							className="form-control"
 							required
 							value={name}
@@ -84,6 +85,7 @@ const Login = ({ setToken }) => {
 						<input
 							id="password"
 							type="password"
+							placeholder="Enter your password"
 							className="form-control"
 							required
 							value={password}
