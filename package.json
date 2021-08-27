@@ -115,6 +115,9 @@
 	"jest": {
 		"moduleNameMapper": {
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "<rootDir>/client/src/__mocks__/fileMock.js"
-		}
+		},
+		"modulePathIgnorePatterns": [
+			"<rootDir>/cypress/"
+		]
 	}
 }
