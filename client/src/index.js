@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "./pages/store";
 import App from "./App";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 ReactDOM.render(
 	<div>
@@ -15,6 +16,7 @@ ReactDOM.render(
 				<App />
 			</Provider>
 		</BrowserRouter>
+		<Footer />
 	</div>,
 	document.getElementById("root")
 );

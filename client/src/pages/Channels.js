@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import TableHead from "../components/TableHead";
 import TableRow from "../components/TableRow";
-import Footer from "../components/Footer";
 
 const Channels = () => {
 	const [channelList, setChannelList] = useState([]);
@@ -37,7 +36,6 @@ const Channels = () => {
 					))}
 				</tbody>
 			</Table>
-			<Footer />
 		</main>
 	);
 };

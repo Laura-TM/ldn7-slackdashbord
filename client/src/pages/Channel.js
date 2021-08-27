@@ -5,7 +5,6 @@ import SingleChannelChart from "../components/SingleChannelChart";
 import SingleUserData from "../components/SingleUserData";
 import slack_logo from "../images/slack_logo.png";
 import "./Home.css";
-import Footer from "../components/Footer";
 
 const Channel = () => {
 	const { name, channelId } = useParams();
@@ -120,7 +119,6 @@ const Channel = () => {
 					reactionsDataSet={averageReactions}
 				/>
 			</div>
-			<Footer />
 		</main>
 	);
 };
