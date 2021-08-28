@@ -8,7 +8,7 @@ describe("SLacktastic Homepage", () => {
 	it("displays the homepage intro and correct title", () => {
 		// assert:
 		cy.title().should("eq", "Slacktastic");
-		cy.get(".introMessage h3").should(
+		cy.get(".introMessage h1").should(
 			"include.text",
 			"CYF Slacktastic dashboard"
 		);
