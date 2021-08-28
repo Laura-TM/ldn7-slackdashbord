@@ -3,10 +3,11 @@ import "../pages/Home.css";
 
 const Footer = () => {
 	return (
-		<footer className="footer">
-			<div className="container-fluid">
-				<span className="text-muted">Copyright &copy; 2021</span>
-			</div>
+		<footer className="container-fluid">
+			<span>
+				&copy; Code Your Future 2021 | All rights reserved | Registered charity
+				1174929
+			</span>
 		</footer>
 	);
 };

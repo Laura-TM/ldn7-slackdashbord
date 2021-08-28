@@ -3,6 +3,7 @@ import { useState } from "react";
 import Home from "./pages/Home";
 import SingleUser from "./pages/SingleUser";
 import Channels from "./pages/Channels";
+import Cohorts from "./pages/Cohorts";
 import Channel from "../src/pages/Channel";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -26,6 +27,9 @@ const App = () => {
 			</Route>
 			<Route path="/channels">
 				<Channels setToken={setToken} />
+			</Route>
+			<Route path="/cohorts">
+				<Cohorts setToken={setToken} />
 			</Route>
 			<Route path="/channel/:name/:channelId">
 				<Channel setToken={setToken} />

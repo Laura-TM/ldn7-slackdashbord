@@ -92,6 +92,10 @@ psql -d cyf -U <username> -f scripts/01-init.sql
 
 ```
 
+## Accessibility and design (colours)
+
+The design has checked for accessibility regarding colorblinded people, as well as general contrast (we need to change the red/green numbers on the tables, as they do not contrast enough).
+
 ### Testing - Jest
 
 So far we are using some simple [snapshot tests](https://jestjs.io/docs/snapshot-testing) and some unit tests running with Jest.
@@ -110,6 +114,13 @@ jest --updateSnapshots
 ### Testing - Cypress
 
 We are using Cypress to test the GUI and our server side API. To learn more about Cypress tests, visit the [cypress-docs] (https://docs.cypress.io/guides/overview/why-cypress)
+
+Before you get carried away testing, please create a cypress.env.json file in the root directory with the necessary details, e.g:
+
+{
+"username": "",
+"password": ""
+}
 
 The Cypress spec tests reside in the `cypress/integration` folder, which is split into two folders: `/api` (back-end) and `/gui` (front-end). To run these tests, if you already have the server running, use the following command:
 

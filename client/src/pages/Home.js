@@ -1,5 +1,4 @@
 import ChannelButton from "../components/Button";
-import Footer from "../components/Footer";
 import "./Home.css";
 import PropTypes from "prop-types";
 
@@ -10,14 +9,13 @@ const Home = ({ setToken }) => {
 	return (
 		<main>
 			<div className="introMessage">
-				<h3>Hi there, welcome to CYF Slacktastic dashboard!</h3>
-				<h4>
+				<h1>Hi there, welcome to CYF Slacktastic dashboard!</h1>
+				<h2>
 					This site allows you to access all sorts of stats about the Code Your
 					Future slack channels and users.
-				</h4>
+				</h2>
 			</div>
 			<ChannelButton setToken={setToken} />
-			<Footer />
 		</main>
 	);
 };

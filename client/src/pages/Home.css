@@ -43,15 +43,14 @@ body {
 	text-align: center;
 }
 
-.introMessage h3 {
-	font-weight: 1000;
-	font-size: 17.5px;
+.introMessage h1 {
+	font-size: 17px;
 	margin-bottom: 30px;
 }
 
-.introMessage h4 {
+.introMessage h2 {
 	font-weight: lighter;
-	font-size: 14px;
+	font-size: 12px;
 	margin-top: 30px;
 }
 
@@ -74,6 +73,40 @@ body {
 .getStartedButton:hover {
 	background-color: #b1f778e3;
 	color: #0a5503;
+}
+
+/* COHORTS PAGE */
+
+.cohortContainer {
+	display: grid;
+	grid-auto-flow: column;
+	width: 70%;
+	margin: auto;
+}
+
+.searchCohort {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.dividerLine {
+	margin-top: 30px;
+	width: 100%;
+	border: solid 1px #b4b6b4;
+}
+
+.cohortTitle {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.cohortCardContainer {
+	margin: 20px auto 50px auto;
+	max-width: 75%;
+}
+
+.circularProgress {
+	margin: 100px auto;
 }
 
 /* CHANNELS PAGE */
@@ -181,15 +214,17 @@ body {
 
 /* FOOTER */
 
-.footer {
+footer {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	padding: 5px;
 	background-color: #080808;
+	color: rgb(196, 191, 191);
 	font-family: "Varela Round", serif;
+	font-size: 10px;
 	position: fixed;
-	margin-top: 100px;
+	margin-top: 70px;
 	bottom: 0;
 	left: 0;
 	width: 100%;
@@ -216,12 +251,12 @@ body {
 		padding: 45px 25px;
 	}
 
-	.introMessage h3 {
-		font-size: 18px;
+	.introMessage h1 {
+		font-size: 19px;
 	}
 
-	.introMessage h4 {
-		font-size: 15px;
+	.introMessage h2 {
+		font-size: 14px;
 	}
 
 	/* BUTTON ON HOME PAGE */
@@ -243,12 +278,12 @@ body {
 		padding: 50px;
 	}
 
-	.introMessage h3 {
-		font-size: 20px;
+	.introMessage h1 {
+		font-size: 21px;
 	}
 
-	.introMessage h4 {
-		font-size: 17px;
+	.introMessage h2 {
+		font-size: 16px;
 	}
 
 	/* BUTTON ON HOME PAGE */
@@ -265,6 +300,12 @@ body {
 		width: 15px;
 		height: auto;
 	}
+
+	/* FOOTER */
+
+	footer {
+		font-size: 12px;
+	}
 }
 
 @media (min-width: 600px) {
@@ -277,11 +318,11 @@ body {
 		padding: 55px;
 	}
 
-	.introMessage h3 {
-		font-size: 21px;
+	.introMessage h1 {
+		font-size: 23px;
 	}
 
-	.introMessage h4 {
+	.introMessage h2 {
 		font-size: 18px;
 	}
 
@@ -300,6 +341,12 @@ body {
 		margin: 20px auto;
 		padding-bottom: 30px;
 	}
+
+	/* FOOTER */
+
+	footer {
+		font-size: 14px;
+	}
 }
 
 @media (min-width: 801px) {
@@ -312,12 +359,12 @@ body {
 		padding: 57px;
 	}
 
-	.introMessage h3 {
-		font-size: 22px;
+	.introMessage h1 {
+		font-size: 25px;
 	}
 
-	.introMessage h4 {
-		font-size: 19px;
+	.introMessage h2 {
+		font-size: 20px;
 	}
 
 	/* BUTTON ON HOME PAGE */
@@ -338,12 +385,12 @@ body {
 		padding: 58px;
 	}
 
-	.introMessage h3 {
-		font-size: 23px;
+	.introMessage h1 {
+		font-size: 27px;
 	}
 
-	.introMessage h4 {
-		font-size: 20px;
+	.introMessage h2 {
+		font-size: 22px;
 	}
 
 	/* BUTTON ON HOME PAGE */
@@ -363,12 +410,12 @@ body {
 		padding: 60px;
 	}
 
-	.introMessage h3 {
-		font-size: 25px;
+	.introMessage h1 {
+		font-size: 29px;
 	}
 
-	.introMessage h4 {
-		font-size: 22px;
+	.introMessage h2 {
+		font-size: 24px;
 	}
 
 	/* BUTTON ON HOME PAGE */
@@ -408,12 +455,12 @@ body {
 		padding: 60px;
 	}
 
-	.introMessage h3 {
-		font-size: 25px;
+	.introMessage h1 {
+		font-size: 31px;
 	}
 
-	.introMessage h4 {
-		font-size: 22px;
+	.introMessage h2 {
+		font-size: 26px;
 	}
 
 	/* BUTTON ON HOME PAGE */
