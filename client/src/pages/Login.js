@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import "./LoginForm.css";
-import Footer from "../components/Footer";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -37,6 +36,7 @@ const Login = ({ setToken }) => {
 					})
 				);
 				setToken("login");
+				// TODO : add check for cohort or mentor
 				history.push("/channels");
 			})
 			.catch(() => {
@@ -98,7 +98,6 @@ const Login = ({ setToken }) => {
 					</button>
 				</div>
 			</form>
-			<Footer />
 		</>
 	);
 };
