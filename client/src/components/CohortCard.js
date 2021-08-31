@@ -47,8 +47,7 @@ const CohortCard = ({ data }) => {
 				/>
 				<CardContent>
 					<Typography className={classes.typography}>
-						{data.channelName.charAt(0).toUpperCase() +
-							data.channelName.slice(1)}
+						{data.replace(/^./, data[0].toUpperCase())}
 					</Typography>
 				</CardContent>
 			</Card>

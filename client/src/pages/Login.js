@@ -37,7 +37,7 @@ const Login = ({ setToken }) => {
 				);
 				setToken("login");
 				// TODO : add check for cohort or mentor
-				history.push("/channels");
+				history.push("/cohorts");
 			})
 			.catch(() => {
 				dispatch(
