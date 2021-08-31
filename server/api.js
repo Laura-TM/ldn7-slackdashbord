@@ -406,4 +406,16 @@ router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
 	});
 });
 
+router.get("/cohortList", loginRequired, (req, res) => {
+	const query = "SELECT * FROM CohortList";
+
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
 export default router;
