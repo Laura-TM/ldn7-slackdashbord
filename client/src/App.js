@@ -10,7 +10,6 @@ import Logout from "./pages/Logout";
 
 const App = () => {
 	const [token, setToken] = useState(false);
-	console.log(token);
 	if (!token) return <Home setToken={setToken} />;
 	else if (token == "Home") return <Login setToken={setToken} />;
 	else if (token != "login") {
@@ -38,7 +37,7 @@ const App = () => {
 				<Login />
 			</Route>
 			<Route path="/logout">
-				<Logout />
+				<Logout setToken={setToken} />
 			</Route>
 		</Switch>
 	);

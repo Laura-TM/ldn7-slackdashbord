@@ -23,7 +23,7 @@ const Logout = () => {
 			login({
 				name: "",
 				loggedIn: false,
-				message: "you are logout",
+				message: "You are now logged out",
 			})
 		);
 	};
