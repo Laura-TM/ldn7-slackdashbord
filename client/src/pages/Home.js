@@ -1,4 +1,5 @@
-import ChannelButton from "../components/Button";
+// import ChannelButton from "../components/Button";
+import HomeUserButtons from "../components/HomeUserButtons";
 import "./Home.css";
 import PropTypes from "prop-types";
 
@@ -7,7 +8,7 @@ const Home = ({ setToken }) => {
 		setToken: PropTypes.func.isRequired,
 	};
 	return (
-		<main>
+		<main className="homePageContainer">
 			<div className="introMessage">
 				<h1>Hi there, welcome to CYF Slacktastic dashboard!</h1>
 				<h2>
@@ -15,7 +16,8 @@ const Home = ({ setToken }) => {
 					Future slack channels and users.
 				</h2>
 			</div>
-			<ChannelButton setToken={setToken} />
+			{/* <ChannelButton setToken={setToken} /> */}
+			<HomeUserButtons setToken={setToken} />
 		</main>
 	);
 };
