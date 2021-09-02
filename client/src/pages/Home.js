@@ -8,7 +8,7 @@ const Home = ({ setToken }) => {
 		setToken: PropTypes.func.isRequired,
 	};
 	return (
-		<main className="homePageContainer">
+		<div className="homePageContainer">
 			<div className="introMessage">
 				<h1>Hi there, welcome to CYF Slacktastic dashboard!</h1>
 				<h2>
@@ -17,8 +17,12 @@ const Home = ({ setToken }) => {
 				</h2>
 			</div>
 			{/* <ChannelButton setToken={setToken} /> */}
-			<HomeUserButtons setToken={setToken} />
-		</main>
+			<div className="buttonsContainer">
+				<HomeUserButtons content="Admin" setToken={setToken} />
+				<HomeUserButtons content="Mentor" setToken={setToken} />
+				<HomeUserButtons content="Trainee" setToken={setToken} />
+			</div>
+		</div>
 	);
 };
 export default Home;
