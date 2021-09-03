@@ -44,7 +44,10 @@ const Cohorts = () => {
 					<Grid container spacing={4}>
 						{cohortList.map((cohort, index) => (
 							<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-								<CohortCard data={cohort.cohort_name} />
+								<CohortCard
+									cohortName={cohort.cohort_name}
+									cohortId={cohort.id}
+								/>
 							</Grid>
 						))}
 					</Grid>

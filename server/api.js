@@ -3,11 +3,12 @@ import process from "process";
 import pool from "./db";
 import "dotenv/config";
 import format from "pg-format";
+import { CompassCalibrationOutlined } from "@material-ui/icons";
 
 const router = new Router();
 const axios = require("axios");
-const slackWorkspace = "https://ldn7-test-workspace.slack.com";
-// const slackWorkspace = "https://codeyourfuture.slack.com";
+// const slackWorkspace = "https://ldn7-test-workspace.slack.com";
+const slackWorkspace = "https://codeyourfuture.slack.com";
 
 const users = [];
 const loginRequired = (req, res, next) => {
@@ -131,7 +132,9 @@ router.get("/userList", loginRequired, async (req, res) => {
 });
 
 const fetchAllData = async (startDate) => {
-	const channelList = await getChannelList();
+	// const channelList = await getChannelList();
+	const channelList = await getChannel();
+	console.log("fetchAllData", channelList);
 	const result = channelList.channels.map(async (channel) => {
 		const channelId = channel.id;
 		const data = await getChannelHistory(channel.id, startDate, " ");
@@ -169,7 +172,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 			).setHours(0, 0, 0, 0)
 		) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
-	console.log(messageInfo);
+	// console.log(messageInfo);
 	const reactionData = FetchReactionData(messageInfo); // reactions (unsorted)
 	messageInfo.push(reactionData); // messages + reaction (unsorted)
 	const info = [].concat.apply([], messageInfo); // messages + reaction (sorted)
@@ -179,7 +182,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 	messageInfo.push(repliesMessagesSorted);
 	messageInfo.push(repliesReaction);
 	const result = [].concat.apply([], messageInfo); // messages + reactions + repliesMessages + repliesReactions
-	console.log(result);
+	// console.log(result);
 	const aggregateStat = await aggregateData(result, numberOfDays);
 	const stat = [].concat.apply([], [].concat.apply([], aggregateStat));
 	insertDataToTable(stat);
@@ -406,6 +409,19 @@ router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
 	});
 });
 
+router.get("/channels/:cohortId", loginRequired, (req, res) => {
+	const cohortId = req.params.cohortId;
+	const query = `SELECT ChannelList.channel_name, ChannelList.channel_id FROM ChannelList INNER JOIN CohortList ON CohortList.id::varchar = ChannelList.cohort_id WHERE CohortList.id = ${cohortId}`;
+
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
 router.get("/cohortList", loginRequired, (req, res) => {
 	const query = "SELECT * FROM CohortList";
 
@@ -417,5 +433,24 @@ router.get("/cohortList", loginRequired, (req, res) => {
 		}
 	});
 });
+
+// Try
+// const channelList = [];
+
+const getChannel = async () => {
+	const query = "SELECT * FROM ChannelList";
+	const channelList = pool.query(query, (db_err, db_res) => {
+		// if (db_err) {
+		// 	return db_err;
+		// } else {
+		console.log("ChannelList", db_res.rows);
+		db_res.rows;
+		// }
+	});
+	console.log("Return function", channelList);
+	return channelList;
+};
+
+console.log("console", getChannel());
 
 export default router;

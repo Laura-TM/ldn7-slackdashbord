@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
 	Card,
 	CardMedia,
@@ -33,24 +34,43 @@ const useStyles = makeStyles({
 	},
 });
 
-const CohortCard = ({ data }) => {
+const CohortCard = ({ cohortName, cohortId }) => {
 	const classes = useStyles();
 
 	return (
 		<div>
-			<Card className={classes.card} onClick={() => history.push("/channels")}>
-				<CardMedia
-					className={classes.cardMedia}
-					image={groupPeopleImage}
-					title="representative group of people"
-					description={`a given group of people`}
-				/>
-				<CardContent>
-					<Typography className={classes.typography}>
-						{data.replace(/^./, data[0].toUpperCase())}
-					</Typography>
-				</CardContent>
-			</Card>
+			<Link
+				style={{
+					textDecoration: "none",
+					textTransform: "capitalize",
+					color: "black",
+					fontWeight: "lighter",
+				}}
+				to={{
+					pathname: `/channels/${cohortId}`,
+					state: {
+						cohortName,
+						cohortId,
+					},
+				}}
+			>
+				<Card
+					className={classes.card}
+					onClick={() => history.push("/channels")}
+				>
+					<CardMedia
+						className={classes.cardMedia}
+						image={groupPeopleImage}
+						title="representative group of people"
+						description={`a given group of people`}
+					/>
+					<CardContent>
+						<Typography className={classes.typography}>
+							{cohortName.replace(/^./, cohortName[0].toUpperCase())}
+						</Typography>
+					</CardContent>
+				</Card>
+			</Link>
 		</div>
 	);
 };

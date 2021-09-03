@@ -20,9 +20,9 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
-					to={`/channel/${channel.name}/${channel.id}`}
+					to={`/channel/${channel.channel_name}/${channel.channel_id}`}
 				>
-					{channel.name}
+					{channel.channel_name}
 				</Link>
 			</th>
 			<td>
@@ -32,9 +32,9 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
-					to={`/channel/${channel.name}/${channel.id}`}
+					to={`/channel/${channel.channel_name}/${channel.channel_id}`}
 				>
-					{channel.num_members}
+					{/* {channel.num_members} */}
 				</Link>
 			</td>
 			<td className="arrowSelector">
@@ -44,7 +44,7 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
-					to={`/channel/${channel.name}/${channel.id}`}
+					to={`/channel/${channel.channel_name}/${channel.channel_id}`}
 				>
 					{<img className="arrow" src={arrow} alt="arrow" />}
 				</Link>
