@@ -8,6 +8,7 @@ import "./Home.css";
 // import mockCohortList from "../data/fakeData.json";
 
 const Cohorts = () => {
+	// To BE USED with
 	// const [cohortList, setCohortList] = useState(mockCohortList);
 	const [cohortList, setCohortList] = useState([]);
 
@@ -27,7 +28,7 @@ const Cohorts = () => {
 			});
 	}, []);
 
-	console.log(cohortList);
+	// console.log(cohortList);
 	// const cohort_values = Object.values(mockCohortList);
 
 	return (

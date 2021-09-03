@@ -20,9 +20,13 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
-					to={`/channel/${channel.channel_name}/${channel.channel_id}`}
+					// TO BE USED with real data
+					// to={`/channel/${channel.channel_name}/${channel.channel_id}`}
+					to={`/channel/${channel.name}/${channel.id}`}
 				>
-					{channel.channel_name}
+					{/* TO BE USED with real data */}
+					{/* {channel.channel_name} */}
+					{channel.name}
 				</Link>
 			</th>
 			<td>
@@ -32,9 +36,11 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
-					to={`/channel/${channel.channel_name}/${channel.channel_id}`}
+					// TO BE USED with real data
+					// to={`/channel/${channel.channel_name}/${channel.channel_id}`}
+					to={`/channel/${channel.name}/${channel.id}`}
 				>
-					{/* {channel.num_members} */}
+					{channel.num_members}
 				</Link>
 			</td>
 			<td className="arrowSelector">
@@ -44,7 +50,9 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
-					to={`/channel/${channel.channel_name}/${channel.channel_id}`}
+					// TO BE USED with real data
+					// to={`/channel/${channel.channel_name}/${channel.channel_id}`}
+					to={`/channel/${channel.name}/${channel.id}`}
 				>
 					{<img className="arrow" src={arrow} alt="arrow" />}
 				</Link>

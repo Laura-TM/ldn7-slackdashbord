@@ -13,7 +13,6 @@ const Channel = () => {
 	const [averageMessages, setAverageMessages] = useState([]);
 	const [averageReactions, setAverageReactions] = useState([]);
 	const [numberOfUsers, setNumberOfUsers] = useState(0);
-	console.log(channelId, name);
 
 	useEffect(() => {
 		fetch(`/api/channelUser/${channelId}`)

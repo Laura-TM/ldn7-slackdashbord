@@ -3,12 +3,11 @@ import process from "process";
 import pool from "./db";
 import "dotenv/config";
 import format from "pg-format";
-import { CompassCalibrationOutlined } from "@material-ui/icons";
 
 const router = new Router();
 const axios = require("axios");
-// const slackWorkspace = "https://ldn7-test-workspace.slack.com";
-const slackWorkspace = "https://codeyourfuture.slack.com";
+const slackWorkspace = "https://ldn7-test-workspace.slack.com";
+// const slackWorkspace = "https://codeyourfuture.slack.com";
 
 const users = [];
 const loginRequired = (req, res, next) => {
@@ -132,8 +131,7 @@ router.get("/userList", loginRequired, async (req, res) => {
 });
 
 const fetchAllData = async (startDate) => {
-	// const channelList = await getChannelList();
-	const channelList = await getChannel();
+	const channelList = await getChannelList();
 	console.log("fetchAllData", channelList);
 	const result = channelList.channels.map(async (channel) => {
 		const channelId = channel.id;
@@ -433,24 +431,5 @@ router.get("/cohortList", loginRequired, (req, res) => {
 		}
 	});
 });
-
-// Try
-// const channelList = [];
-
-const getChannel = async () => {
-	const query = "SELECT * FROM ChannelList";
-	const channelList = pool.query(query, (db_err, db_res) => {
-		// if (db_err) {
-		// 	return db_err;
-		// } else {
-		console.log("ChannelList", db_res.rows);
-		db_res.rows;
-		// }
-	});
-	console.log("Return function", channelList);
-	return channelList;
-};
-
-console.log("console", getChannel());
 
 export default router;
