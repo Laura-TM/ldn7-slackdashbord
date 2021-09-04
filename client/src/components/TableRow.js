@@ -20,8 +20,12 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
+					// TO BE USED with real data
+					// to={`/channel/${channel.channel_name}/${channel.channel_id}`}
 					to={`/channel/${channel.name}/${channel.id}`}
 				>
+					{/* TO BE USED with real data */}
+					{/* {channel.channel_name} */}
 					{channel.name}
 				</Link>
 			</th>
@@ -32,6 +36,8 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
+					// TO BE USED with real data
+					// to={`/channel/${channel.channel_name}/${channel.channel_id}`}
 					to={`/channel/${channel.name}/${channel.id}`}
 				>
 					{channel.num_members}
@@ -44,6 +50,8 @@ const TableRow = ({ channel }) => {
 						color: "black",
 						fontWeight: "lighter",
 					}}
+					// TO BE USED with real data
+					// to={`/channel/${channel.channel_name}/${channel.channel_id}`}
 					to={`/channel/${channel.name}/${channel.id}`}
 				>
 					{<img className="arrow" src={arrow} alt="arrow" />}
