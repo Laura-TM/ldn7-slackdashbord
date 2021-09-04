@@ -36,7 +36,6 @@ const useStyles = makeStyles({
 
 const CohortCard = ({ cohortName, cohortId }) => {
 	const classes = useStyles();
-
 	return (
 		<div>
 			<Link
