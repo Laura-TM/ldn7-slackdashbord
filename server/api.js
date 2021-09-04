@@ -432,4 +432,5 @@ router.get("/cohortList", loginRequired, (req, res) => {
 	});
 });
 
+
 export default router;
