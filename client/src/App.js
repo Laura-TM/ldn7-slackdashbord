@@ -24,7 +24,7 @@ const App = () => {
 			<Route path="/user/:channelId/:userId/:userName">
 				<SingleUser setToken={setToken} />
 			</Route>
-			<Route path="/channels">
+			<Route path="/channels/:cohortId">
 				<Channels setToken={setToken} />
 			</Route>
 			<Route path="/cohorts">

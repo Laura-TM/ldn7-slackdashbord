@@ -132,6 +132,7 @@ router.get("/userList", loginRequired, async (req, res) => {
 
 const fetchAllData = async (startDate) => {
 	const channelList = await getChannelList();
+	console.log("fetchAllData", channelList);
 	const result = channelList.channels.map(async (channel) => {
 		const channelId = channel.id;
 		const data = await getChannelHistory(channel.id, startDate, " ");
@@ -169,7 +170,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 			).setHours(0, 0, 0, 0)
 		) / 1000;
 	const messageInfo = await fetchAllData(startDate); // All Data/messages for 3 weeks (unsorted)
-	console.log(messageInfo);
+	// console.log(messageInfo);
 	const reactionData = FetchReactionData(messageInfo); // reactions (unsorted)
 	messageInfo.push(reactionData); // messages + reaction (unsorted)
 	const info = [].concat.apply([], messageInfo); // messages + reaction (sorted)
@@ -179,7 +180,7 @@ router.post("/dailyStatistic", loginRequired, async (req, res) => {
 	messageInfo.push(repliesMessagesSorted);
 	messageInfo.push(repliesReaction);
 	const result = [].concat.apply([], messageInfo); // messages + reactions + repliesMessages + repliesReactions
-	console.log(result);
+	// console.log(result);
 	const aggregateStat = await aggregateData(result, numberOfDays);
 	const stat = [].concat.apply([], [].concat.apply([], aggregateStat));
 	insertDataToTable(stat);
@@ -396,6 +397,31 @@ router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
 	const userId = req.params.userId;
 
 	const query = `SELECT DATE_PART('week', date) week_no, channel_id, user_id, SUM(message_count) AS total_message, SUM(reaction_count) AS total_reaction FROM messages WHERE channel_id = '${channelId}' AND user_id = '${userId}'  GROUP BY user_id, channel_id, week_no ORDER by week_no DESC`;
+
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
+router.get("/channels/:cohortId", loginRequired, (req, res) => {
+	const cohortId = req.params.cohortId;
+	const query = `SELECT ChannelList.channel_name, ChannelList.channel_id FROM ChannelList INNER JOIN CohortList ON CohortList.id::varchar = ChannelList.cohort_id WHERE CohortList.id = ${cohortId}`;
+
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
+router.get("/cohortList", loginRequired, (req, res) => {
+	const query = "SELECT * FROM CohortList";
 
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
