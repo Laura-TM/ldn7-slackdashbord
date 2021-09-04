@@ -10,3 +10,4 @@ INSERT INTO CohortList (cohort_name) VALUES ('West Midlands');
 INSERT INTO CohortList (cohort_name) VALUES ('North West');
 INSERT INTO CohortList (cohort_name) VALUES ('South Africa');
 INSERT INTO CohortList (cohort_name) VALUES ('Rome');
+INSERT INTO CohortList (cohort_name) VALUES ('Test');
