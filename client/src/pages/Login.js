@@ -11,7 +11,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -37,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = ({ setToken }) => {
-	//const { role } = useParams();
+	// const { roles } = useParams();
+	// console.log(roles);
 	const role = useLocation().pathname.split("/")[2];
 	Login.propTypes = {
 		setToken: PropTypes.func.isRequired,
@@ -46,11 +46,26 @@ const Login = ({ setToken }) => {
 	const user = useSelector(selectUser);
 	const history = useHistory();
 	async function loginUser(credentials) {
-		return axios.post(`/api/login`, credentials);
+		if (!validEmail) {
+			return axios.post(`/api/login`, credentials);
+		}
 	}
 	const [name, setName] = useState(" ");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
+	const [validEmail, setValidEmail] = useState(false);
+	const isValidEmail = (email) => {
+		const result = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+		return result;
+	};
+	const validateEmail = (e) => {
+		const email = e.target.value;
+		if (!email || isValidEmail(email)) {
+			setValidEmail(false);
+		} else {
+			setValidEmail(true);
+		}
+	};
 	const dispatch = useDispatch();
 	const handleClickSignUp = () => {
 		setToken("signUp");
@@ -65,6 +80,7 @@ const Login = ({ setToken }) => {
 			.then((result) => {
 				console.log(result.data);
 				setName(result.data.name);
+				console.log("data:", result.data);
 				dispatch(
 					login({
 						name: result.data.name,
@@ -81,7 +97,7 @@ const Login = ({ setToken }) => {
 						? `/channels/${result.data.userId}`
 						: "";
 				// TODO : add check for cohort or mentor
-				history.push(path);
+				!validEmail && history.push(path);
 			})
 			.catch(() => {
 				dispatch(
@@ -117,18 +133,13 @@ const Login = ({ setToken }) => {
 						id="email"
 						label="Email Address"
 						name="email"
-						autoComplete="email"
-						autoFocus
+						autoComplete="none"
 						value={email}
+						error={validEmail}
+						helperText={validEmail ? "Please enter a valid Email" : " "}
 						onChange={(e) => setEmail(e.target.value)}
+						onBlur={validateEmail}
 					/>
-					{/* <input
-						id="username"
-						type="text"
-						className="form-control"
-						required
-						value={name}
-					></input> */}
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -142,14 +153,9 @@ const Login = ({ setToken }) => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					{/* <input
-						id="password"
-						type="password"
-						className="form-control"
-						required
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					></input> */}
+					<div className="message text-danger">
+						{user && <div>{user.message}</div>}
+					</div>
 					<Button
 						type="submit"
 						fullWidth
@@ -159,15 +165,8 @@ const Login = ({ setToken }) => {
 					>
 						Login
 					</Button>
-
-					<div className="message">{user && <div>{user.message}</div>}</div>
 				</form>
 				<Grid container>
-					{/* <Grid item xs>
-							<Link href="#" variant="body2">
-								Forgot password?
-							</Link>
-						</Grid> */}
 					<Grid item>
 						<Link variant="body2" onClick={handleClickSignUp}>
 							{"Don't have an account? Sign Up"}

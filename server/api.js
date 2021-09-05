@@ -35,7 +35,7 @@ router.post("/login", (req, res) => {
 			res.send(JSON.stringify(db_err));
 		} else {
 			if (db_res.rows.length == 0) {
-				res.json({ message: "This user is not exists" });
+				res.status(404).json({ message: "This user is not exists" });
 			} else {
 				const hash = db_res.rows[0].password;
 				const resultCompare = await bcrypt.compare(password, hash);
@@ -48,13 +48,12 @@ router.post("/login", (req, res) => {
 						role: db_res.rows[0].role,
 					});
 				} else if (!resultCompare) {
-					res.json({ message: "user not allowed" });
+					res.status(403).json({ message: "user not allowed" });
 				}
 			}
 		}
 	});
 });
-
 
 router.post("/signUp", async (req, res) => {
 	const { name = "", userId = "", email = "", password = "" } = req.body;

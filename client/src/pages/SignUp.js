@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import axios from "axios";
-import { useLocation, useParams, useHistory } from "react-router-dom";
+import { useLocation, useParams, useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -47,18 +43,36 @@ const SignUp = ({ setToken }) => {
 	const user = useSelector(selectUser);
 	const history = useHistory();
 	async function SignUpUser(credentials) {
-		return axios.post(`/api/signUp`, credentials);
+		if (!validEmail) {
+			return axios.post(`/api/signUp`, credentials);
+		}
 	}
 	const [name, setName] = useState(" ");
 	const [userId, setUserId] = useState(role == 2 ? "mentor" : "");
 	const [email, setEmail] = useState(" ");
 	const [password, setPassword] = useState("");
+	const [validEmail, setValidEmail] = useState(false);
+	const isValidEmail = (email) => {
+		const result = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+		return result;
+	};
+	const validateEmail = (e) => {
+		const email = e.target.value;
+		if (!email || isValidEmail(email)) {
+			setValidEmail(false);
+		} else {
+			setValidEmail(true);
+		}
+	};
 
 	const dispatch = useDispatch();
 
+	const handleClickLogin = () => {
+		setToken("login");
+		history.push(`/login/${role}`);
+	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("name", name, "userid", userId, email, password);
 		SignUpUser({
 			name,
 			userId,
@@ -145,7 +159,10 @@ const SignUp = ({ setToken }) => {
 								autoComplete="email"
 								type="email"
 								value={email}
+								error={validEmail}
+								helperText={validEmail ? "Please enter a valid Email" : " "}
 								onChange={(e) => setEmail(e.target.value)}
+								onBlur={validateEmail}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -173,8 +190,8 @@ const SignUp = ({ setToken }) => {
 					</Button>
 					<Grid container justifyContent="flex-end">
 						<Grid item>
-							<Link href="#" variant="body2">
-								Already have an account? Sign in
+							<Link variant="body2" onClick={handleClickLogin}>
+								Already have an account? Login
 							</Link>
 						</Grid>
 					</Grid>
