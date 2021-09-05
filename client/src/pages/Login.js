@@ -11,7 +11,12 @@ const Login = ({ setToken }) => {
 		setToken: PropTypes.func.isRequired,
 	};
 	const user = useSelector(selectUser);
+
 	const history = useHistory();
+	const navigateTo = (path) => {
+		history.push(path);
+	};
+
 	async function loginUser(credentials) {
 		return axios.post(`/api/login`, credentials);
 	}
@@ -36,8 +41,6 @@ const Login = ({ setToken }) => {
 					})
 				);
 				setToken("login");
-				// TODO : add check for cohort or mentor
-				history.push("/cohorts");
 			})
 			.catch(() => {
 				dispatch(
@@ -93,7 +96,11 @@ const Login = ({ setToken }) => {
 						></input>
 					</div>
 					<div className="message">{user && <div>{user.message}</div>}</div>
-					<button type="submit" className="loginButton text-uppercase btn">
+					<button
+						type="submit"
+						className="loginButton text-uppercase btn"
+						onClick={() => navigateTo("/cohorts")}
+					>
 						Login
 					</button>
 				</div>

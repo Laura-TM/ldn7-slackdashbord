@@ -13,8 +13,8 @@ const Cohorts = () => {
 	const [cohortList, setCohortList] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
 
-	function updateValue(event) {
-		setSearchValue(event.target.value);
+	function updateValue(value) {
+		setSearchValue(value);
 	}
 
 	useEffect(() => {
@@ -42,11 +42,7 @@ const Cohorts = () => {
 				Cohorts
 			</h1>
 			<div className="cohortContainer">
-				<CohortSearchField
-					searchValue={searchValue}
-					setSearchValue={setSearchValue}
-					updateValue={updateValue}
-				/>
+				<CohortSearchField updateValue={updateValue} />
 			</div>
 			<div className="cohortCardContainer">
 				{cohortList.length > 0 ? (

@@ -19,7 +19,7 @@ const App = () => {
 	return (
 		<Switch>
 			<Route path="/" exact>
-				<Home />
+				<Home setToken={setToken} />
 			</Route>
 			<Route path="/user/:channelId/:userId/:userName">
 				<SingleUser setToken={setToken} />
@@ -34,7 +34,7 @@ const App = () => {
 				<Channel setToken={setToken} />
 			</Route>
 			<Route path="/login">
-				<Login />
+				<Login setToken={setToken} />
 			</Route>
 			<Route path="/logout">
 				<Logout setToken={setToken} />
