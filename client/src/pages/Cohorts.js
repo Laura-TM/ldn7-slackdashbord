@@ -8,9 +8,14 @@ import "./Home.css";
 // import mockCohortList from "../data/fakeData.json";
 
 const Cohorts = () => {
-	// To BE USED with
 	// const [cohortList, setCohortList] = useState(mockCohortList);
+	// PERHAPS ADD CHECK TO ENSURE YOU GET THE RIGHT DATA TYPE
 	const [cohortList, setCohortList] = useState([]);
+	const [searchValue, setSearchValue] = useState("");
+
+	function updateValue(event) {
+		setSearchValue(event.target.value);
+	}
 
 	useEffect(() => {
 		fetch("/api/cohortList")
@@ -28,7 +33,6 @@ const Cohorts = () => {
 			});
 	}, []);
 
-	// console.log(cohortList);
 	// const cohort_values = Object.values(mockCohortList);
 
 	return (
@@ -38,19 +42,34 @@ const Cohorts = () => {
 				Cohorts
 			</h1>
 			<div className="cohortContainer">
-				<CohortSearchField />
+				<CohortSearchField
+					searchValue={searchValue}
+					setSearchValue={setSearchValue}
+					updateValue={updateValue}
+				/>
 			</div>
 			<div className="cohortCardContainer">
 				{cohortList.length > 0 ? (
 					<Grid container spacing={4}>
-						{cohortList.map((cohort, index) => (
-							<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-								<CohortCard
-									cohortName={cohort.cohort_name}
-									cohortId={cohort.id}
-								/>
-							</Grid>
-						))}
+						{cohortList
+							.filter((cohort) => {
+								if (
+									searchValue == "" ||
+									cohort.cohort_name
+										.toLowerCase()
+										.includes(searchValue.toLowerCase())
+								) {
+									return cohort;
+								}
+							})
+							.map((cohort, index) => (
+								<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+									<CohortCard
+										cohortName={cohort.cohort_name}
+										cohortId={cohort.id}
+									/>
+								</Grid>
+							))}
 					</Grid>
 				) : (
 					<CircularProgress className="circularProgress" />
