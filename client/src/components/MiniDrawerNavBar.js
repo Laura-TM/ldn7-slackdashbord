@@ -111,12 +111,12 @@ const MiniDrawerNavBar = ({ children }) => {
 					>
 						{open ? <CancelPresentationIcon /> : <MenuIcon />}
 					</IconButton>
-					<Typography variant="h6" noWrap>
-						<Link
-							onClick={() => window.open("https://codeyourfuture.io/about/")}
-						>
-							<img className="cyf_logo" src={cyfBrand} alt="CYF logo" />
-						</Link>
+					<Typography
+						variant="h6"
+						noWrap
+						onClick={() => window.open("https://codeyourfuture.io/about/")}
+					>
+						<img className="cyf_logo" src={cyfBrand} alt="CYF logo" />
 					</Typography>
 				</Toolbar>
 			</AppBar>
@@ -171,19 +171,18 @@ const MiniDrawerNavBar = ({ children }) => {
 						</ListItem>
 					</Link>
 
-					<Link
-						onClick={() => window.open("https://codeyourfuture.io/")}
+					<ListItem
+						button
 						className={classes.navbarlinks}
+						onClick={() => window.open("https://codeyourfuture.io/")}
 					>
-						<ListItem button>
-							<ListItemIcon>
-								<ContactIcon />
-							</ListItemIcon>
-							<ListItemText>
-								<span className={classes.navbarlinks}>Contact</span>
-							</ListItemText>
-						</ListItem>
-					</Link>
+						<ListItemIcon>
+							<ContactIcon />
+						</ListItemIcon>
+						<ListItemText>
+							<span className={classes.navbarlinks}>Contact</span>
+						</ListItemText>
+					</ListItem>
 				</List>
 			</Drawer>
 			<main className={classes.content}>

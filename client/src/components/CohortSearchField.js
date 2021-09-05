@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
@@ -5,7 +7,19 @@ import { IconButton } from "@material-ui/core";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import "../pages/Home.css";
 
-const CohortSearchField = ({ searchValue, setSearchValue, updateValue }) => {
+const CohortSearchField = ({ updateValue }) => {
+	const [input, setInput] = useState("");
+
+	function onChange(event) {
+		setInput(event.target.value);
+		updateValue(event.target.value);
+	}
+
+	function clearInput() {
+		setInput("");
+		updateValue("");
+	}
+
 	return (
 		<>
 			<div>
@@ -13,10 +27,10 @@ const CohortSearchField = ({ searchValue, setSearchValue, updateValue }) => {
 					className="searchCohort"
 					placeholder="Search a cohort"
 					type="text"
+					value={input}
 					variant="outlined"
 					size="small"
-					onChange={updateValue}
-					searchValue={searchValue}
+					onChange={onChange}
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position="start">
@@ -24,10 +38,10 @@ const CohortSearchField = ({ searchValue, setSearchValue, updateValue }) => {
 							</InputAdornment>
 						),
 
-						endAdornment: searchValue && (
+						endAdornment: (
 							<IconButton
 								aria-label="toggle password visibility"
-								onChange={() => setSearchValue("")}
+								onClick={() => clearInput()}
 							>
 								<CancelRoundedIcon />
 							</IconButton>

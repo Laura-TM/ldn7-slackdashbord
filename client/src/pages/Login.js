@@ -44,7 +44,12 @@ const Login = ({ setToken }) => {
 	};
 	const classes = useStyles();
 	const user = useSelector(selectUser);
+
 	const history = useHistory();
+	const navigateTo = (path) => {
+		history.push(path);
+	};
+
 	async function loginUser(credentials) {
 		if (!validEmail) {
 			return axios.post(`/api/login`, credentials);
