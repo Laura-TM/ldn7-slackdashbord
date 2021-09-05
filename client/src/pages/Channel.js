@@ -68,6 +68,8 @@ const Channel = () => {
 								<th colSpan="2">Trainee</th>
 								<th colSpan="2">Current week</th>
 								<th colSpan="2">Previous week</th>
+								{/* <th colSpan="2">Previous week</th>
+								<th colSpan="2">Current week</th> */}
 							</tr>
 							<tr className="thickBottomBorder">
 								<th>#</th>
