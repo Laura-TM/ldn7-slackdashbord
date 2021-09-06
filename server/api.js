@@ -67,15 +67,15 @@ router.post("/signUp", async (req, res) => {
 		const query = `select * from users where user_id='${userId}' or email='${email}'`;
 		pool.query(query, (db_err, db_res) => {
 			if (db_err) {
-				res.send(JSON.stringify(db_err));
+				res.status(400).send(JSON.stringify(db_err));
 			} else {
 				if (db_res.rows.length !== 0) {
-					res.json({ message: "This user already exists" });
+					res.status(403).json({ message: "This user already exists" });
 				} else {
 					const query = `INSERT INTO users  VALUES ('${userId}','${name}', '1'  , '${hashPassword}' , '${email}')`;
 					pool.query(query, (db_err, db_res) => {
 						if (db_err) {
-							res.send(JSON.stringify(db_err));
+							res.status(400).send(JSON.stringify(db_err));
 						} else {
 							req.session.userId = name;
 							users.push(name);
@@ -89,15 +89,15 @@ router.post("/signUp", async (req, res) => {
 		const query = `select * from users where email='${email}'`;
 		pool.query(query, (db_err, db_res) => {
 			if (db_err) {
-				res.send(JSON.stringify(db_err));
+				res.status(400).send(JSON.stringify(db_err));
 			} else {
 				if (db_res.rows.length !== 0) {
-					res.json({ message: "This mentor already exists" });
+					res.status(403).json({ message: "This mentor already exists" });
 				} else {
 					const query = `INSERT INTO users  VALUES ('mentor','${name}', '2'  , '${hashPassword}' , '${email}')`;
 					pool.query(query, (db_err, db_res) => {
 						if (db_err) {
-							res.send(JSON.stringify(db_err));
+							res.status(400).send(JSON.stringify(db_err));
 						} else {
 							req.session.userId = name;
 							users.push(name);
