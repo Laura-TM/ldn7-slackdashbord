@@ -22,7 +22,7 @@ const App = () => {
 	return (
 		<Switch>
 			<Route path="/" exact>
-				<Home setToken={setToken} />
+				<Home />
 			</Route>
 			<Route path="/user/:channelId/:userId/:userName">
 				<SingleUser setToken={setToken} />
