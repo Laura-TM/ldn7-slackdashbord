@@ -6,7 +6,7 @@ import Channels from "./pages/Channels";
 import Cohorts from "./pages/Cohorts";
 import Channel from "../src/pages/Channel";
 import Login from "./pages/Login";
-import Logout from "./pages/Logout";
+import Logout from "./components/Logout";
 import SignUp from "./pages/SignUp";
 
 const App = () => {
