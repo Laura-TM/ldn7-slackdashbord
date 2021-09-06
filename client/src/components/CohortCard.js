@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 const CohortCard = ({ cohortName, cohortId }) => {
 	const classes = useStyles();
-	const history = useHistory();
+	// const history = useHistory();
 	// const navigateTo = (path) => {
 	// 	history.push(path);
 	// };
@@ -58,7 +58,11 @@ const CohortCard = ({ cohortName, cohortId }) => {
 					},
 				}}
 			>
-				<Card className={classes.card} onClick={() => navigateTo("/channels")}>
+				{/* <Card className={classes.card} onClick={() => navigateTo("/channels")}> */}
+				<Card
+					className={classes.card}
+					onClick={() => history.push("/channels")}
+				>
 					<CardMedia
 						className={classes.cardMedia}
 						image={groupPeopleImage}
