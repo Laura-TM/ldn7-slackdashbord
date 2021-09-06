@@ -72,7 +72,6 @@ router.post("/signUp", async (req, res) => {
 				if (db_res.rows.length !== 0) {
 					res.status(403).json({ message: "This user already exists" });
 				} else {
-
 					const query = `INSERT INTO users  VALUES ('${userId}','${name}', '1'  , '${hashPassword}' , '${email}' , 'London' )`;
 
 					pool.query(query, (db_err, db_res) => {
@@ -96,7 +95,6 @@ router.post("/signUp", async (req, res) => {
 				if (db_res.rows.length !== 0) {
 					res.status(403).json({ message: "This mentor already exists" });
 				} else {
-
 					const query = `INSERT INTO users  VALUES ('mentor','${name}', '2'  , '${hashPassword}' , '${email}' , 'London')`;
 
 					pool.query(query, (db_err, db_res) => {
