@@ -41,7 +41,6 @@ const CohortCard = ({ cohortName, cohortId }) => {
 	const navigateTo = (path) => {
 		history.push(path);
 	};
-
 	return (
 		<div>
 			<Link
