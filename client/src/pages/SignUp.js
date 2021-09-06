@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import axios from "axios";
-import { useLocation, useParams, useHistory, Link } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -129,7 +129,7 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="name"
 								label="Name"
-								autoFocus
+								// autoFocus
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 							/>
