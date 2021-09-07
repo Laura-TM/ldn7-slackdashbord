@@ -89,15 +89,17 @@ const SignUp = ({ setToken }) => {
 					})
 				);
 				setToken("login");
-				console.log(result.data.message);
-				result.data.message == "Done" && history.push(`/channels/${userId}`);
+				const path =
+					role == 2 ? "/cohorts" : role == 1 ? `/channels/${userId}` : "";
+				const isSuccess = result.data.message == "Done" && !validEmail;
+				isSuccess && history.push(path);
 			})
 			.catch(() => {
 				dispatch(
 					login({
 						name: "",
 						loggedIn: false,
-						message: "Please enter your correct password",
+						message: "",
 					})
 				);
 			});
