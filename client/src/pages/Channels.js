@@ -46,7 +46,7 @@ const Channels = () => {
 	}, []);
 
 	return (
-		<main>
+		<main className="allChannelsTableContainer">
 			<Table borderless hover className="table" responsive>
 				<thead className="text-center">
 					<TableHead />

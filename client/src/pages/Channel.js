@@ -53,7 +53,7 @@ const Channel = () => {
 				console.error(err);
 			});
 	}, [channelId, numberOfUsers]);
-
+	console.log(channelData);
 	return (
 		<main>
 			<div>
@@ -82,7 +82,7 @@ const Channel = () => {
 							{userList.map((user, index) => (
 								<tr key={index}>
 									<th scope="row">{index + 1}</th>
-									<td>
+									<td className="usernameButton">
 										<Link
 											style={{
 												textDecoration: "none",
@@ -98,6 +98,8 @@ const Channel = () => {
 												},
 											}}
 										>
+											{/* <button className="usernameButton">{user.real_name}</button>
+											 */}
 											{user.real_name}
 										</Link>
 									</td>
@@ -107,6 +109,7 @@ const Channel = () => {
 										averageMessages={averageMessages}
 										averageReactions={averageReactions}
 									/>
+									{/* {console.log(user.id)} */}
 								</tr>
 							))}
 						</tbody>

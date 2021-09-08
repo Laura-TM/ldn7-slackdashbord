@@ -53,7 +53,9 @@ const Cohorts = () => {
 						))}
 					</Grid>
 				) : (
-					<CircularProgress className="circularProgress" />
+					<div className="circularProgressContainer">
+						<CircularProgress className="circularProgress" />
+					</div>
 				)}
 			</div>
 		</div>

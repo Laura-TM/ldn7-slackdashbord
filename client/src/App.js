@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import { useState } from "react";
 import Home from "./pages/Home";
 import SingleUser from "./pages/SingleUser";
@@ -19,33 +20,44 @@ const App = () => {
 		return <Login setToken={setToken} />;
 	}
 
+	function ErrorFallback({ error }) {
+		return (
+			<div role="alert">
+				<p>Oops, there was an error:</p>
+				<p style={{ color: "red" }}>{error.message}</p>
+			</div>
+		);
+	}
+
 	return (
-		<Switch>
-			<Route path="/" exact>
-				<Home />
-			</Route>
-			<Route path="/user/:channelId/:userId/:userName">
-				<SingleUser setToken={setToken} />
-			</Route>
-			<Route path="/channels/:userId">
-				<Channels setToken={setToken} />
-			</Route>
-			<Route path="/cohorts">
-				<Cohorts setToken={setToken} />
-			</Route>
-			<Route path="/channel/:name/:channelId">
-				<Channel setToken={setToken} />
-			</Route>
-			<Route path="/login/:role">
-				<Login />
-			</Route>
-			<Route path="/logout">
-				<Logout setToken={setToken} />
-			</Route>
-			<Route path="/signUp/:role">
-				<SignUp></SignUp>
-			</Route>
-		</Switch>
+		<ErrorBoundary FallbackComponent={ErrorFallback}>
+			<Switch>
+				<Route path="/" exact>
+					<Home />
+				</Route>
+				<Route path="/user/:channelId/:userId/:userName">
+					<SingleUser setToken={setToken} />
+				</Route>
+				<Route path="/channels/:userId">
+					<Channels setToken={setToken} />
+				</Route>
+				<Route path="/cohorts">
+					<Cohorts setToken={setToken} />
+				</Route>
+				<Route path="/channel/:name/:channelId">
+					<Channel setToken={setToken} />
+				</Route>
+				<Route path="/login/:role">
+					<Login />
+				</Route>
+				<Route path="/logout">
+					<Logout setToken={setToken} />
+				</Route>
+				<Route path="/signUp/:role">
+					<SignUp></SignUp>
+				</Route>
+			</Switch>
+		</ErrorBoundary>
 	);
 };
 
