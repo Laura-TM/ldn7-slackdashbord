@@ -95,6 +95,8 @@ const Login = ({ setToken }) => {
 						? "/cohorts"
 						: result.data.role == "1"
 						? `/channels/${result.data.userId}`
+						: result.data.role == "3"
+						? `/Approve`
 						: "/";
 				// TODO : add check for cohort or mentor
 				!validEmail && history.push(path);

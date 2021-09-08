@@ -12,7 +12,7 @@ import Approve from "./pages/Approve";
 const App = () => {
 	const [token, setToken] = useState(false);
 	console.log(token);
-	if (!token) return <Approve setToken={setToken} />;
+	if (!token) return <Home setToken={setToken} />;
 	else if (token == "logout") return <Logout setToken={setToken} />;
 	else if (token == "Home") return <Login setToken={setToken} />;
 	else if (token == "signUp") return <SignUp setToken={setToken} />;

@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
 		return res.status(400).send({ error: "Data not formatted properly" });
 	}
 	//const isLogin = password === process.env.LOGIN_PASS;
-	const query = `select * from users where email='${email}'`;
+	const query = `select * from users where email='${email}' and city='3' `;
 	pool.query(query, async (db_err, db_res) => {
 		if (db_err) {
 			res.status(400).send(JSON.stringify(db_err));
@@ -56,7 +56,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/request", (req, res) => {
-	const query = `select user_id,user_name,role,email,city from users order by city asc`;
+	const query = `select user_id,user_name,role,email,city from users where user_id!='Admin' order by city asc`;
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
@@ -67,8 +67,8 @@ router.get("/request", (req, res) => {
 });
 
 router.put("/approve", (req, res) => {
-	const { email = "", access = "" } = req.body;
-	const query = ` update users set city='${access}' where email='${email}';`;
+	const { email = "", city = "" } = req.body;
+	const query = ` update users set city='${city}' where email='${email}';`;
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.status(400).send(JSON.stringify(db_err));
@@ -266,7 +266,7 @@ const fetchAllData = async (startDate) => {
 	return Promise.all(result);
 };
 
-router.post("/dailyStatistic", loginRequired, async (req, res) => {
+router.post("/dailyStatistic", async (req, res) => {
 	const startDateString = req.query.date || new Date();
 	const numberOfDays = req.query.days || 1;
 	let startDate =

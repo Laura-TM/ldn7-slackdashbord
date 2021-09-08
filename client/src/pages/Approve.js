@@ -80,26 +80,29 @@ const Approve = () => {
 	const handleChange = (value, rowData) => {
 		setStatus(value);
 		const tempData = tableData;
-		//console.log("tempData", tempData);
+
 		const index = rowData.tableData.id;
 		tempData[index].city = value;
 		setTableData(tempData);
 		const newChange = { id: index, email: rowData.email, city: rowData.city };
 		changes.push(newChange);
-		console.log("newChange", changes);
-		//console.log(rowData.tableData.id);
 	};
 	async function updateStatus(credentials) {
 		return axios.put(`/api/approve`, credentials);
 	}
 	const handleClickSave = (event, rowData) => {
-		//updateStatus({ rowData.email , rowData.});
-		console.log(rowData.tableData.id);
 		const change = changes.find(
 			(element) => element.id == rowData.tableData.id
 		);
-		console.log(change);
-		alert("You saved status of" + rowData.city);
+
+		const email = change.email;
+		const city = change.city;
+
+		updateStatus({ email, city })
+			.then((result) => {})
+			.catch(() => {});
+
+		// alert("You saved status of" + rowData.city);
 	};
 	useEffect(() => {
 		fetch(`/api/request`)
