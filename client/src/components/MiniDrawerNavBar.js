@@ -149,13 +149,13 @@ const MiniDrawerNavBar = ({ children }) => {
 						</ListItem>
 					</Link>
 
-					<Link to="/signup" className={classes.navbarlinks}>
+					<Link to="/login" className={classes.navbarlinks}>
 						<ListItem button>
 							<ListItemIcon>
 								<LoginIcon />
 							</ListItemIcon>
 							<ListItemText>
-								<span className={classes.navbarlinks}>Sign up</span>
+								<span className={classes.navbarlinks}>Login</span>
 							</ListItemText>
 						</ListItem>
 					</Link>
