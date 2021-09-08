@@ -131,7 +131,7 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="name"
 								label="Name"
-								autoFocus
+								// autoFocus
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 							/>
