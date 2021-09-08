@@ -10,11 +10,11 @@ import MiniDrawerNavBar from "./components/MiniDrawerNavBar";
 ReactDOM.render(
 	<div>
 		<BrowserRouter>
-			<MiniDrawerNavBar>
-				<Provider store={store}>
+			<Provider store={store}>
+				<MiniDrawerNavBar>
 					<App />
-				</Provider>
-			</MiniDrawerNavBar>
+				</MiniDrawerNavBar>
+			</Provider>
 		</BrowserRouter>
 	</div>,
 	document.getElementById("root")

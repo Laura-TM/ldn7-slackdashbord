@@ -13,12 +13,24 @@ import HomeIcon from "@material-ui/icons/HomeSharp";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import Footer from "./Footer";
 import cyfBrand from "../images/cyf_brand.png";
+import Avatar from "@material-ui/core/Avatar";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+import { deepOrange, deepPurple } from "@material-ui/core/colors";
 
 const drawerWidth = 170;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: "flex",
+	},
+	orange: {
+		color: theme.palette.getContrastText(deepOrange[500]),
+		backgroundColor: deepOrange[500],
+	},
+	purple: {
+		color: theme.palette.getContrastText(deepPurple[500]),
+		backgroundColor: deepPurple[500],
 	},
 	appBar: {
 		zIndex: theme.zIndex.drawer + 1,
@@ -88,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MiniDrawerNavBar = ({ children }) => {
 	// const history = useHistory();
+	const user = useSelector(selectUser);
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 
@@ -118,6 +131,9 @@ const MiniDrawerNavBar = ({ children }) => {
 							<img className="cyf_logo" src={cyfBrand} alt="CYF logo" />
 						</Link>
 					</Typography>
+					<Avatar className={classes.orange}>
+						{user && user.name.trim().charAt(0).toUpperCase()}
+					</Avatar>
 				</Toolbar>
 			</AppBar>
 			<Drawer
