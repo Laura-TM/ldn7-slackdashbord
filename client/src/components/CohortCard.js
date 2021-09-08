@@ -6,6 +6,7 @@ import {
 	makeStyles,
 	Typography,
 } from "@material-ui/core/";
+// import { useHistory } from "react-router-dom";
 import groupPeopleImage from "../images/group-of-people.png";
 import "../pages/Home.css";
 
@@ -36,6 +37,10 @@ const useStyles = makeStyles({
 
 const CohortCard = ({ cohortName, cohortId }) => {
 	const classes = useStyles();
+	// const history = useHistory();
+	// const navigateTo = (path) => {
+	// 	history.push(path);
+	// };
 	return (
 		<div>
 			<Link
@@ -53,6 +58,7 @@ const CohortCard = ({ cohortName, cohortId }) => {
 					},
 				}}
 			>
+				{/* <Card className={classes.card} onClick={() => navigateTo("/channels")}> */}
 				<Card
 					className={classes.card}
 					onClick={() => history.push("/channels")}

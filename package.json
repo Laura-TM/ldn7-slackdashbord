@@ -19,7 +19,8 @@
 		"snapshot:update": "jest --updateSnapshot",
 		"start": "npm run dev",
 		"cy:run": "./node_modules/.bin/cypress run",
-		"cy:start-and-run": "start-server-and-test start http://localhost:3000 cy:run",
+		"cy:open": "./node_modules/.bin/cypress open",
+		"cy:start-and-run": "start-server-and-test start http://localhost:3000 cy:open",
 		"lint:eslint": "eslint .",
 		"lint:fix": "npm run lint:eslint -- --fix && npm run lint:prettier -- --write",
 		"lint:prettier": "prettier ."

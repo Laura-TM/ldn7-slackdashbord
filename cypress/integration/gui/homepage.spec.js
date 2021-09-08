@@ -14,14 +14,16 @@ describe("SLacktastic Homepage", () => {
 		);
 	});
 
-	it("displays the getting started button", () => {
+	it("contains three buttons", () => {
 		// assert:
-		cy.get(".getStartedButton").should("have.text", "Get started");
+		cy.get(".buttonsContainer").eq(0).should("contain", "Admin");
+		cy.get(".buttonsContainer").first().should("contain", "Mentor");
+		cy.get(".buttonsContainer").last().should("contain", "Trainee");
 	});
 
 	it("takes user to login page", () => {
 		// action:
-		cy.get(".getStartedButton").click();
+		cy.get(".buttonsContainer").click();
 
 		// assert:
 		cy.get(".login-group").should("exist");
