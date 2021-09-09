@@ -14,7 +14,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MaterialTable from "material-table";
 import Icon from "@material-ui/core/Icon";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { forwardRef } from "react";
 
 import AddBox from "@material-ui/icons/AddBox";
