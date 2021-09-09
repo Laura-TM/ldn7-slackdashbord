@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -79,7 +78,6 @@ const Approve = () => {
 	const handleChange = (value, rowData) => {
 		setStatus(value);
 		const tempData = tableData;
-
 		const index = rowData.tableData.id;
 		tempData[index].city = value;
 		setTableData(tempData);
@@ -115,6 +113,7 @@ const Approve = () => {
 			})
 			.then((body) => {
 				setTableData(body);
+				console.log(body);
 			})
 			.catch((err) => {
 				console.error(err);

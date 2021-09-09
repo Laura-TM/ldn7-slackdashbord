@@ -78,7 +78,6 @@ const Login = ({ setToken }) => {
 			password,
 		})
 			.then((result) => {
-				console.log(result.data);
 				setName(result.data.name);
 				console.log("data:", result.data);
 				dispatch(
