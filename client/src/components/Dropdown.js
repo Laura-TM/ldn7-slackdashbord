@@ -26,8 +26,6 @@ const UserDropdown = () => {
 			});
 	}, []);
 
-	console.log(userList);
-
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 
 	return (
