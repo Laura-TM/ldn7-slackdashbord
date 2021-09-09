@@ -148,8 +148,8 @@ insert into messages (channel_id, user_id, date, message_count, reaction_count) 
 
 insert into users (user_id, user_name, role, password, email, city) values (1, 'Monica', 'Mentor', 'SLacktastic', 'monica@gmail.com', 'London');
 
-n mentor
-id mentor
-e mentor@mentor.me
-p mentor
+-- n mentor
+-- id mentor
+-- e mentor@mentor.me
+-- p mentor
 
