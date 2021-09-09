@@ -99,7 +99,9 @@ const Approve = () => {
 		const city = change.city;
 
 		updateStatus({ email, city })
-			.then((result) => {})
+			.then((result) => {
+				// alert(`The new status is saved for ${rowData.user_name}`);
+			})
 			.catch(() => {});
 
 		// alert("You saved status of" + rowData.city);
