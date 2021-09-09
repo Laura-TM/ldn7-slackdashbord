@@ -498,12 +498,12 @@ router.get("/channelSum/:channelId", loginRequired, (req, res) => {
 	});
 });
 
-router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
+router.get("/userSum/:channelId/:userId", (req, res) => {
 	const channelId = req.params.channelId;
 	const userId = req.params.userId;
 
 	const query = `SELECT DATE_PART('week', date) week_no, channel_id, user_id, SUM(message_count) AS total_message, SUM(reaction_count) AS total_reaction FROM messages WHERE channel_id = '${channelId}' AND user_id = '${userId}'  GROUP BY user_id, channel_id, week_no ORDER by week_no DESC`;
-
+	console.log(query);
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
