@@ -135,6 +135,12 @@ body {
 	max-width: 75%;
 }
 
+.circularProgressContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 .circularProgress {
 	margin: 100px auto;
 }
@@ -151,6 +157,14 @@ body {
 	width: 27px;
 	height: auto;
 	margin-right: 15px;
+}
+
+.allChannelsTableContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	padding-top: 100px;
 }
 
 /* TABLE ON CHANNELS PAGE */
@@ -189,6 +203,13 @@ body {
 
 .thickBottomBorder {
 	border-bottom: solid 2px black;
+}
+
+.usernameButton {
+	width: 100%;
+	text-decoration: underline dotted;
+	/* border-radius: 5px;
+	background-color: rgb(242, 210, 250); */
 }
 
 /* CHARTS */

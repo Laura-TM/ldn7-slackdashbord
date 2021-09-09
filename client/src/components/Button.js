@@ -7,8 +7,6 @@ const ChannelButton = ({ setToken }) => {
 				className="getStartedButton"
 				onClick={() => {
 					setToken("Home");
-					// throwing errors in console:
-					// history.push("/channels");
 				}}
 			>
 				Get started
