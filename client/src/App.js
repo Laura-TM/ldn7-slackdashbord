@@ -57,6 +57,9 @@ const App = () => {
 				<Route path="/signUp/:role">
 					<SignUp></SignUp>
 				</Route>
+				<Route path="/approve">
+					<Approve></Approve>
+				</Route>
 			</Switch>
 		</ErrorBoundary>
 	);
