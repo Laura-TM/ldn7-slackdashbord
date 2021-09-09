@@ -1,6 +1,6 @@
 -- UPDATE messages SET message_count = 8, reaction_count = 7 WHERE id=34;
 
-UPDATE users SET city = 3;
+-- UPDATE users SET city = 3;
 
 insert into messages (channel_id, user_id, date, message_count, reaction_count) values ('C027M110K9T', 'U027Q7RKX5Z', '2021-09-11', 3, 7);
 insert into messages (channel_id, user_id, date, message_count, reaction_count) values ('C027M110K9T', 'U027Z3A64DA', '2021-09-11', 4, 3);
