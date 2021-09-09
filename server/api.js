@@ -29,10 +29,10 @@ router.post("/login", (req, res) => {
 		return res.status(400).send({ error: "Data not formatted properly" });
 	}
 	//const isLogin = password === process.env.LOGIN_PASS;
-	const query = `select * from users where email='${email}'`;
+	const query = `select * from users where email='${email}' and city='3' `;
 	pool.query(query, async (db_err, db_res) => {
 		if (db_err) {
-			res.send(JSON.stringify(db_err));
+			res.status(400).send(JSON.stringify(db_err));
 		} else {
 			if (db_res.rows.length == 0) {
 				res.status(404).json({ message: "This user is not exists" });
@@ -55,6 +55,29 @@ router.post("/login", (req, res) => {
 	});
 });
 
+router.get("/request", (req, res) => {
+	const query = `select user_id,user_name,role,email,city from users where user_id!='Admin' order by city asc`;
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.send(JSON.stringify(db_err));
+		} else {
+			res.json(db_res.rows);
+		}
+	});
+});
+
+router.put("/approve", (req, res) => {
+	const { email = "", city = "" } = req.body;
+	const query = ` update users set city='${city}' where email='${email}';`;
+	pool.query(query, (db_err, db_res) => {
+		if (db_err) {
+			res.status(400).send(JSON.stringify(db_err));
+		} else {
+			res.json({ message: "Done" });
+		}
+	});
+});
+
 router.post("/signUp", async (req, res) => {
 	const { name = "", userId = "", email = "", password = "" } = req.body;
 	console.log("name", name, "userId:", userId, password, email);
@@ -72,7 +95,7 @@ router.post("/signUp", async (req, res) => {
 				if (db_res.rows.length !== 0) {
 					res.status(403).json({ message: "This user already exists" });
 				} else {
-					const query = `INSERT INTO users  VALUES ('${userId}','${name}', '1'  , '${hashPassword}' , '${email}' , 'London' )`;
+					const query = `INSERT INTO users  VALUES ('${userId}','${name}', '1'  , '${hashPassword}' , '${email}' , '1' )`;
 
 					pool.query(query, (db_err, db_res) => {
 						if (db_err) {
@@ -95,7 +118,7 @@ router.post("/signUp", async (req, res) => {
 				if (db_res.rows.length !== 0) {
 					res.status(403).json({ message: "This mentor already exists" });
 				} else {
-					const query = `INSERT INTO users  VALUES ('mentor','${name}', '2'  , '${hashPassword}' , '${email}' , 'London')`;
+					const query = `INSERT INTO users  VALUES ('mentor','${name}', '2'  , '${hashPassword}' , '${email}' , '1')`;
 
 					pool.query(query, (db_err, db_res) => {
 						if (db_err) {
@@ -243,7 +266,7 @@ const fetchAllData = async (startDate) => {
 	return Promise.all(result);
 };
 
-router.post("/dailyStatistic", loginRequired, async (req, res) => {
+router.post("/dailyStatistic", async (req, res) => {
 	const startDateString = req.query.date || new Date();
 	const numberOfDays = req.query.days || 1;
 	let startDate =

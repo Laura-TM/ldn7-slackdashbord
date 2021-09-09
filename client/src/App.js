@@ -8,6 +8,7 @@ import Channel from "../src/pages/Channel";
 import Login from "./pages/Login";
 import Logout from "./components/Logout";
 import SignUp from "./pages/SignUp";
+import Approve from "./pages/Approve";
 const App = () => {
 	const [token, setToken] = useState(false);
 	console.log(token);
@@ -44,6 +45,9 @@ const App = () => {
 			</Route>
 			<Route path="/signUp/:role">
 				<SignUp></SignUp>
+			</Route>
+			<Route path="/Approve">
+				<Approve></Approve>
 			</Route>
 		</Switch>
 	);

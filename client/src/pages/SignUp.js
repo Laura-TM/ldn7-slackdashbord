@@ -80,26 +80,28 @@ const SignUp = ({ setToken }) => {
 			password,
 		})
 			.then((result) => {
-				dispatch(
-					login({
-						name: name,
-						userId: userId,
-						loggedIn: result.data.message,
-						message: true,
-					})
-				);
-				setToken("login");
-				console.log(result.data.message);
-				result.data.message == "Done" && history.push(`/channels/${userId}`);
+				// dispatch(
+				// 	login({
+				// 		name: "",
+				// 		userId: "",
+				// 		loggedIn: result.data.message,
+				// 		message: true,
+				// 	})
+				// );
+				setToken(false);
+				// const path =
+				// 	role == 2 ? "/cohorts" : role == 1 ? `/channels/${userId}` : "";
+				const isSuccess = result.data.message == "Done" && !validEmail;
+				isSuccess && history.push("Home");
 			})
 			.catch(() => {
-				dispatch(
-					login({
-						name: "",
-						loggedIn: false,
-						message: "Please enter your correct password",
-					})
-				);
+				// dispatch(
+				// 	login({
+				// 		name: "",
+				// 		loggedIn: false,
+				// 		message: "",
+				// 	})
+				// );
 			});
 	};
 	// user && console.log(user && user.loggedIn);

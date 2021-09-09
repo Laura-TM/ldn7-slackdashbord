@@ -91,11 +91,13 @@ const Login = ({ setToken }) => {
 				);
 				setToken("login");
 				const path =
-					role == 2
+					result.data.role == "2"
 						? "/cohorts"
-						: role == 1
+						: result.data.role == "1"
 						? `/channels/${result.data.userId}`
-						: "";
+						: result.data.role == "3"
+						? `/Approve`
+						: "/";
 				// TODO : add check for cohort or mentor
 				!validEmail && history.push(path);
 			})
