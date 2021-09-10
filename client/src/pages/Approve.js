@@ -58,7 +58,23 @@ const tableIcons = {
 	ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
 	ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
-
+tableIcons.Add.displayName = "Add";
+tableIcons.Check.displayName = "Check";
+tableIcons.Clear.displayName = "Clear";
+tableIcons.Delete.displayName = "Delete";
+tableIcons.DetailPanel.displayName = "DetailPanel";
+tableIcons.Edit.displayName = "Edit";
+tableIcons.Export.displayName = "Export";
+tableIcons.Filter.displayName = "Filter";
+tableIcons.NextPage.displayName = "NextPage";
+tableIcons.FirstPage.displayName = "FirstPage";
+tableIcons.LastPage.displayName = "LastPage";
+tableIcons.PreviousPage.displayName = "PreviousPage";
+tableIcons.ResetSearch.displayName = "ResetSearch";
+tableIcons.Search.displayName = "Search";
+tableIcons.SortArrow.displayName = "SortArrow";
+tableIcons.ThirdStateCheck.displayName = "ThirdStateCheck";
+tableIcons.ViewColumn.displayName = "ViewColumn";
 const useStyles = makeStyles((theme) => ({
 	formControl: {
 		margin: theme.spacing(1),
@@ -157,6 +173,7 @@ const Approve = () => {
 							backgroundColor: "#01579b",
 							color: "#FFF",
 						},
+						// eslint-disable-next-line react/display-name
 						render: (rowData) => (
 							<FormControl className={classes.formControl}>
 								<Select
@@ -195,4 +212,5 @@ const Approve = () => {
 		</div>
 	);
 };
+Approve.displayName = "Approve";
 export default Approve;
