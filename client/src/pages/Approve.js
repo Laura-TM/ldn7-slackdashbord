@@ -58,6 +58,7 @@ const tableIcons = {
 	ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
 	ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
+
 tableIcons.Add.displayName = "Add";
 tableIcons.Check.displayName = "Check";
 tableIcons.Clear.displayName = "Clear";
@@ -75,6 +76,7 @@ tableIcons.Search.displayName = "Search";
 tableIcons.SortArrow.displayName = "SortArrow";
 tableIcons.ThirdStateCheck.displayName = "ThirdStateCheck";
 tableIcons.ViewColumn.displayName = "ViewColumn";
+
 const useStyles = makeStyles((theme) => ({
 	formControl: {
 		margin: theme.spacing(1),
@@ -216,5 +218,8 @@ const Approve = () => {
 		</div>
 	);
 };
+
+
 Approve.displayName = "Approve";
+
 export default Approve;
