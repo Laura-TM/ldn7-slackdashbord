@@ -9,7 +9,7 @@ const SingleUserData = ({
 	averageReactions,
 }) => {
 	const [userData, setUserData] = useState(null);
-
+	console.log("channelId", userId, channelId);
 	useEffect(() => {
 		fetch(`/api/userSum/${channelId}/${userId}`)
 			.then((res) => {
@@ -20,6 +20,8 @@ const SingleUserData = ({
 			})
 			.then((body) => {
 				setUserData(body.splice(0, 4));
+				console.log("userData", userData);
+				console.log("body", body);
 			})
 			.catch((err) => {
 				console.error(err);

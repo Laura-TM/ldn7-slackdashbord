@@ -24,7 +24,7 @@ const Logout = ({ setToken }) => {
 		e.preventDefault();
 		const result = await logout();
 		console.log(result);
-		setToken("false");
+		setToken(false);
 		history.push(`/`);
 		dispatch(
 			login({
