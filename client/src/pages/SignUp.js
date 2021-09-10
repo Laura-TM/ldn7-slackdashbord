@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, selectUser } from "../features/userSlice";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -65,8 +65,6 @@ const SignUp = ({ setToken }) => {
 		}
 	};
 
-	const dispatch = useDispatch();
-
 	const handleClickLogin = () => {
 		setToken("login");
 		history.push(`/login/${role}`);
@@ -80,32 +78,14 @@ const SignUp = ({ setToken }) => {
 			password,
 		})
 			.then((result) => {
-				// dispatch(
-				// 	login({
-				// 		name: "",
-				// 		userId: "",
-				// 		loggedIn: result.data.message,
-				// 		message: true,
-				// 	})
-				// );
 				setToken(false);
 				// const path =
 				// 	role == 2 ? "/cohorts" : role == 1 ? `/channels/${userId}` : "";
 				const isSuccess = result.data.message == "Done" && !validEmail;
-				isSuccess && history.push("Home");
+				isSuccess && history.push("/Home");
 			})
-			.catch(() => {
-				// dispatch(
-				// 	login({
-				// 		name: "",
-				// 		loggedIn: false,
-				// 		message: "",
-				// 	})
-				// );
-			});
+			.catch(() => {});
 	};
-	// user && console.log(user && user.loggedIn);
-	// user && console.log(user && user.mentor);
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
@@ -131,7 +111,7 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="name"
 								label="Name"
-								// autoFocus
+								autoFocus
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 							/>

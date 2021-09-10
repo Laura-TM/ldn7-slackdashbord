@@ -55,10 +55,10 @@ const App = () => {
 					<Logout setToken={setToken} />
 				</Route>
 				<Route path="/signUp/:role">
-					<SignUp></SignUp>
+					<SignUp setToken={setToken} />
 				</Route>
 				<Route path="/approve">
-					<Approve></Approve>
+					<Approve />
 				</Route>
 			</Switch>
 		</ErrorBoundary>

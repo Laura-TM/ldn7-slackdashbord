@@ -95,9 +95,13 @@ const Approve = () => {
 		setStatus(value);
 		const tempData = tableData;
 		const index = rowData.tableData.id;
-		tempData[index].city = value;
+		tempData[index].status = value;
 		setTableData(tempData);
-		const newChange = { id: index, email: rowData.email, city: rowData.city };
+		const newChange = {
+			id: index,
+			email: rowData.email,
+			status: rowData.status,
+		};
 		changes.push(newChange);
 	};
 	async function updateStatus(credentials) {
@@ -109,15 +113,15 @@ const Approve = () => {
 		);
 
 		const email = change.email;
-		const city = change.city;
+		const status = change.status;
 
-		updateStatus({ email, city })
+		updateStatus({ email, status })
 			.then((result) => {
 				// alert(`The new status is saved for ${rowData.user_name}`);
 			})
 			.catch(() => {});
 
-		// alert("You saved status of" + rowData.city);
+		// alert("You saved status of" + rowData.status);
 	};
 	useEffect(() => {
 		fetch(`/api/request`)
@@ -168,7 +172,7 @@ const Approve = () => {
 					},
 					{
 						title: "Status",
-						field: "city",
+						field: "status",
 						headerStyle: {
 							backgroundColor: "#01579b",
 							color: "#FFF",
@@ -179,7 +183,7 @@ const Approve = () => {
 								<Select
 									labelId="label"
 									id={rowData.email}
-									value={rowData.city}
+									value={rowData.status}
 									onChange={(event) => {
 										handleChange(event.target.value, rowData);
 									}}
