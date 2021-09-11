@@ -35,21 +35,7 @@ const Logout = ({ setToken }) => {
 			})
 		);
 	};
-	return (
-		<form
-			name="loginForm"
-			className="mx-auto "
-			onSubmit={(e) => handleSubmit(e)}
-		>
-			<div>
-				<h1>Logout {user && user.name}</h1>
-				<button className="btn btn-success" onClick={(e) => handleSubmit(e)}>
-					{" "}
-					logout
-				</button>
-			</div>
-		</form>
-	);
+	return <></>;
 };
 
 export default Logout;

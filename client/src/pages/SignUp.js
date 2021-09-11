@@ -66,7 +66,7 @@ const SignUp = ({ setToken }) => {
 	};
 
 	const handleClickLogin = () => {
-		setToken("login");
+		setToken("Home");
 		history.push(`/login/${role}`);
 	};
 	const handleSubmit = (e) => {
