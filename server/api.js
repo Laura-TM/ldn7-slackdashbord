@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
 		return res.status(400).send({ error: "Data not formatted properly" });
 	}
 	//const isLogin = password === process.env.LOGIN_PASS;
-	const query = `select * from users where email='${email}' and city='3' `;
+	const query = `select * from users where email='${email}' and status='3' `;
 	pool.query(query, async (db_err, db_res) => {
 		if (db_err) {
 			res.status(400).send(JSON.stringify(db_err));
@@ -56,7 +56,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/request", (req, res) => {
-	const query = `select user_id,user_name,role,email,city from users where user_id!='Admin' order by city asc`;
+	const query = `select user_id,user_name,role,email,status from users where user_id!='Admin' order by status asc`;
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
@@ -67,8 +67,8 @@ router.get("/request", (req, res) => {
 });
 
 router.put("/approve", (req, res) => {
-	const { email = "", city = "" } = req.body;
-	const query = ` update users set city='${city}' where email='${email}';`;
+	const { email = "", status = "" } = req.body;
+	const query = ` update users set status='${status}' where email='${email}';`;
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.status(400).send(JSON.stringify(db_err));
@@ -498,12 +498,12 @@ router.get("/channelSum/:channelId", loginRequired, (req, res) => {
 	});
 });
 
-router.get("/userSum/:channelId/:userId", loginRequired, (req, res) => {
+router.get("/userSum/:channelId/:userId", (req, res) => {
 	const channelId = req.params.channelId;
 	const userId = req.params.userId;
 
 	const query = `SELECT DATE_PART('week', date) week_no, channel_id, user_id, SUM(message_count) AS total_message, SUM(reaction_count) AS total_reaction FROM messages WHERE channel_id = '${channelId}' AND user_id = '${userId}'  GROUP BY user_id, channel_id, week_no ORDER by week_no DESC`;
-
+	console.log(query);
 	pool.query(query, (db_err, db_res) => {
 		if (db_err) {
 			res.send(JSON.stringify(db_err));
