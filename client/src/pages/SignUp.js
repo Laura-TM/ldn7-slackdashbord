@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
+import { Container, CssBaseline, TextField, Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
+import { Avatar, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { deepOrange } from "@material-ui/core/colors";
+import PopUpMessage from "../components/PopUpMessage";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -23,30 +20,36 @@ const useStyles = makeStyles((theme) => ({
 	},
 	avatar: {
 		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
+		color: theme.palette.getContrastText(deepOrange[500]),
+		backgroundColor: deepOrange[800],
 	},
 	form: {
 		width: "100%", // Fix IE 11 issue.
 		marginTop: theme.spacing(3),
 	},
 	submit: {
-		margin: theme.spacing(3, 0, 2),
+		margin: theme.spacing(2, "auto"),
+		lineHeight: "50px",
 	},
 }));
 
 const SignUp = ({ setToken }) => {
 	const classes = useStyles();
+
 	SignUp.propTypes = {
 		setToken: PropTypes.func.isRequired,
 	};
+
 	const role = useLocation().pathname.split("/")[2];
 	const user = useSelector(selectUser);
 	const history = useHistory();
+
 	async function SignUpUser(credentials) {
 		if (!validEmail) {
 			return axios.post(`/api/signUp`, credentials);
 		}
 	}
+
 	const [name, setName] = useState(" ");
 	const [userId, setUserId] = useState(role == 2 ? "mentor" : "");
 	const [email, setEmail] = useState(" ");
@@ -56,6 +59,7 @@ const SignUp = ({ setToken }) => {
 		const result = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
 		return result;
 	};
+
 	const validateEmail = (e) => {
 		const email = e.target.value;
 		if (!email || isValidEmail(email)) {
@@ -69,6 +73,14 @@ const SignUp = ({ setToken }) => {
 		setToken("Home");
 		history.push(`/login/${role}`);
 	};
+
+	const resetForm = () => {
+		setName("");
+		setUserId("");
+		setEmail("");
+		setPassword("");
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		SignUpUser({
@@ -86,6 +98,7 @@ const SignUp = ({ setToken }) => {
 			})
 			.catch(() => {});
 	};
+
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
@@ -111,6 +124,7 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="name"
 								label="Name"
+								floatingLabel
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 							/>
@@ -122,6 +136,7 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="MemberID"
 								label="Member ID"
+								floatingLabel
 								name="MemberID"
 								autoComplete="Member-ID"
 								disabled={role == "2"}
@@ -136,12 +151,13 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="email"
 								label="Email Address"
+								floatingLabel
 								name="email"
 								autoComplete="email"
 								type="email"
 								value={email}
 								error={validEmail}
-								helperText={validEmail ? "Please enter a valid Email" : " "}
+								helperText={validEmail ? "Please enter a valid email" : " "}
 								onChange={(e) => setEmail(e.target.value)}
 								onBlur={validateEmail}
 							/>
@@ -152,7 +168,9 @@ const SignUp = ({ setToken }) => {
 								required
 								fullWidth
 								name="password"
+								// value={password}
 								label="Password"
+								floatingLabel
 								type="password"
 								id="password"
 								autoComplete="current-password"
@@ -160,15 +178,7 @@ const SignUp = ({ setToken }) => {
 							/>
 						</Grid>
 					</Grid>
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}
-					>
-						Sign Up
-					</Button>
+					<PopUpMessage resetForm={resetForm} />
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Link variant="body2" onClick={handleClickLogin}>

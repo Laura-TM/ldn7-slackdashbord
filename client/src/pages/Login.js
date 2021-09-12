@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-import { useParams, Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import "./Home.css";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
+import { Container, CssBaseline, TextField, Grid } from "@material-ui/core";
+import { Avatar, Typography, Button } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { deepOrange } from "@material-ui/core/colors";
+
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
@@ -24,14 +20,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 	avatar: {
 		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
+		color: theme.palette.getContrastText(deepOrange[500]),
+		backgroundColor: deepOrange[800],
 	},
 	form: {
 		width: "100%", // Fix IE 11 issue.
 		marginTop: theme.spacing(1),
 	},
 	submit: {
-		margin: theme.spacing(3, 0, 2),
+		margin: theme.spacing(2, "auto"),
+		lineHeight: "50px",
 	},
 }));
 
@@ -78,6 +76,7 @@ const Login = ({ setToken }) => {
 			password,
 		})
 			.then((result) => {
+				console.log(result.data);
 				setName(result.data.name);
 				console.log("data:", result.data);
 				dispatch(
@@ -97,7 +96,6 @@ const Login = ({ setToken }) => {
 						: result.data.role == "3"
 						? `/Approve`
 						: "/";
-				// TODO : add check for cohort or mentor
 				!validEmail && history.push(path);
 			})
 			.catch(() => {
@@ -126,34 +124,42 @@ const Login = ({ setToken }) => {
 					noValidate
 					onSubmit={(e) => handleSubmit(e)}
 				>
-					<TextField
-						variant="outlined"
-						margin="normal"
-						required
-						fullWidth
-						id="email"
-						label="Email Address"
-						name="email"
-						autoComplete="none"
-						value={email}
-						error={validEmail}
-						helperText={validEmail ? "Please enter a valid Email" : " "}
-						onChange={(e) => setEmail(e.target.value)}
-						onBlur={validateEmail}
-					/>
-					<TextField
-						variant="outlined"
-						margin="normal"
-						required
-						fullWidth
-						name="password"
-						label="Password"
-						type="password"
-						id="password"
-						autoComplete="current-password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
+					<Grid container>
+						<Grid item xs={12}>
+							<div className="emailContainer">
+								<TextField
+									variant="outlined"
+									margin="normal"
+									required
+									fullWidth
+									id="email"
+									label="Email Address"
+									name="email"
+									autoComplete="none"
+									value={email}
+									error={validEmail}
+									helperText={validEmail ? "Please enter a valid email" : " "}
+									onChange={(e) => setEmail(e.target.value)}
+									onBlur={validateEmail}
+								/>
+							</div>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								margin="normal"
+								required
+								fullWidth
+								name="password"
+								label="Password"
+								type="password"
+								id="password"
+								autoComplete="current-password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+						</Grid>
+					</Grid>
 					<div className="message text-danger">
 						{user && <div>{user.message}</div>}
 					</div>

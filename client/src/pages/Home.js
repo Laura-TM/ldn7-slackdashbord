@@ -1,4 +1,3 @@
-// import ChannelButton from "../components/Button";
 import HomeUserButtons from "../components/HomeUserButtons";
 import "./Home.css";
 import PropTypes from "prop-types";
@@ -16,11 +15,10 @@ const Home = ({ setToken }) => {
 					Future slack channels and users.
 				</h2>
 			</div>
-			{/* <ChannelButton setToken={setToken} /> */}
 			<div className="buttonsContainer">
-				<HomeUserButtons content="Admin" setToken={setToken} />
-				<HomeUserButtons content="Mentor" setToken={setToken} />
-				<HomeUserButtons content="Trainee" setToken={setToken} />
+				<HomeUserButtons content="ADMIN" setToken={setToken} />
+				<HomeUserButtons content="MENTOR" setToken={setToken} />
+				<HomeUserButtons content="TRAINEE" setToken={setToken} />
 			</div>
 		</div>
 	);
