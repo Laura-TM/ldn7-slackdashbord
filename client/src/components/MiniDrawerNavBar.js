@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	orange: {
 		color: theme.palette.getContrastText(deepOrange[500]),
-		backgroundColor: deepOrange[500],
+		backgroundColor: deepOrange[800],
+		float: "right",
 	},
 	purple: {
 		color: theme.palette.getContrastText(deepPurple[500]),
@@ -131,9 +132,11 @@ const MiniDrawerNavBar = ({ children }) => {
 					>
 						<img className="cyf_logo" src={cyfBrand} alt="CYF logo" />
 					</Typography>
-					<Avatar className={classes.orange}>
-						{user && user.name.trim().charAt(0).toUpperCase()}
-					</Avatar>
+					<Typography style={{ flex: 1 }}>
+						<Avatar className={classes.orange}>
+							{user && user.name.trim().charAt(0).toUpperCase()}
+						</Avatar>
+					</Typography>
 				</Toolbar>
 			</AppBar>
 			<Drawer
