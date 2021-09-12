@@ -8,9 +8,6 @@
 }
 
 body {
-	/* min-height: 200px; */
-	/* width: 100%; */
-	/* height: 100%; */
 	margin: 0;
 }
 
@@ -55,26 +52,7 @@ body {
 	margin-top: 30px;
 }
 
-/* BUTTON ON HOME PAGE */
-
-/* .getStartedButton {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 50px;
-	margin: 30px auto;
-	border-radius: 20px;
-	border: solid 2px #0e6506;
-	background-color: #0e6506;
-	font-size: 1rem;
-}
-
-.getStartedButton:hover {
-	background-color: #b1f778e3;
-	color: #0a5503;
-} */
+/* BUTTONS ON HOME PAGE */
 
 .buttonsContainer {
 	display: flex;
@@ -86,23 +64,28 @@ body {
 
 .userButton {
 	width: 100%;
-	height: 45px;
+	height: 60px;
 	padding: 0.7em 1.4em;
 	margin: 10px;
-	border-radius: 1em;
+	border-radius: 0.5em;
 	font-weight: bolder;
 	color: #ffffff;
-	background-color: #3369ff;
+	background-color: #3f51b5;
 	box-shadow: inset 0 -0.6em 0 -0.35em rgba(158, 141, 141, 0.17);
 	text-align: center;
+	text-transform: capitalize;
 }
 
 .userButton:hover {
-	background-color: #204abb;
+	background-color: #303f9f;
 }
 
 .userIconBs {
 	margin-right: 5px;
+}
+
+.emailContainer {
+	margin-top: "20px";
 }
 
 /* COHORTS PAGE */
@@ -171,7 +154,6 @@ body {
 
 .table {
 	margin: auto;
-	/* margin-top: 30px; */
 	width: 80%;
 	max-width: 80%;
 }
@@ -208,8 +190,6 @@ body {
 .usernameButton {
 	width: 100%;
 	text-decoration: underline dotted;
-	/* border-radius: 5px;
-	background-color: rgb(242, 210, 250); */
 }
 
 /* CHARTS */
@@ -310,7 +290,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 60px; */
 		padding: 25px 25px;
 	}
 
@@ -322,21 +301,11 @@ footer {
 		font-size: 13px;
 	}
 
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 40px;
-		width: 55%;
-		font-size: 1.1rem;
-	} */
+	/* BUTTONS ON HOME PAGE */
 
 	.buttonsContainer {
 		width: 55%;
 	}
-
-	/* .userButton {
-		width: 95%;
-	} */
 }
 
 @media (min-width: 480px) {
@@ -345,7 +314,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 70px; */
 		padding: 27px;
 	}
 
@@ -357,21 +325,11 @@ footer {
 		font-size: 16px;
 	}
 
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 50px;
-		width: 60%;
-		font-size: 1.2rem;
-	} */
+	/* BUTTONS ON HOME PAGE */
 
 	.buttonsContainer {
 		width: 60%;
 	}
-
-	/* .userButton {
-		width: 90%;
-	} */
 
 	.userIconBs {
 		margin-right: 10px;
@@ -397,7 +355,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 80px; */
 		padding: 55px;
 	}
 
@@ -409,12 +366,7 @@ footer {
 		font-size: 18px;
 	}
 
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 60px;
-		font-size: 1.3rem;
-	} */
+	/* BUTTONS ON HOME PAGE */
 
 	.buttonsContainer {
 		flex-direction: row;
@@ -429,7 +381,6 @@ footer {
 
 	.singleUserChart {
 		width: 80%;
-		/* height: auto; */
 		margin: 20px auto;
 		padding-bottom: 30px;
 	}
@@ -447,7 +398,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 90px; */
 		padding: 57px;
 	}
 
@@ -459,12 +409,7 @@ footer {
 		font-size: 20px;
 	}
 
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 70px;
-		font-size: 1.4rem;
-	} */
+	/* BUTTONS ON HOME PAGE */
 
 	.buttonsContainer {
 		margin-top: 20px;
@@ -492,7 +437,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 100px; */
 		padding: 58px;
 	}
 
@@ -503,13 +447,6 @@ footer {
 	.introMessage h2 {
 		font-size: 22px;
 	}
-
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 80px;
-		font-size: 1.5rem;
-	} */
 
 	/* FOOTER */
 
@@ -524,7 +461,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 110px; */
 		padding: 60px;
 	}
 
@@ -535,13 +471,6 @@ footer {
 	.introMessage h2 {
 		font-size: 24px;
 	}
-
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 90px;
-		font-size: 1.6rem;
-	} */
 
 	/* TABLE ON CHANNELS PAGE */
 
@@ -575,7 +504,6 @@ footer {
 	/* HOME PAGE */
 
 	.introMessage {
-		/* margin-top: 120px; */
 		padding: 60px;
 	}
 
@@ -586,13 +514,6 @@ footer {
 	.introMessage h2 {
 		font-size: 26px;
 	}
-
-	/* BUTTON ON HOME PAGE */
-
-	/* .getStartedButton {
-		margin-top: 100px;
-		font-size: 1.6rem;
-	} */
 
 	/* FOOTER */
 
