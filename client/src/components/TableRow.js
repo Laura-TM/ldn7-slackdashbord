@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import arrow from "../images/arrow.png";
 import "../pages/Home.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login, selectUser } from "../features/userSlice";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 
 const TableRow = ({ channel }) => {
 	const [channelData, setChannelData] = useState([]);

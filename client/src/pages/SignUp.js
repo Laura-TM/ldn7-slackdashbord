@@ -66,7 +66,7 @@ const SignUp = ({ setToken }) => {
 	};
 
 	const handleClickLogin = () => {
-		setToken("login");
+		setToken("Home");
 		history.push(`/login/${role}`);
 	};
 	const handleSubmit = (e) => {
@@ -111,7 +111,6 @@ const SignUp = ({ setToken }) => {
 								fullWidth
 								id="name"
 								label="Name"
-								autoFocus
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 							/>
