@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
+// import Table from "@material-ui/core/Table";
+// import TableBody from "@material-ui/core/TableBody";
+// import TableCell from "@material-ui/core/TableCell";
+// import TableContainer from "@material-ui/core/TableContainer";
+// import TableHead from "@material-ui/core/TableHead";
+// import TablePagination from "@material-ui/core/TablePagination";
+// import TableRow from "@material-ui/core/TableRow";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
+// import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MaterialTable from "material-table";
-import Icon from "@material-ui/core/Icon";
-import DeleteIcon from "@material-ui/icons/Delete";
+// import Icon from "@material-ui/core/Icon";
 import { forwardRef } from "react";
 
 import AddBox from "@material-ui/icons/AddBox";
@@ -35,7 +33,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import SaveIcon from "@material-ui/icons/Save";
 
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 
 const tableIcons = {
 	Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -61,6 +59,24 @@ const tableIcons = {
 	ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
+tableIcons.Add.displayName = "Add";
+tableIcons.Check.displayName = "Check";
+tableIcons.Clear.displayName = "Clear";
+tableIcons.Delete.displayName = "Delete";
+tableIcons.DetailPanel.displayName = "DetailPanel";
+tableIcons.Edit.displayName = "Edit";
+tableIcons.Export.displayName = "Export";
+tableIcons.Filter.displayName = "Filter";
+tableIcons.NextPage.displayName = "NextPage";
+tableIcons.FirstPage.displayName = "FirstPage";
+tableIcons.LastPage.displayName = "LastPage";
+tableIcons.PreviousPage.displayName = "PreviousPage";
+tableIcons.ResetSearch.displayName = "ResetSearch";
+tableIcons.Search.displayName = "Search";
+tableIcons.SortArrow.displayName = "SortArrow";
+tableIcons.ThirdStateCheck.displayName = "ThirdStateCheck";
+tableIcons.ViewColumn.displayName = "ViewColumn";
+
 const useStyles = makeStyles((theme) => ({
 	formControl: {
 		margin: theme.spacing(1),
@@ -80,11 +96,14 @@ const Approve = () => {
 	const handleChange = (value, rowData) => {
 		setStatus(value);
 		const tempData = tableData;
-
 		const index = rowData.tableData.id;
-		tempData[index].city = value;
+		tempData[index].status = value;
 		setTableData(tempData);
-		const newChange = { id: index, email: rowData.email, city: rowData.city };
+		const newChange = {
+			id: index,
+			email: rowData.email,
+			status: rowData.status,
+		};
 		changes.push(newChange);
 	};
 	async function updateStatus(credentials) {
@@ -96,15 +115,15 @@ const Approve = () => {
 		);
 
 		const email = change.email;
-		const city = change.city;
+		const status = change.status;
 
-		updateStatus({ email, city })
+		updateStatus({ email, status })
 			.then((result) => {
 				// alert(`The new status is saved for ${rowData.user_name}`);
 			})
 			.catch(() => {});
 
-		// alert("You saved status of" + rowData.city);
+		// alert("You saved status of" + rowData.status);
 	};
 	useEffect(() => {
 		fetch(`/api/request`)
@@ -116,6 +135,7 @@ const Approve = () => {
 			})
 			.then((body) => {
 				setTableData(body);
+				console.log(body);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -154,17 +174,18 @@ const Approve = () => {
 					},
 					{
 						title: "Status",
-						field: "city",
+						field: "status",
 						headerStyle: {
 							backgroundColor: "#01579b",
 							color: "#FFF",
 						},
+						// eslint-disable-next-line react/display-name
 						render: (rowData) => (
 							<FormControl className={classes.formControl}>
 								<Select
 									labelId="label"
 									id={rowData.email}
-									value={rowData.city}
+									value={rowData.status}
 									onChange={(event) => {
 										handleChange(event.target.value, rowData);
 									}}
@@ -197,4 +218,7 @@ const Approve = () => {
 		</div>
 	);
 };
+
+Approve.displayName = "Approve";
+
 export default Approve;
