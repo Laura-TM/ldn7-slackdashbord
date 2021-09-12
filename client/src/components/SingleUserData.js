@@ -26,7 +26,7 @@ const SingleUserData = ({
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [channelId, userId]);
+	}, [channelId, userData, userId]);
 
 	return userData && userData.length > 0 ? (
 		<>
