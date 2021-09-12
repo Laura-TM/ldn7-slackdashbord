@@ -20,8 +20,6 @@ const SingleUserData = ({
 			})
 			.then((body) => {
 				setUserData(body.splice(0, 4));
-				console.log("userData", userData);
-				console.log("body", body);
 			})
 			.catch((err) => {
 				console.error(err);
