@@ -17,7 +17,7 @@
 		"serve": "npm start",
 		"test": "jest",
 		"snapshot:update": "jest --updateSnapshot",
-		"start": "npm run dev",
+		"start": "node dist/server.js",
 		"cy:run": "./node_modules/.bin/cypress run",
 		"cy:open": "./node_modules/.bin/cypress open",
 		"cy:start-and-run": "start-server-and-test start http://localhost:3000 cy:open",

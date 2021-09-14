@@ -128,7 +128,7 @@ const Login = ({ setToken }) => {
 						<Grid item xs={12}>
 							<div className="emailContainer">
 								<TextField
-									variant="outlined"
+									variant="filled"
 									margin="normal"
 									required
 									fullWidth
@@ -146,7 +146,7 @@ const Login = ({ setToken }) => {
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								variant="outlined"
+								variant="filled"
 								margin="normal"
 								required
 								fullWidth

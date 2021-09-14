@@ -119,7 +119,7 @@ const SignUp = ({ setToken }) => {
 							<TextField
 								autoComplete="name"
 								name="name"
-								variant="outlined"
+								variant="filled"
 								required
 								fullWidth
 								id="name"
@@ -131,7 +131,7 @@ const SignUp = ({ setToken }) => {
 						</Grid>
 						<Grid item xs={12} sm={6}>
 							<TextField
-								variant="outlined"
+								variant="filled"
 								required
 								fullWidth
 								id="MemberID"
@@ -146,7 +146,7 @@ const SignUp = ({ setToken }) => {
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								variant="outlined"
+								variant="filled"
 								required
 								fullWidth
 								id="email"
@@ -164,7 +164,7 @@ const SignUp = ({ setToken }) => {
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								variant="outlined"
+								variant="filled"
 								required
 								fullWidth
 								name="password"
