@@ -18,7 +18,7 @@ const Channels = () => {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [channelList]);
 
 	return (
 		<main className="allChannelsTableContainer">

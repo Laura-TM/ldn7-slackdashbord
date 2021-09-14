@@ -152,6 +152,7 @@ body {
 
 tr:hover {
 	background: rgb(211, 209, 209) !important;
+	color: #000000;
 }
 
 .containerSlackChannels {
@@ -184,6 +185,18 @@ tr:hover {
 }
 
 /* TABLE ON SINGLE CHANNEL PAGE */
+
+.lightBlueTableHeading {
+	/* background-color: #087bd3; */
+	background-color: #01579b;
+	color: #ffffff;
+}
+
+.darkBlueTableHeading {
+	/* background-color: #01579b; */
+	background-color: #087bd3;
+	color: #ffffff;
+}
 
 .chanelTableContainer {
 	margin: 0px 20px 10px 20px;
