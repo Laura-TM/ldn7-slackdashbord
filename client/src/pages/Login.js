@@ -134,6 +134,7 @@ const Login = ({ setToken }) => {
 									fullWidth
 									id="email"
 									label="Email Address"
+									// floatingLabel
 									name="email"
 									autoComplete="none"
 									value={email}
@@ -152,6 +153,7 @@ const Login = ({ setToken }) => {
 								fullWidth
 								name="password"
 								label="Password"
+								// floatingLabel
 								type="password"
 								id="password"
 								autoComplete="current-password"

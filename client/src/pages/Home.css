@@ -150,6 +150,16 @@ body {
 	padding-top: 100px;
 }
 
+tr:hover {
+	background: rgb(211, 209, 209) !important;
+}
+
+.containerSlackChannels {
+	width: 70%;
+	margin: auto;
+	padding: 30px;
+}
+
 /* TABLE ON CHANNELS PAGE */
 
 .table {
