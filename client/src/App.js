@@ -10,6 +10,16 @@ import Login from "./pages/Login";
 import Logout from "./components/Logout";
 import SignUp from "./pages/SignUp";
 import Approve from "./pages/Approve";
+import "./pages/Home.css";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+const theme = createMuiTheme({
+	typography: {
+		fontFamily: ["Varela Round", "sans-serif"].join(","),
+	},
+});
+
 const App = () => {
 	const [token, setToken] = useState(false);
 	console.log(token);
@@ -31,37 +41,39 @@ const App = () => {
 	}
 
 	return (
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
-			<Switch>
-				<Route path="/" exact>
-					<Home />
-				</Route>
-				<Route path="/user/:channelId/:userId/:userName">
-					<SingleUser setToken={setToken} />
-				</Route>
-				<Route path="/channels/:userId">
-					<Channels setToken={setToken} />
-				</Route>
-				<Route path="/cohorts">
-					<Cohorts setToken={setToken} />
-				</Route>
-				<Route path="/channel/:name/:channelId">
-					<Channel setToken={setToken} />
-				</Route>
-				<Route path="/login/:role">
-					<Login />
-				</Route>
-				<Route path="/logout">
-					<Logout setToken={setToken} />
-				</Route>
-				<Route path="/signUp/:role">
-					<SignUp setToken={setToken} />
-				</Route>
-				<Route path="/approve">
-					<Approve />
-				</Route>
-			</Switch>
-		</ErrorBoundary>
+		<ThemeProvider theme={theme}>
+			<ErrorBoundary FallbackComponent={ErrorFallback}>
+				<Switch>
+					<Route path="/" exact>
+						<Home />
+					</Route>
+					<Route path="/user/:channelId/:userId/:userName">
+						<SingleUser setToken={setToken} />
+					</Route>
+					<Route path="/channels/:userId">
+						<Channels setToken={setToken} />
+					</Route>
+					<Route path="/cohorts">
+						<Cohorts setToken={setToken} />
+					</Route>
+					<Route path="/channel/:name/:channelId">
+						<Channel setToken={setToken} />
+					</Route>
+					<Route path="/login/:role">
+						<Login />
+					</Route>
+					<Route path="/logout">
+						<Logout setToken={setToken} />
+					</Route>
+					<Route path="/signUp/:role">
+						<SignUp setToken={setToken} />
+					</Route>
+					<Route path="/approve">
+						<Approve />
+					</Route>
+				</Switch>
+			</ErrorBoundary>
+		</ThemeProvider>
 	);
 };
 
