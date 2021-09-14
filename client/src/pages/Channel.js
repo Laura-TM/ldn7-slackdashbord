@@ -40,7 +40,7 @@ const Channel = () => {
 			.then((body) => {
 				let messagesArray = [];
 				let reactionsArray = [];
-				let lastTwoWeeks = body.slice(0, 2);
+				let lastTwoWeeks = body.slice(0, 2).reverse();
 				lastTwoWeeks.forEach((element) => {
 					messagesArray.push(element.total_message / numberOfUsers);
 					reactionsArray.push(element.total_reaction / numberOfUsers);
@@ -64,14 +64,12 @@ const Channel = () => {
 				<div className="chanelTableContainer">
 					<Table borderless className="channelTable" responsive>
 						<thead>
-							<tr className="text-center thickBottomBorder">
+							<tr className="text-center thickBottomBorder lightBlueTableHeading">
 								<th colSpan="2">Trainee</th>
-								<th colSpan="2">Current week</th>
 								<th colSpan="2">Previous week</th>
-								{/* <th colSpan="2">Previous week</th>
-								<th colSpan="2">Current week</th> */}
+								<th colSpan="2">Current week</th>
 							</tr>
-							<tr className="thickBottomBorder">
+							<tr className="thickBottomBorder darkBlueTableHeading">
 								<th>#</th>
 								<th>User name</th>
 								<th>Messages</th>

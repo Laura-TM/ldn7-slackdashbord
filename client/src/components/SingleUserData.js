@@ -30,31 +30,31 @@ const SingleUserData = ({
 		<>
 			<td
 				className={
-					userData[0].total_message < averageMessages[0] ? "red" : "green"
-				}
-			>
-				{userData[0].total_message}
-			</td>
-			<td
-				className={
-					userData[0].total_reaction < averageReactions[0] ? "red" : "green"
-				}
-			>
-				{userData[0].total_reaction}
-			</td>
-			<td
-				className={
-					userData[1].total_message < averageMessages[1] ? "red" : "green"
+					userData[1].total_message < averageMessages[0] ? "red" : "green"
 				}
 			>
 				{userData[1].total_message}
 			</td>
 			<td
 				className={
-					userData[1].total_reaction < averageReactions[1] ? "red" : "green"
+					userData[1].total_reaction < averageReactions[0] ? "red" : "green"
 				}
 			>
 				{userData[1].total_reaction}
+			</td>
+			<td
+				className={
+					userData[0].total_message < averageMessages[1] ? "red" : "green"
+				}
+			>
+				{userData[0].total_message}
+			</td>
+			<td
+				className={
+					userData[0].total_reaction < averageReactions[1] ? "red" : "green"
+				}
+			>
+				{userData[0].total_reaction}
 			</td>
 		</>
 	) : (
