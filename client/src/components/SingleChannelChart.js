@@ -5,8 +5,7 @@ defaults.font.family = "Varela Round";
 const SingleChannelChart = (props) => {
 	const state = {
 		data: {
-			labels: ["Current Week", "Previous Week"],
-			// labels: ["Previous Week", "Current Week"],
+			labels: ["Previous Week", "Current Week"],
 			datasets: [
 				{
 					label: "Messages",
@@ -28,7 +27,29 @@ const SingleChannelChart = (props) => {
 				},
 			],
 		},
+		// options: {
+		// maintainAspectRatio: true,
+		// aspectRatio: 2,
+		// xAxes: [
+		// 	{
+		// 		scaleLabel: {
+		// 			display: true,
+		// 			labelString: "Weeks",
+		// 		},
+		// 	},
+		// ],
+		// yAxes: [
+		// 	{
+		// 		ticks: {
+		// 			beginAtZero: true,
+
+		// 			labelString: "Totals",
+		// 		},
+		// 	},
+		// ],
+		// },
 	};
+
 	const options = {
 		// responsive: true,
 		maintainAspectRatio: true,
@@ -41,9 +62,10 @@ const SingleChannelChart = (props) => {
 		},
 		type: "bar",
 	};
+
 	return (
 		<div className="singleChannelChart">
-			<Bar data={state.data} options={options} />
+			<Bar data={state.data} options={state.options} />
 		</div>
 	);
 };
