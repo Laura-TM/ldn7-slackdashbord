@@ -48,7 +48,7 @@ router.post("/login", (req, res) => {
 						role: db_res.rows[0].role,
 					});
 				} else if (!resultCompare) {
-					res.status(403).json({ message: "user not allowed" });
+					res.status(403).json({ message: "User not allowed" });
 				}
 			}
 		}

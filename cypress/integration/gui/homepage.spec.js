@@ -16,16 +16,16 @@ describe("SLacktastic Homepage", () => {
 
 	it("contains three buttons", () => {
 		// assert:
-		cy.get(".buttonsContainer").eq(0).should("contain", "Admin");
-		cy.get(".buttonsContainer").first().should("contain", "Mentor");
-		cy.get(".buttonsContainer").last().should("contain", "Trainee");
+		cy.get(".buttonsContainer").eq(0).should("contain", "ADMIN");
+		cy.get(".buttonsContainer").first().should("contain", "MENTOR");
+		cy.get(".buttonsContainer").last().should("contain", "TRAINEE");
 	});
 
 	it("takes user to login page", () => {
 		// action:
-		cy.get(".buttonsContainer").click();
+		cy.get(".buttonsContainer").first().click();
 
-		// assert:
-		cy.get(".login-group").should("exist");
+		// // assert:
+		cy.get(".MuiButton-label").contains("Login");
 	});
 });

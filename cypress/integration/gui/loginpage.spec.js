@@ -11,12 +11,12 @@ describe("SLacktastic Homepage", () => {
 			);
 		}
 		cy.visit("http://localhost:3000/");
-		cy.get(".getStartedButton").click();
+		cy.get(".buttonsContainer").click();
 	});
 
 	it("has two input fields for logging in", () => {
 		// assert:
-		cy.get("#username").should("exist");
+		cy.get("#email").should("exist");
 		cy.get("#password").should("exist");
 	});
 
@@ -30,16 +30,12 @@ describe("SLacktastic Homepage", () => {
 
 	it("submits login form after entering name and password", () => {
 		// action:
-		cy.get("input:first")
-			.should("have.attr", "placeholder", "Enter your username")
-			.type(username);
-		cy.get("input:last")
-			.should("have.attr", "placeholder", "Enter your password")
-			.type(password);
-		cy.get(".loginButton").click();
+		cy.get("input:first").should("have.attr", "name", "email").type(username);
+		cy.get("input:last").should("have.attr", "name", "password").type(password);
+		cy.get(".MuiButton-label").click();
 
 		// assert:
-		cy.get(".table").should("exist");
+		cy.get(".cohortTitle").should("exist");
 	});
 });
 
